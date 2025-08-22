@@ -1,4 +1,10 @@
-export function createTask(title, description, dueDate, priority) {
+export function createTask(
+  title,
+  description = ``,
+  dueDate = null,
+  priority = null
+) {
+  if (!title || typeof title !== `string` || title.trim() === ``) return;
   return {
     id: crypto.randomUUID(),
     title,
