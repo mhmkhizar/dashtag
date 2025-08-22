@@ -1,14 +1,14 @@
 {
-  "name": "template-mern",
+  "name": "my-tasks",
   "version": "1.0.0",
   "description": "Template repository for MERN stack projects.",
-  "homepage": "https://github.com/mhmkhizar/template-mern#readme",
+  "homepage": "https://github.com/mhmkhizar/my-tasks",
   "bugs": {
-    "url": "https://github.com/mhmkhizar/template-mern/issues"
+    "url": "https://github.com/mhmkhizar/my-tasks/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mhmkhizar/template-mern.git"
+    "url": "git+https://github.com/mhmkhizar/my-tasks.git"
   },
   "license": "MIT",
   "author": "Muhammad Khizar",
