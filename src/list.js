@@ -1,6 +1,7 @@
 export const defaultList = createList(`My Tasks`);
 
 export function createList(name) {
+  if (!name || typeof name !== `string` || name.trim() === ``) return;
   return {
     id: crypto.randomUUID(),
     name,
@@ -8,6 +9,8 @@ export function createList(name) {
     addTask(task) {
       this.tasks.push(task);
     },
-    removeTask() {},
+    removeTask(taskID) {
+      this.tasks = this.tasks.filter((task) => task.id !== taskID);
+    },
   };
 }
