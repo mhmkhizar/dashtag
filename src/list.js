@@ -1,3 +1,5 @@
+export const defaultList = createList(`My Tasks`);
+
 export function createList(name) {
   return {
     id: crypto.randomUUID(),
@@ -9,5 +11,3 @@ export function createList(name) {
     removeTask() {},
   };
 }
-
-export const defaultList = createList(`My Tasks`);
