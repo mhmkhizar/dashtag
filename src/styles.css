@@ -1,0 +1,197 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* Custom Settings For Web-App Layout */
+
+* {
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  height: 100%;
+}
+
+body {
+  font-size: 1.6rem;
+  height: 100%;
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: #333;
+}
+
+.layout {
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+  grid-template-columns: 240px 1fr;
+  grid-template-areas:
+    "header header"
+    "sidebar main-content"
+    "footer footer";
+  height: 100vh;
+}
+
+/* dsfsdfsdfsd */
+
+ul > li {
+  list-style: none;
+}
+
+a,
+.btn {
+  color: inherit;
+}
+
+.btn {
+  font-weight: 500;
+  width: 100%;
+}
+
+.header {
+  grid-area: header;
+  padding: 1.6rem 3.2rem;
+  background-color: #333;
+  color: #ddd;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  padding: 3.2rem;
+}
+
+.sidebar__actions {
+  margin-bottom: 3.2rem;
+}
+
+.sidebar__btn {
+  background-color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.sidebar__btn.btn--primary {
+  justify-content: center;
+  padding: 1em 0;
+  border-radius: 1.6rem;
+}
+
+.sidebar__list {
+  margin-bottom: 1.6rem;
+}
+
+.sidebar__item {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.sidebar__btn.btn--secondary {
+  justify-content: left;
+  background-color: inherit;
+  border: none;
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+}
+
+.main-content {
+  grid-area: main-content;
+  padding: 3.2rem;
+}
+
+.tasks-list {
+  background-color: #eee;
+  width: clamp(450px, 50%, 900px);
+  margin: 0 auto;
+  padding: 2.4rem;
+  border-radius: 1.2rem;
+}
+
+.tasks-list__title {
+  line-height: 1;
+  margin-bottom: 2.4rem;
+}
+
+.tasks-list__btn {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 0.4em;
+  background-color: inherit;
+  border: none;
+}
+
+.footer {
+  grid-area: footer;
+  padding: 0.8rem 1.6rem;
+  background-color: #333;
+  color: #ddd;
+  text-align: center;
+}

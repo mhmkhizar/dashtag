@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
     <title>ToDo App</title>
   </head>
   <body class="page">
@@ -13,14 +17,20 @@
 
       <aside class="sidebar">
         <div class="sidebar__actions">
-          <button class="btn btn--primary" type="button">Create</button>
+          <button class="btn btn--primary sidebar__btn" type="button">
+            <span class="material-symbols-rounded add-icon"> add </span>Create
+          </button>
         </div>
         <ul class="sidebar__list">
-          <li class="sidebar__item">My Tasks</li>
+          <li class="sidebar__item">
+            <span class="material-symbols-rounded list-icon"> list </span>My
+            Tasks
+          </li>
         </ul>
         <div class="sidebar__footer">
-          <button class="btn btn--secondary" type="button">
-            Create new list
+          <button class="btn btn--secondary sidebar__btn" type="button">
+            <span class="material-symbols-rounded add-icon"> add </span>Create
+            new list
           </button>
         </div>
       </aside>
@@ -28,12 +38,29 @@
       <main class="main-content">
         <section class="tasks-list">
           <h2 class="tasks-list__title">My Tasks</h2>
-          <button class="btn btn--primary" type="button">Add a task</button>
+          <button class="btn btn--primary tasks-list__btn" type="button">
+            <span class="material-symbols-rounded add-task-icon">
+              add_task </span
+            >Add a task
+          </button>
           <ul class="tasks-list__list">
             <li class="tasks-list__item"></li>
           </ul>
         </section>
       </main>
+
+      <footer class="footer">
+        <p class="footer__text">
+          Copyright © The Odin Project 2025 — Created By
+          <a
+            class="footer__link"
+            href="https://github.com/mhmkhizar"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Muhammad Khizar</a
+          >
+        </p>
+      </footer>
     </div>
   </body>
 </html>
