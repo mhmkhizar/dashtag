@@ -9,7 +9,7 @@
     />
     <title>My Tasks</title>
   </head>
-  <body class="page">
+  <body class="page dark">
     <div class="layout">
       <header class="header">
         <h1 class="header__logo">My Tasks</h1>
@@ -62,6 +62,19 @@
           >
         </p>
       </footer>
+
+      <dialog class="create-list-modal">
+        <form method="dialog">
+          <h3 class="create-list-modal__title">Create new list</h3>
+          <input
+            class="create-list-modal__input"
+            type="text"
+            name="list-name"
+            id="listName"
+            placeholder="Enter name"
+          />
+        </form>
+      </dialog>
     </div>
   </body>
 </html>

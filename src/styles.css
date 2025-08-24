@@ -1,3 +1,9 @@
+/* Imports */
+/* Themes */
+
+@import url(./themes/dark.css);
+@import url(./themes/light.css);
+
 /* Resets */
 
 *,
@@ -88,57 +94,24 @@ body {
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-/* Custom Properties */
-
-:root {
-  --primary: #1d4ed8;
-
-  --primary-tint-1: #3263de;
-  --primary-tint-2: #4876e3;
-  --primary-tint-3: #5d88e8;
-  --primary-tint-4: #739aed;
-  --primary-tint-5: #8aabf1;
-  --primary-tint-6: #a0bcf5;
-  --primary-tint-7: #b7cdf8;
-  --primary-tint-8: #cfdefb;
-  --primary-tint-9: #e7eefd;
-
-  --primary-shade-1: #1843bc;
-  --primary-shade-2: #1338a0;
-  --primary-shade-3: #0e2d85;
-  --primary-shade-4: #09236b;
-  --primary-shade-5: #051953;
-  --primary-shade-6: #030f3b;
-  --primary-shade-7: #010725;
-  --primary-shade-8: #000211;
-  --primary-shade-9: #000002;
-
-  --secondary: #4b5563;
-  --secondary-hover: #4b55631a;
-
-  --accent1: #059669;
-  --accent2: #d97706;
-  --neutral-light: #f9fafb;
-  --neutral-dark: #1f2937;
-  --pure-white: #ffffff;
-  --pure-black: #000000;
-}
-
 /* Genral Styles */
 
 body {
-  background-color: var(--neutral-light);
-  color: var(--neutral-dark);
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
 }
 
 .header,
 .footer {
-  background-color: var(--neutral-dark);
-  color: var(--neutral-light);
+  background: linear-gradient(
+    90deg,
+    var(--md-sys-color-surface-container),
+    var(--md-sys-color-surface-container-low)
+  );
 }
 
 .tasks-list {
-  background-color: var(--pure-white);
+  background-color: var(--md-sys-color-surface);
   box-shadow: 0 0 4.5px -2px var(--neutral-dark);
 }
 
@@ -152,15 +125,16 @@ body {
 
 .btn--primary {
   font-weight: 600;
-  background-color: var(--primary);
-  color: var(--neutral-light);
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
   justify-content: center;
   padding: 1.2em 1.6em;
   border-radius: 1.8rem;
 }
 
 .btn--primary:hover {
-  background-color: var(--primary-shade-1);
+  background-color: var(--md-sys-color-on-primary);
+  color: var(--md-sys-color-on-primary-container);
 }
 
 .btn--secondary {
@@ -182,6 +156,19 @@ ul > li {
 a,
 button {
   color: inherit;
+}
+
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 1.2rem;
+  padding: 2.4rem;
+  background-color: var(--primary-tint-9);
+  color: var(--neutral-dark);
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* Specific Styles */
@@ -267,4 +254,18 @@ button {
   grid-area: footer;
   padding: 0.8rem 1.6rem;
   text-align: center;
+}
+
+.create-list-modal__title {
+  margin-bottom: 1.2rem;
+}
+
+dialog input {
+  padding: 0.4em 0.8em;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+dialog input:focus {
+  outline: var(--neutral-dark) solid 1px;
 }
