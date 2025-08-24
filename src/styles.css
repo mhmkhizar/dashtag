@@ -1,7 +1,4 @@
-/*
-  Josh's Custom CSS Reset
-  https://www.joshwcomeau.com/css/custom-css-reset/
-*/
+/* Resets */
 
 *,
 *::before,
@@ -11,6 +8,7 @@
 
 * {
   margin: 0;
+  padding: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -67,83 +65,156 @@ h6 {
   isolation: isolate;
 }
 
-/* Custom Settings For Web-App Layout */
+/* Compact Layout Settings */
 
-* {
-  padding: 0;
+html,
+body {
+  height: 100%;
 }
+
+.layout {
+  height: 100vh;
+}
+
+/* Font Settings */
 
 html {
   font-size: 62.5%;
-  height: 100%;
 }
 
 body {
   font-size: 1.6rem;
-  height: 100%;
   font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  color: #333;
 }
 
-.layout {
-  display: grid;
-  grid-template-rows: max-content 1fr max-content;
-  grid-template-columns: 240px 1fr;
-  grid-template-areas:
-    "header header"
-    "sidebar main-content"
-    "footer footer";
-  height: 100vh;
+/* Custom Properties */
+
+:root {
+  --primary: #1d4ed8;
+
+  --primary-tint-1: #3263de;
+  --primary-tint-2: #4876e3;
+  --primary-tint-3: #5d88e8;
+  --primary-tint-4: #739aed;
+  --primary-tint-5: #8aabf1;
+  --primary-tint-6: #a0bcf5;
+  --primary-tint-7: #b7cdf8;
+  --primary-tint-8: #cfdefb;
+  --primary-tint-9: #e7eefd;
+
+  --primary-shade-1: #1843bc;
+  --primary-shade-2: #1338a0;
+  --primary-shade-3: #0e2d85;
+  --primary-shade-4: #09236b;
+  --primary-shade-5: #051953;
+  --primary-shade-6: #030f3b;
+  --primary-shade-7: #010725;
+  --primary-shade-8: #000211;
+  --primary-shade-9: #000002;
+
+  --secondary: #4b5563;
+  --secondary-hover: #4b55631a;
+
+  --accent1: #059669;
+  --accent2: #d97706;
+  --neutral-light: #f9fafb;
+  --neutral-dark: #1f2937;
+  --pure-white: #ffffff;
+  --pure-black: #000000;
 }
 
-/* dsfsdfsdfsd */
+/* Genral Styles */
+
+body {
+  background-color: var(--neutral-light);
+  color: var(--neutral-dark);
+}
+
+.header,
+.footer {
+  background-color: var(--neutral-dark);
+  color: var(--neutral-light);
+}
+
+.tasks-list {
+  background-color: var(--pure-white);
+  box-shadow: 0 0 4.5px -2px var(--neutral-dark);
+}
+
+.btn {
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.btn--primary {
+  font-weight: 600;
+  background-color: var(--primary);
+  color: var(--neutral-light);
+  justify-content: center;
+  padding: 1.2em 1.6em;
+  border-radius: 1.6rem;
+}
+
+.btn--primary:hover {
+  background-color: var(--primary-shade-1);
+}
+
+.btn--secondary {
+  font-weight: 500;
+  background-color: inherit;
+  justify-content: left;
+  border-radius: 999px;
+  padding: 0.4em 0.8em;
+}
+
+.btn--secondary:hover {
+  background-color: var(--secondary-hover);
+}
 
 ul > li {
   list-style: none;
 }
 
 a,
-.btn {
+button {
   color: inherit;
 }
 
-.btn {
-  font-weight: 500;
-  width: 100%;
+/* Specific Styles */
+
+.layout {
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+  grid-template-columns: 320px 1fr;
+  grid-template-areas:
+    "header header"
+    "sidebar main-content"
+    "footer footer";
 }
 
 .header {
   grid-area: header;
-  padding: 1.6rem 3.2rem;
-  background-color: #333;
-  color: #ddd;
+  padding: 1.2rem 2.4rem;
 }
 
 .sidebar {
   grid-area: sidebar;
-  padding: 3.2rem;
+  padding: 2.4rem 2.4rem 2.4rem 0;
 }
 
 .sidebar__actions {
-  margin-bottom: 3.2rem;
+  margin-bottom: 2.4rem;
+  padding-left: 2.4rem;
 }
 
-.sidebar__btn {
-  background-color: inherit;
-  display: flex;
-  align-items: center;
-  gap: 0.4em;
-}
-
-.sidebar__btn.btn--primary {
-  justify-content: center;
-  padding: 1em 0;
-  border-radius: 1.6rem;
-}
-
-.sidebar__list {
+.sidebar__list,
+.sidebar__footer {
   margin-bottom: 1.6rem;
+  padding-left: 1.2rem;
 }
 
 .sidebar__item {
@@ -151,14 +222,21 @@ a,
   justify-content: left;
   align-items: center;
   gap: 0.4em;
+  border-radius: 999px;
+  padding: 0.4em 0.8em;
+  cursor: pointer;
 }
 
-.sidebar__btn.btn--secondary {
-  justify-content: left;
-  background-color: inherit;
-  border: none;
-  border-radius: 999px;
-  padding: 0.4rem 0.8rem;
+.sidebar__item.active {
+  background-color: var(--primary-tint-7);
+}
+
+.sidebar__item.active:hover {
+  background-color: var(--primary-tint-6);
+}
+
+.sidebar__footer .btn {
+  width: 100%;
 }
 
 .main-content {
@@ -167,31 +245,26 @@ a,
 }
 
 .tasks-list {
-  background-color: #eee;
   width: clamp(450px, 50%, 900px);
   margin: 0 auto;
-  padding: 2.4rem;
+  padding: 2.4rem 2.4rem 2.4rem 0;
   border-radius: 1.2rem;
 }
 
 .tasks-list__title {
   line-height: 1;
-  margin-bottom: 2.4rem;
+  margin-left: 2.4rem;
+  margin-bottom: 1.8rem;
 }
 
 .tasks-list__btn {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  gap: 0.4em;
-  background-color: inherit;
-  border: none;
+  margin-left: 1.2rem;
+  width: 100%;
+  gap: 1rem;
 }
 
 .footer {
   grid-area: footer;
   padding: 0.8rem 1.6rem;
-  background-color: #333;
-  color: #ddd;
   text-align: center;
 }

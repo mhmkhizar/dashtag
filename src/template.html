@@ -7,7 +7,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
     />
-    <title>ToDo App</title>
+    <title>My Tasks</title>
   </head>
   <body class="page">
     <div class="layout">
@@ -19,10 +19,11 @@
         <div class="sidebar__actions">
           <button class="btn btn--primary sidebar__btn" type="button">
             <span class="material-symbols-rounded add-icon"> add </span>Create
+            task
           </button>
         </div>
         <ul class="sidebar__list">
-          <li class="sidebar__item">
+          <li class="sidebar__item active">
             <span class="material-symbols-rounded list-icon"> list </span>My
             Tasks
           </li>
@@ -38,7 +39,7 @@
       <main class="main-content">
         <section class="tasks-list">
           <h2 class="tasks-list__title">My Tasks</h2>
-          <button class="btn btn--primary tasks-list__btn" type="button">
+          <button class="btn btn--secondary tasks-list__btn" type="button">
             <span class="material-symbols-rounded add-task-icon">
               add_task </span
             >Add a task
@@ -53,7 +54,7 @@
         <p class="footer__text">
           Copyright © The Odin Project 2025 — Created By
           <a
-            class="footer__link"
+            class="link footer__link"
             href="https://github.com/mhmkhizar"
             target="_blank"
             rel="noopener noreferrer"
