@@ -156,7 +156,7 @@ body {
   color: var(--neutral-light);
   justify-content: center;
   padding: 1.2em 1.6em;
-  border-radius: 1.6rem;
+  border-radius: 1.8rem;
 }
 
 .btn--primary:hover {
