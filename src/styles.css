@@ -1,5 +1,4 @@
 /* Imports */
-/* Themes */
 
 @import url(./themes/dark.css);
 @import url(./themes/light.css);
@@ -97,65 +96,15 @@ body {
 /* Genral Styles */
 
 body {
-  background-color: var(--md-sys-color-background);
-  color: var(--md-sys-color-on-background);
+  background-color: #ddd;
+  color: #333;
 }
-
-.header,
-.footer {
-  background: linear-gradient(
-    90deg,
-    var(--md-sys-color-surface-container),
-    var(--md-sys-color-surface-container-low)
-  );
-}
-
-.tasks-list {
-  background-color: var(--md-sys-color-surface);
-  box-shadow: 0 0 4.5px -2px var(--neutral-dark);
-}
-
-.btn {
-  border: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  cursor: pointer;
-}
-
-.btn--primary {
-  font-weight: 600;
-  background-color: var(--md-sys-color-primary);
-  color: var(--md-sys-color-on-primary);
-  justify-content: center;
-  padding: 1.2em 1.6em;
-  border-radius: 1.8rem;
-}
-
-.btn--primary:hover {
-  background-color: var(--md-sys-color-on-primary);
-  color: var(--md-sys-color-on-primary-container);
-}
-
-.btn--secondary {
-  font-weight: 500;
-  background-color: inherit;
-  justify-content: left;
-  border-radius: 999px;
-  padding: 0.4em 0.8em;
-}
-
-.btn--secondary:hover {
-  background-color: var(--secondary-hover);
+a {
+  color: inherit;
 }
 
 ul > li {
   list-style: none;
-}
-
-a,
-button {
-  color: inherit;
 }
 
 dialog {
@@ -166,27 +115,82 @@ dialog {
   border: none;
   border-radius: 1.2rem;
   padding: 2.4rem;
-  background-color: var(--primary-tint-9);
-  color: var(--neutral-dark);
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.3);
+}
+
+.create-list-modal__title {
+  margin-bottom: 1.2rem;
+}
+
+dialog input {
+  padding: 0.4em 0.8em;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+dialog input:focus {
+  outline: var(--neutral-dark) solid 1px;
+}
+
+.btn {
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  color: inherit;
+  background-color: inherit;
+}
+
+.btn--primary {
+  font-weight: 600;
+  justify-content: center;
+  padding: 1.2em 1.6em;
+  border-radius: 2.4rem;
+  background-color: #333;
+  color: #ddd;
+}
+
+.btn--secondary {
+  font-weight: 500;
+  justify-content: left;
+  border-radius: 999px;
+  padding: 0.4em 0.8em;
+}
+
+.btn--secondary:hover {
+  background-color: rgba(51, 51, 51, 0.1);
 }
 
 /* Specific Styles */
 
+/* Layout */
+
 .layout {
   display: grid;
   grid-template-rows: max-content 1fr max-content;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 280px 1fr;
   grid-template-areas:
     "header header"
     "sidebar main-content"
     "footer footer";
 }
 
+/* Header */
+
 .header {
+  background-color: #333;
+  color: #ddd;
   grid-area: header;
   padding: 1.2rem 2.4rem;
 }
+
+.header__logo {
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+
+/* Sidebar */
 
 .sidebar {
   grid-area: sidebar;
@@ -215,23 +219,23 @@ dialog {
 }
 
 .sidebar__item.active {
-  background-color: var(--primary-tint-7);
+  background-color: #333;
+  color: #ddd;
 }
 
-.sidebar__item.active:hover {
-  background-color: var(--primary-tint-6);
-}
-
-.sidebar__footer .btn {
+.sidebar__footer > .btn {
   width: 100%;
 }
 
+/* Main Content */
+
 .main-content {
   grid-area: main-content;
-  padding: 3.2rem;
+  padding: 2.4rem;
 }
 
 .tasks-list {
+  background-color: #ccc;
   width: clamp(450px, 50%, 900px);
   margin: 0 auto;
   padding: 2.4rem 2.4rem 2.4rem 0;
@@ -250,22 +254,12 @@ dialog {
   gap: 1rem;
 }
 
+/* Footer */
+
 .footer {
   grid-area: footer;
+  background-color: #333;
+  color: #ddd;
   padding: 0.8rem 1.6rem;
   text-align: center;
-}
-
-.create-list-modal__title {
-  margin-bottom: 1.2rem;
-}
-
-dialog input {
-  padding: 0.4em 0.8em;
-  border-radius: 0.5rem;
-  border: none;
-}
-
-dialog input:focus {
-  outline: var(--neutral-dark) solid 1px;
 }
