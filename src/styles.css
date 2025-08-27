@@ -159,8 +159,8 @@ button {
   --button-padding-32: 12.8rem;
 
   /* Layout Constraints */
-  --container-min-width: 32rem;
-  --container-max-width: 120rem;
+  --cntr-min-width: 32rem;
+  --cntr-max-width: 120rem;
   --content-min-width: 40ch;
   --content-max-width: 80ch;
 
@@ -279,7 +279,7 @@ html {
   height: 100%;
 }
 
-body {
+.page {
   height: 100%;
   background-color: var(--color-bg-muted);
   color: var(--color-text);
@@ -290,11 +290,11 @@ body {
   letter-spacing: var(--letter-spacing-normal);
 }
 
-.layout-wrapper {
+.page-wrapper {
   height: 100vh;
   display: grid;
   grid-template-rows: max-content 1fr max-content;
-  grid-template-columns: minmax(calc(var(--container-min-width) - 5vw), 1fr) 5fr;
+  grid-template-columns: minmax(calc(var(--cntr-min-width) - 5vw), 1fr) 5fr;
   grid-template-areas:
     "header header"
     "sidebar main-content"
@@ -413,8 +413,13 @@ body {
   padding: var(--space-4) var(--space-6);
 }
 
-.header__menu-icon {
+.header__icon {
   cursor: pointer;
+}
+
+.header__icon.toggle-off-icon {
+  font-size: var(--font-size-4xl);
+  margin-left: auto;
 }
 
 .header__logo {
@@ -444,23 +449,23 @@ body {
   margin-bottom: var(--space-8);
 }
 
-.sidebar__list {
+.sidebar__projects-title-list-cntr {
   display: flex;
   flex-direction: column;
   margin-bottom: var(--space-4);
 }
 
-.sidebar__item {
+.sidebar__projects-title-list-item {
   width: 100%;
   font-weight: var(--font-weight-normal);
 }
 
-.sidebar__item.active {
+.sidebar__projects-title-list-item.active {
   background-color: var(--color-primary-muted);
   color: var(--color-text-strong);
 }
 
-.sidebar__item.active:hover {
+.sidebar__projects-title-list-item.active:hover {
   background-color: var(--color-primary-muted-hover);
 }
 
@@ -474,15 +479,15 @@ body {
   padding: var(--space-0) var(--space-5) var(--space-5) var(--space-5);
 }
 
-.tasks-list {
+.project-cntr {
   background-color: var(--color-bg);
-  max-width: var(--container-max-width);
+  max-width: var(--cntr-max-width);
   margin: var(--space-0) auto;
   border-radius: var(--radius-lg);
   padding: var(--space-6) var(--space-3);
 }
 
-.tasks-list__title {
+.project-cntr__title {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-normal);
   color: var(--color-text-strong);
@@ -490,14 +495,14 @@ body {
   margin-bottom: var(--space-3);
 }
 
-.tasks-list__btn {
+.project-cntr__btn {
   width: 100%;
   color: var(--color-primary-strong);
   text-shadow: var(--text-shadow-soft);
   /* margin-left: calc(-1 * var(--space-1)); */
 }
 
-.tasks-list__btn:hover {
+.project-cntr__btn:hover {
   background-color: var(--color-bg-hover);
 }
 

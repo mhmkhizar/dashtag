@@ -9,53 +9,58 @@
     />
     <title>MyTasks</title>
   </head>
-  <body>
-    <div class="layout-wrapper">
+  <body class="page">
+    <div class="page-wrapper">
       <header class="header">
-        <span class="header__menu-icon material-symbols-rounded menu_icon icon">
-          menu
+        <span class="header__icon icon material-symbols-rounded menu-icon icon"
+          >menu
         </span>
+
         <div class="header__logo">
           <span
             class="header__logo--icon material-symbols-rounded task-alt-icon icon"
-          >
-            task_alt
+            >task_alt
           </span>
-          <h1 class="header__logo--title heading">MyTasks</h1>
+          <h1 class="header__logo--title title">MyTasks</h1>
         </div>
+
+        <span class="header__icon material-symbols-rounded toggle-off-icon icon"
+          >toggle_off
+        </span>
       </header>
 
       <aside class="sidebar">
         <div class="sidebar__actions">
-          <button class="sidebar__btn btn btn--primary" type="button">
-            <span class="material-symbols-rounded add-icon icon"> add </span
-            >Create task
+          <button class="sidebar__btn btn--primary btn" type="button">
+            <span class="sidebar__icon material-symbols-rounded add-icon icon"
+              >add</span
+            >Create
           </button>
         </div>
-        <ul class="sidebar__list">
-          <li class="sidebar__item active">
-            <span class="material-symbols-rounded list-icon icon"> list </span
-            >My Tasks
-          </li>
-        </ul>
+        <ul
+          class="sidebar__projects-title-list-cntr"
+          id="projectsListcntr"
+        ></ul>
         <div class="sidebar__footer">
-          <button class="sidebar__btn btn btn--secondary" type="button">
-            <span class="material-symbols-rounded add-icon icon"> add </span
+          <button class="sidebar__btn btn--secondary btn" type="button">
+            <span class="sidbar__icon material-symbols-rounded add-icon icon">
+              add </span
             >Create new list
           </button>
         </div>
       </aside>
 
       <main class="main-content">
-        <section class="tasks-list">
-          <h2 class="tasks-list__title heading">My Tasks</h2>
-          <button class="tasks-list__btn btn btn--secondary" type="button">
-            <span class="material-symbols-rounded add-task-icon icon">
-              add_task </span
+        <section class="project-cntr">
+          <h2 class="project-cntr__title title">My Tasks</h2>
+          <button class="project-cntr__btn btn--secondary btn" type="button">
+            <span
+              class="project-cntr__icon material-symbols-rounded add-task-icon icon"
+              >add_task</span
             >Add a task
           </button>
-          <ul class="tasks-list__list">
-            <li class="tasks-list__item"></li>
+          <ul class="project-cntr__tasks-list-cntr">
+            <li class="project-cntr__tasks-list-item"></li>
           </ul>
         </section>
       </main>
