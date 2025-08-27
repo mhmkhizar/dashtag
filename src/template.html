@@ -7,7 +7,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
     />
-    <title>My Tasks</title>
+    <title>MyTasks</title>
   </head>
   <body>
     <div class="layout-wrapper">
@@ -33,23 +33,7 @@
           </button>
         </div>
         <ul class="sidebar__list">
-          <li class="sidebar__item">
-            <span class="material-symbols-rounded list-icon icon"> list </span
-            >My Tasks
-          </li>
-          <li class="sidebar__item">
-            <span class="material-symbols-rounded list-icon icon"> list </span
-            >My Tasks
-          </li>
           <li class="sidebar__item active">
-            <span class="material-symbols-rounded list-icon icon"> list </span
-            >My Tasks
-          </li>
-          <li class="sidebar__item">
-            <span class="material-symbols-rounded list-icon icon"> list </span
-            >My Tasks
-          </li>
-          <li class="sidebar__item">
             <span class="material-symbols-rounded list-icon icon"> list </span
             >My Tasks
           </li>
@@ -92,13 +76,31 @@
       <dialog class="create-list-modal modal">
         <form method="dialog">
           <h3 class="create-list-modal__title heading">Create new list</h3>
-          <input
-            class="create-list-modal__input input"
-            type="text"
-            name="list-name"
-            id="listName"
-            placeholder="Enter name"
-          />
+          <div class="input-group form-group">
+            <input
+              class="create-list-modal__input input"
+              type="text"
+              name="list-name"
+              id="listName"
+              placeholder="Enter name"
+              required
+            />
+          </div>
+          <div class="btn-group form-group">
+            <button
+              class="create-list-modal__btn btn--secondary btn"
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              class="create-list-modal__btn btn--secondary btn"
+              type="submit"
+              inert
+            >
+              Done
+            </button>
+          </div>
         </form>
       </dialog>
     </div>
