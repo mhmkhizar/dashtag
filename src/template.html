@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,38 +9,64 @@
     />
     <title>My Tasks</title>
   </head>
-  <body class="page">
-    <div class="content-wrapper">
+  <body>
+    <div class="layout-wrapper">
       <header class="header">
-        <h1 class="header__logo">My Tasks</h1>
+        <span class="header__menu-icon material-symbols-rounded menu_icon icon">
+          menu
+        </span>
+        <div class="header__logo">
+          <span
+            class="header__logo--icon material-symbols-rounded task-alt-icon icon"
+          >
+            task_alt
+          </span>
+          <h1 class="header__logo--title heading">MyTasks</h1>
+        </div>
       </header>
 
       <aside class="sidebar">
         <div class="sidebar__actions">
-          <button class="btn btn--primary sidebar__btn" type="button">
-            <span class="material-symbols-rounded add-icon"> add </span>Create
-            task
+          <button class="sidebar__btn btn btn--primary" type="button">
+            <span class="material-symbols-rounded add-icon icon"> add </span
+            >Create task
           </button>
         </div>
         <ul class="sidebar__list">
+          <li class="sidebar__item">
+            <span class="material-symbols-rounded list-icon icon"> list </span
+            >My Tasks
+          </li>
+          <li class="sidebar__item">
+            <span class="material-symbols-rounded list-icon icon"> list </span
+            >My Tasks
+          </li>
           <li class="sidebar__item active">
-            <span class="material-symbols-rounded list-icon"> list </span>My
-            Tasks
+            <span class="material-symbols-rounded list-icon icon"> list </span
+            >My Tasks
+          </li>
+          <li class="sidebar__item">
+            <span class="material-symbols-rounded list-icon icon"> list </span
+            >My Tasks
+          </li>
+          <li class="sidebar__item">
+            <span class="material-symbols-rounded list-icon icon"> list </span
+            >My Tasks
           </li>
         </ul>
         <div class="sidebar__footer">
-          <button class="btn btn--secondary sidebar__btn" type="button">
-            <span class="material-symbols-rounded add-icon"> add </span>Create
-            new list
+          <button class="sidebar__btn btn btn--secondary" type="button">
+            <span class="material-symbols-rounded add-icon icon"> add </span
+            >Create new list
           </button>
         </div>
       </aside>
 
       <main class="main-content">
         <section class="tasks-list">
-          <h2 class="tasks-list__title">My Tasks</h2>
-          <button class="btn btn--secondary tasks-list__btn" type="button">
-            <span class="material-symbols-rounded add-task-icon">
+          <h2 class="tasks-list__title heading">My Tasks</h2>
+          <button class="tasks-list__btn btn btn--secondary" type="button">
+            <span class="material-symbols-rounded add-task-icon icon">
               add_task </span
             >Add a task
           </button>
@@ -54,7 +80,7 @@
         <p class="footer__text">
           Copyright © The Odin Project 2025 — Created By
           <a
-            class="link footer__link"
+            class="footer__link link"
             href="https://github.com/mhmkhizar"
             target="_blank"
             rel="noopener noreferrer"
@@ -63,11 +89,11 @@
         </p>
       </footer>
 
-      <dialog class="create-list-modal">
+      <dialog class="create-list-modal modal">
         <form method="dialog">
-          <h3 class="create-list-modal__title">Create new list</h3>
+          <h3 class="create-list-modal__title heading">Create new list</h3>
           <input
-            class="create-list-modal__input"
+            class="create-list-modal__input input"
             type="text"
             name="list-name"
             id="listName"
