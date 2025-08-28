@@ -302,7 +302,7 @@ html {
 }
 
 .btn,
-.sidebar__item {
+.sidebar__projects-title-list-item {
   border: none;
   display: inline-flex;
   align-items: center;
@@ -324,14 +324,14 @@ html {
 }
 
 .btn--secondary,
-.sidebar__item {
+.sidebar__projects-title-list-item {
   justify-content: left;
   border-radius: var(--radius-sm);
   padding: var(--button-padding-2) var(--button-padding-4);
 }
 
 .btn--secondary:hover,
-.sidebar__item:hover {
+.sidebar__projects-title-list-item:hover {
   background-color: var(--color-bg-muted-hover);
 }
 

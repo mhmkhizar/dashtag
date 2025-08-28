@@ -1,8 +1,7 @@
 export const defaultList = createList(`My Tasks`);
 
 export function createList(name) {
-  if (!name || typeof name !== `string` || name.trim() === ``)
-    throw new Error("Task title is required and must be a non-empty string");
+  if (!name || typeof name !== `string` || name.trim() === ``) return;
 
   return {
     id: crypto.randomUUID(),

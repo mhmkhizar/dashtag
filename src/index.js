@@ -1,9 +1,9 @@
 import "./styles.css";
 import { createTask } from "./task";
 import { defaultList, createList } from "./list";
+import { displayProjectTitles } from "./dom";
 
-export const lists = [defaultList];
-export const currentList = defaultList;
+const lists = [defaultList];
+const currentList = defaultList;
 
-const dialog = document.querySelector(`dialog`);
-// dialog.showModal();
+displayProjectTitles(lists);

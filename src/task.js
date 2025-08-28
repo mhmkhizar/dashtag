@@ -4,8 +4,7 @@ export function createTask(
   dueDate = null,
   priority = null
 ) {
-  if (!title || typeof title !== `string` || title.trim() === ``)
-    throw new Error("Task title is required and must be a non-empty string");
+  if (!title || typeof title !== `string` || title.trim() === ``) return;
 
   return {
     id: crypto.randomUUID(),
