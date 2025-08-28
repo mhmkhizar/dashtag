@@ -356,7 +356,7 @@ html {
   box-shadow: var(--box-shadow-low);
 }
 
-.modal .heading {
+.modal .title {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-medium);
   margin-bottom: var(--space-3);
