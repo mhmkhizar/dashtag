@@ -1,9 +1,9 @@
 import "./styles.css";
 import { createTask } from "./task";
-import { defaultList, createList } from "./list";
-import { displayProjectTitles } from "./dom";
+import { defaultProject, createProject } from "./list";
+import { renderSidebarList } from "./dom";
 
-const lists = [defaultList];
-const currentList = defaultList;
+const projects = [defaultProject];
+const currentProject = defaultProject;
 
-displayProjectTitles(lists);
+renderSidebarList(projects);

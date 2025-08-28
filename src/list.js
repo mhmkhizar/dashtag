@@ -1,6 +1,6 @@
-export const defaultList = createList(`My Tasks`);
+export const defaultProject = createProject(`My Tasks`);
 
-export function createList(name) {
+export function createProject(name) {
   if (!name || typeof name !== `string` || name.trim() === ``) return;
 
   return {

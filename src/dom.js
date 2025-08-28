@@ -1,17 +1,37 @@
-export function displayProjectTitles(listArray) {
-  const listContainer = document.querySelector(`#sidebarListCntr`);
+export function renderSidebarList(list) {
+  const ul = document.querySelector(`#sidebarList`);
 
-  listArray.forEach((item) => {
-    const listItem = createElement(`li`, `sidebar__projects-title-list-item`);
-    listItem.textContent = item.name;
-    listContainer.appendChild(listItem);
+  list.forEach((item) => {
+    const li = createElement({
+      elem: `li`,
+      cls: `sidebar__list-item`,
+    });
+    const span = createElement({
+      elem: `span`,
+      cls: `sidebar__list-item-icon icon material-symbols-rounded`,
+      content: `list`,
+    });
+    li.textContent = item.name;
+    li.prepend(span);
+    ul.appendChild(li);
   });
 }
 
-function createElement(elem, cls) {
+function createElement({ elem, cls = ``, id = ``, content = `` }) {
   if (!elem || typeof elem !== `string` || elem.trim() === ``) return;
-  const el = document.createElement(elem);
-  if (!cls || typeof cls !== `string` || cls.trim() === ``) return el;
-  el.classList.add(cls);
-  return el;
+  const element = document.createElement(elem);
+
+  if (typeof cls === `string` || cls.trim() !== ``) {
+    element.classList.add(...cls.trim().split(/\s+/));
+  }
+
+  if (typeof id === `string` || id.trim() !== ``) {
+    element.id = id;
+  }
+
+  if (typeof content === `string` || content.trim() !== ``) {
+    element.textContent = content;
+  }
+
+  return element;
 }
