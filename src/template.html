@@ -10,82 +10,121 @@
     <title>MyTasks</title>
   </head>
   <body class="page">
-    <div class="page-wrapper">
+    <div class="page__wrapper">
+      <!--* Header *-->
       <header class="header">
-        <span class="header__icon icon material-symbols-rounded menu-icon icon"
-          >menu
+        <span
+          class="header__icon header__icon--menu icon material-symbols-rounded"
+        >
+          menu
         </span>
 
         <div class="header__logo">
-          <span
-            class="header__logo--icon material-symbols-rounded task-alt-icon icon"
-            >task_alt
+          <span class="header__logo-icon icon material-symbols-rounded">
+            task_alt
           </span>
-          <h1 class="header__logo--title title">MyTasks</h1>
+          <h1 class="header__logo-title">MyTasks</h1>
         </div>
 
-        <span class="header__icon material-symbols-rounded toggle-off-icon icon"
-          >toggle_off
+        <span
+          class="header__icon header__icon--toggle icon material-symbols-rounded"
+        >
+          toggle_off
         </span>
       </header>
 
+      <!--* Sidebar *-->
       <aside class="sidebar">
         <div class="sidebar__actions">
-          <button class="sidebar__btn btn--primary btn" type="button">
-            <span class="sidebar__icon material-symbols-rounded add-icon icon"
-              >add</span
-            >Create
+          <button
+            class="sidebar__button sidebar__button--secondary"
+            type="button"
+          >
+            <span class="sidebar__button-icon icon material-symbols-rounded">
+              add
+            </span>
+            Create
           </button>
         </div>
 
-        <ul class="sidebar__projects-title-list-cntr" id="sidebarListCntr"></ul>
+        <ul class="sidebar__list" id="sidebarList">
+          <li class="sidebar__list-item active">
+            <span class="sidebar__list-item-icon icon material-symbols-rounded">
+              list
+            </span>
+            Hello World
+          </li>
+          <li class="sidebar__list-item">
+            <span class="sidebar__list-item-icon material-symbols-rounded">
+              list
+            </span>
+            Hello World
+          </li>
+          <li class="sidebar__list-item">
+            <span class="sidebar__list-item-icon material-symbols-rounded">
+              list
+            </span>
+            Hello World
+          </li>
+        </ul>
 
         <div class="sidebar__footer">
-          <button class="sidebar__btn btn--secondary btn" type="button">
-            <span class="sidbar__icon material-symbols-rounded add-icon icon">
-              add </span
-            >Create new list
+          <button
+            class="sidebar__button sidebar__button--tertiary"
+            type="button"
+          >
+            <span class="sidebar__button-icon icon material-symbols-rounded">
+              add
+            </span>
+            Create new list
           </button>
         </div>
       </aside>
 
-      <main class="main-content">
-        <section class="project-cntr">
-          <h2 class="project-cntr__title title">My Tasks</h2>
+      <!--* Main *-->
+      <main class="main">
+        <section class="project">
+          <h2 class="project__title">My Tasks</h2>
 
-          <button class="project-cntr__btn btn--secondary btn" type="button">
-            <span
-              class="project-cntr__icon material-symbols-rounded add-task-icon icon"
-              >add_task</span
-            >Add a task
+          <button
+            class="project__button project__button--primary-variant"
+            type="button"
+          >
+            <span class="project__button-icon icon material-symbols-rounded">
+              add_task
+            </span>
+            Add a task
           </button>
 
-          <ul class="project-cntr__tasks-list-cntr">
-            <li class="project-cntr__tasks-list-item"></li>
+          <ul class="project__task-list">
+            <li class="project__task-item"></li>
           </ul>
         </section>
       </main>
 
+      <!--* Footer *-->
       <footer class="footer">
         <p class="footer__text">
           Copyright © The Odin Project 2025 — Created By
           <a
-            class="footer__link link"
+            class="footer__link"
             href="https://github.com/mhmkhizar"
             target="_blank"
             rel="noopener noreferrer"
-            >Muhammad Khizar</a
           >
+            Muhammad Khizar
+          </a>
         </p>
       </footer>
 
-      <dialog class="create-list-modal modal">
-        <form method="dialog">
-          <h3 class="create-list-modal__title title">Create new list</h3>
+      <!--* Modals *-->
+      <dialog class="modal modal--create-list">
+        <form method="dialog" class="modal__form">
+          <h3 class="modal__title">Create new list</h3>
 
-          <div class="input-group form-group">
+          <div class="modal__form-group">
             <input
-              class="create-list-modal__input input"
+              class="modal__input"
               type="text"
               name="list-name"
               id="listName"
@@ -94,15 +133,15 @@
             />
           </div>
 
-          <div class="btn-group form-group">
+          <div class="modal__actions">
             <button
-              class="create-list-modal__btn btn--secondary btn"
+              class="modal__button modal__button--secondary"
               type="button"
             >
               Cancel
             </button>
             <button
-              class="create-list-modal__btn btn--secondary btn"
+              class="modal__button modal__button--primary"
               type="submit"
               inert
             >
