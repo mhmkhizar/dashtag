@@ -1,11 +1,16 @@
 export { createTask };
 
-function createTask(title, description = ``, dueDate = null, priority = null) {
-  if (!title || typeof title !== `string` || title.trim() === ``) return;
+function createTask(
+  title = ``,
+  description = ``,
+  dueDate = null,
+  priority = null
+) {
+  if (!title || title.trim() === ``) return;
 
   return {
     id: crypto.randomUUID(),
-    title,
+    title: title.trim().toString(),
     description,
     dueDate,
     priority,

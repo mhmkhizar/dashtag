@@ -50,40 +50,56 @@ const ProjectModal = (() => {
 })();
 
 const SidebarList = (() => {
-  const ul = $(`#sidebarList`);
+  const list = $(`#sidebarList`);
 
   const render = () => {
-    ul.innerHTML = ``;
+    list.innerHTML = ``;
     getUserProjects().forEach((project) => {
-      const li = createElement({
+      const listItem = createElement({
         element: `li`,
         className: `sidebar__list-item`,
         textContent: project.name,
       });
-      const span = createElement({
+      const listIcon = createElement({
         element: `span`,
         className: `sidebar__list-item-icon icon material-symbols-rounded`,
         textContent: `list`,
       });
-      li.prepend(span);
-      ul.append(li);
+      const closeIcon = createElement({
+        element: `span`,
+        className: `sidebar__list-item-icon icon material-symbols-rounded hidden`,
+        attribute: { name: `inert`, value: `` },
+        textContent: `close`,
+      });
+      listItem.prepend(listIcon);
+      listItem.append(closeIcon);
+      list.append(listItem);
     });
   };
 
   return { render };
 })();
 
-function createElement({ element, className, id, textContent, htmlContent }) {
+function createElement({
+  element = ``,
+  className = ``,
+  id = ``,
+  attribute = {},
+  textContent = ``,
+  htmlContent = ``,
+}) {
   if (!element) return;
   const elem = document.createElement(element);
   if (className) elem.classList.add(...className.trim().split(/\s+/));
   if (id) elem.id = id;
+  if (attribute.name && attribute.value)
+    elem.setAttribute(attribute.name, attribute.value);
   if (textContent) elem.textContent = textContent;
   if (htmlContent) elem.innerHTML = htmlContent;
   return elem;
 }
 
-function $(selector, parent = document) {
+function $(selector = ``, parent = document) {
   const elem = parent.querySelector(selector);
   return elem;
 }

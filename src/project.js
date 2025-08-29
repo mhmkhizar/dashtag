@@ -1,4 +1,4 @@
-export { getUserProjects, addProject };
+export { getUserProjects, addProject, deleteProject };
 
 const _defaultProject = createProject(`My Tasks`);
 const _userProjects = [_defaultProject];
@@ -7,12 +7,16 @@ function getUserProjects() {
   return [..._userProjects];
 }
 
-function addProject(newProject) {
-  const project = createProject(newProject);
-  _userProjects.push(project);
+function deleteProject(id) {
+  const index = _userProjects.findIndex((project) => project.id === id);
+  if (index !== -1) _userProjects.splice(index, 1);
 }
 
-function createProject(name) {
+function addProject(name) {
+  _userProjects.push(createProject(name));
+}
+
+function createProject(name = ``) {
   if (!name || name.trim() === ``) return;
   return {
     id: crypto.randomUUID(),
