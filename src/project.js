@@ -8,12 +8,15 @@ function getUserProjects() {
 }
 
 function deleteProject(id) {
-  const index = _userProjects.findIndex((project) => project.id === id);
-  if (index !== -1) _userProjects.splice(index, 1);
+  if (!id) return;
+  const index = _userProjects.findIndex((p) => p.id === id);
+  if (index === -1) return;
+  _userProjects.splice(index, 1);
 }
 
-function addProject(name) {
-  _userProjects.push(createProject(name));
+function addProject(project) {
+  if (!project) return;
+  _userProjects.push(project);
 }
 
 function createProject(name) {

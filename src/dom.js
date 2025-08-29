@@ -18,19 +18,23 @@ const ProjectModal = (() => {
   const submitBtn = $(`#submitProjectFormBtn`, modal);
 
   const init = () => {
-    openBtn.addEventListener(`click`, open);
-    closeBtn.addEventListener(`click`, close);
-    nameInput.addEventListener(`input`, toggleSubmitBtn);
-    submitBtn.addEventListener(`click`, submitProject);
+    activateEvents();
   };
 
-  const open = () => {
+  const activateEvents = () => {
+    openBtn.addEventListener(`click`, openModal);
+    closeBtn.addEventListener(`click`, closeModal);
+    nameInput.addEventListener(`input`, toggleSubmitBtn);
+    submitBtn.addEventListener(`click`, submitModalForm);
+  };
+
+  const openModal = () => {
     nameInput.value = ``;
     submitBtn.setAttribute(`inert`, ``);
     modal.showModal();
   };
 
-  const close = () => {
+  const closeModal = () => {
     nameInput.value = ``;
     modal.close();
   };
@@ -43,9 +47,9 @@ const ProjectModal = (() => {
     }
   };
 
-  const submitProject = () => {
-    addProject(nameInput.value);
-    SidebarList.render();
+  const submitModalForm = () => {
+    const project = addProject(nameInput.value);
+    SidebarList.renderItem(project);
   };
 
   return { init };
@@ -55,37 +59,43 @@ const SidebarList = (() => {
   const list = $(`#sidebarList`);
 
   const init = () => {
-    render();
+    activateEvents();
+    renderList();
+  };
+
+  const activateEvents = () => {
     list.addEventListener(`mouseenter`, (e) => handleItemHover(e, true), true);
     list.addEventListener(`mouseleave`, (e) => handleItemHover(e, false), true);
   };
 
-  const render = () => {
+  const renderList = () => {
     list.innerHTML = ``;
-    getUserProjects().forEach((project) => {
-      const listItem = createElement({
-        element: `li`,
-        className: `sidebar__list-item`,
-      });
-      const listIcon = createElement({
-        element: `span`,
-        className: `sidebar__list-item-icon icon material-symbols-rounded`,
-        textContent: `list`,
-      });
-      const itemText = createElement({
-        element: `span`,
-        className: `sidebar__list-item-text`,
-        textContent: project.name,
-      });
-      const closeIcon = createElement({
-        element: `span`,
-        className: `sidebar__list-item-icon icon material-symbols-rounded hidden`,
-        attribute: { name: `inert`, value: `` },
-        textContent: `close`,
-      });
-      listItem.append(listIcon, itemText, closeIcon);
-      list.appendChild(listItem);
+    getUserProjects().forEach(renderItem);
+  };
+
+  const renderItem = (project) => {
+    const listItem = createElement({
+      element: `li`,
+      className: `sidebar__list-item`,
     });
+    const listIcon = createElement({
+      element: `span`,
+      className: `sidebar__list-item-icon icon material-symbols-rounded`,
+      textContent: `list`,
+    });
+    const itemText = createElement({
+      element: `span`,
+      className: `sidebar__list-item-text`,
+      textContent: project.name,
+    });
+    const closeIcon = createElement({
+      element: `span`,
+      className: `sidebar__list-item-icon icon material-symbols-rounded hidden`,
+      attribute: { name: `inert`, value: `` },
+      textContent: `close`,
+    });
+    listItem.append(listIcon, itemText, closeIcon);
+    list.appendChild(listItem);
   };
 
   const handleItemHover = (e, visible) => {
@@ -105,15 +115,8 @@ const SidebarList = (() => {
     }
   };
 
-  return { init, render };
+  return { init, renderList, renderItem };
 })();
-
-// function toggleClass({ element, className }) {
-//   if (!element || !className) return;
-//   if (element.classList.contains(className))
-//     element.classList.remove(className);
-//   else element.classList.add(className);
-// }
 
 function createElement({
   element,
@@ -134,6 +137,7 @@ function createElement({
 }
 
 function $(selector, parent = document) {
+  if (!selector) return;
   const elem = parent.querySelector(selector);
   return elem;
 }
