@@ -1,9 +1,14 @@
-export { projectsList, addProject, createProject };
+export { getProjectsList, updateProjectsList };
 
 const defaultProject = createProject(`My Tasks`);
 const projectsList = [defaultProject];
 
-function addProject(project) {
+function getProjectsList() {
+  return [...projectsList];
+}
+
+function updateProjectsList(newProject) {
+  const project = createProject(newProject);
   projectsList.push(project);
 }
 
