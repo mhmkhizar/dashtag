@@ -280,11 +280,6 @@ button {
   visibility: hidden;
 }
 
-.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
 button {
   display: inline-flex;
   justify-content: center;
@@ -406,6 +401,7 @@ html {
 .sidebar__list-item-icon:last-child {
   margin-left: auto;
   font-size: var(--font-size-xl);
+  transition: all var(--transition-fast);
 }
 
 .sidebar__list-item:hover {
