@@ -16,7 +16,7 @@ function addProject(name) {
   _userProjects.push(createProject(name));
 }
 
-function createProject(name = ``) {
+function createProject(name) {
   if (!name || name.trim() === ``) return;
   return {
     id: crypto.randomUUID(),
