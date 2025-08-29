@@ -52,6 +52,7 @@
         <div class="sidebar__footer">
           <button
             class="sidebar__button sidebar__button--tertiary"
+            id="openProjectModalBtn"
             type="button"
           >
             <span class="sidebar__button-icon icon material-symbols-rounded">
@@ -99,7 +100,7 @@
       </footer>
 
       <!--* Modals *-->
-      <dialog class="modal modal--create-list">
+      <dialog class="modal project-modal" id="projectModal">
         <form method="dialog" class="modal__form">
           <h3 class="modal__title">Create new project</h3>
 
@@ -107,8 +108,8 @@
             <input
               class="modal__input"
               type="text"
-              name="list-name"
-              id="listName"
+              name="projectName"
+              id="projectName"
               placeholder="Enter name"
               required
             />
@@ -117,14 +118,15 @@
           <div class="modal__actions">
             <button
               class="modal__button modal__button--secondary"
+              id="closeProjectModalBtn"
               type="button"
             >
               Cancel
             </button>
             <button
               class="modal__button modal__button--primary"
+              id="submitProjectFormBtn"
               type="submit"
-              inert
             >
               Done
             </button>

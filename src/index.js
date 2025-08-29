@@ -1,9 +1,8 @@
 import "./styles.css";
-import { createTask } from "./task";
-import { defaultProject, createProject } from "./list";
-import { renderSidebarList } from "./dom";
+import { defaultProject } from "./project";
+import { ProjectModal, SidebarList } from "./dom";
 
-const projects = [defaultProject];
-const currentProject = defaultProject;
+const userProjects = [defaultProject];
 
-renderSidebarList(projects);
+SidebarList.render(userProjects);
+ProjectModal.init();
