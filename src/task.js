@@ -1,9 +1,6 @@
-export function createTask(
-  title,
-  description = ``,
-  dueDate = null,
-  priority = null
-) {
+export { createTask };
+
+function createTask(title, description = ``, dueDate = null, priority = null) {
   if (!title || typeof title !== `string` || title.trim() === ``) return;
 
   return {

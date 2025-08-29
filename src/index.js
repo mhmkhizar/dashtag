@@ -1,8 +1,4 @@
 import "./styles.css";
-import { defaultProject } from "./project";
-import { ProjectModal, SidebarList } from "./dom";
+import { DOM } from "./dom";
 
-const userProjects = [defaultProject];
-
-SidebarList.render(userProjects);
-ProjectModal.init();
+DOM.init();

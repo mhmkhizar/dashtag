@@ -1,4 +1,15 @@
-export const ProjectModal = (() => {
+import { createProject, projectsList, addProject } from "./project";
+export { DOM };
+
+const DOM = (() => {
+  const init = () => {
+    ProjectModal.init();
+    SidebarList.render();
+  };
+  return { init };
+})();
+
+const ProjectModal = (() => {
   const openBtn = $(`#openProjectModalBtn`);
   const modal = $(`#projectModal`);
   const nameInput = $(`#projectName`, modal);
@@ -28,14 +39,20 @@ export const ProjectModal = (() => {
     }
   };
 
+  const submitForm = () => {
+    submitBtn.addEventListener(`click`, () => {
+      createProject(nameInput.value);
+    });
+  };
+
   return { init };
 })();
 
-export const SidebarList = (() => {
+const SidebarList = (() => {
   const ul = $(`#sidebarList`);
 
-  const render = (userProjects) => {
-    userProjects.forEach((project) => {
+  const render = () => {
+    projectsList.forEach((project) => {
       const li = createElement({
         element: `li`,
         className: `sidebar__list-item`,

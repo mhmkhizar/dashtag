@@ -1,11 +1,17 @@
-export const defaultProject = createProject(`My Tasks`);
+export { projectsList, addProject, createProject };
 
-export function createProject(name) {
-  if (!name || typeof name !== `string` || name.trim() === ``) return;
+const defaultProject = createProject(`My Tasks`);
+const projectsList = [defaultProject];
 
+function addProject(project) {
+  projectsList.push(project);
+}
+
+function createProject(name) {
+  if (!name || name.trim() === ``) return;
   return {
     id: crypto.randomUUID(),
-    name,
+    name: name.trim().toString(),
     tasks: [],
     addTask(task) {
       this.tasks.push(task);
