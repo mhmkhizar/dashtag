@@ -1,4 +1,4 @@
-import { getProjectsList, updateProjectsList } from "./project";
+import { getUserProjects, addProject } from "./project";
 export { DOM };
 
 const DOM = (() => {
@@ -42,7 +42,7 @@ const ProjectModal = (() => {
   };
 
   const submitProject = () => {
-    updateProjectsList(nameInput.value);
+    addProject(nameInput.value);
     SidebarList.render();
   };
 
@@ -54,7 +54,7 @@ const SidebarList = (() => {
 
   const render = () => {
     ul.innerHTML = ``;
-    getProjectsList().forEach((project) => {
+    getUserProjects().forEach((project) => {
       const li = createElement({
         element: `li`,
         className: `sidebar__list-item`,

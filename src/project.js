@@ -1,15 +1,15 @@
-export { getProjectsList, updateProjectsList };
+export { getUserProjects, addProject };
 
-const defaultProject = createProject(`My Tasks`);
-const projectsList = [defaultProject];
+const _defaultProject = createProject(`My Tasks`);
+const _userProjects = [_defaultProject];
 
-function getProjectsList() {
-  return [...projectsList];
+function getUserProjects() {
+  return [..._userProjects];
 }
 
-function updateProjectsList(newProject) {
+function addProject(newProject) {
   const project = createProject(newProject);
-  projectsList.push(project);
+  _userProjects.push(project);
 }
 
 function createProject(name) {
