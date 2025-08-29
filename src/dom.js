@@ -1,5 +1,10 @@
 import { tr } from "date-fns/locale";
-import { getUserProjects, addProject } from "./project";
+import {
+  getUserProjects,
+  createProject,
+  saveProject,
+  deleteProject,
+} from "./project";
 export { DOM };
 
 const DOM = (() => {
@@ -48,7 +53,8 @@ const ProjectModal = (() => {
   };
 
   const submitModalForm = () => {
-    const project = addProject(nameInput.value);
+    const project = createProject(nameInput.value);
+    saveProject(project);
     SidebarList.renderItem(project);
   };
 

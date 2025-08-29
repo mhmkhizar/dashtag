@@ -1,4 +1,4 @@
-export { getUserProjects, addProject, deleteProject };
+export { getUserProjects, createProject, saveProject, deleteProject };
 
 const _defaultProject = createProject(`My Tasks`);
 const _userProjects = [_defaultProject];
@@ -14,7 +14,7 @@ function deleteProject(id) {
   _userProjects.splice(index, 1);
 }
 
-function addProject(project) {
+function saveProject(project) {
   if (!project) return;
   _userProjects.push(project);
 }
