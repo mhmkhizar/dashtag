@@ -95,7 +95,7 @@ const SidebarList = (() => {
     list.appendChild(listItem);
   };
 
-  return { render, removeItem };
+  return { render, addItem, removeItem };
 })();
 
 const SidebarListItem = (() => {
@@ -124,8 +124,8 @@ const SidebarListItem = (() => {
     if (e.target.id !== `deleteProjectBtn`) return;
     const closeIcon = e.target;
     const itemProjectID = closeIcon.closest(`li`).dataset.projectid;
-    ProjectService.remove(itemProjectID);
-    SidebarList.removeItem(`${itemProjectID}`);
+    const isRemove = ProjectService.remove(itemProjectID);
+    if (isRemove) SidebarList.removeItem(`${itemProjectID}`);
   };
 
   return { init };

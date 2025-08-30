@@ -21,9 +21,11 @@ const ProjectService = (() => {
   };
 
   const remove = (id) => {
+    if (id === _defaultProject.id) return false;
     const index = _projects.findIndex((p) => p.id === id);
     if (index === -1) return;
     _projects.splice(index, 1);
+    return true;
   };
 
   return { getAll, getDefault, add, remove };
