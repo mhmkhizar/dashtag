@@ -42,7 +42,7 @@
           >
             <span class="sidebar__button-icon icon material-symbols-rounded">
               add </span
-            ><span class="sidebar__button-text">Create</span>
+            ><span class="sidebar__button-text">Create task</span>
           </button>
         </div>
 
@@ -51,24 +51,25 @@
         <div class="sidebar__footer">
           <button
             class="sidebar__button sidebar__button--tertiary"
-            id="openProjectModalBtn"
+            id="openProjectModal"
             type="button"
           >
             <span class="sidebar__button-icon icon material-symbols-rounded">
               add
             </span>
-            <span class="sidebar__button-text">Create new project</span>
+            <span class="sidebar__button-text">Create project</span>
           </button>
         </div>
       </aside>
 
       <!--* Main *-->
       <main class="main">
-        <section class="project">
-          <h2 class="project__title">My Tasks</h2>
+        <section class="project" id="projectSection">
+          <h2 class="project__title" id="projectTitle">My Tasks</h2>
 
           <button
             class="project__button project__button--primary-variant"
+            id="openAddTaskModal"
             type="button"
           >
             <span class="project__button-icon icon material-symbols-rounded">
@@ -118,7 +119,7 @@
           <div class="modal__actions">
             <button
               class="modal__button modal__button--secondary"
-              id="closeProjectModalBtn"
+              id="closeProjectModal"
               type="button"
               value="cancel"
             >
@@ -126,7 +127,7 @@
             </button>
             <button
               class="modal__button modal__button--primary"
-              id="submitProjectFormBtn"
+              id="submitProjectForm"
               type="submit"
               value="confirm"
             >

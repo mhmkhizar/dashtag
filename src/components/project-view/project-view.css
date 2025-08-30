@@ -1,0 +1,26 @@
+.project {
+  background-color: var(--color-bg);
+  max-width: var(--container-max-width);
+  margin: var(--space-0) auto;
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-3);
+}
+
+.project__title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-strong);
+  padding-left: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.project__button {
+  justify-content: left;
+  width: 100%;
+  color: var(--color-primary-strong);
+  text-shadow: var(--text-shadow-soft);
+}
+
+.project__button:hover {
+  background-color: var(--color-bg-hover);
+}

@@ -12,7 +12,7 @@
   },
   "license": "MIT",
   "author": "Muhammad Khizar",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --config webpack.dev.js",

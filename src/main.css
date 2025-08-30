@@ -1,0 +1,118 @@
+/** IMPORTS **/
+@import url("./assets/styles/base/resets.css");
+@import url("./assets/styles/base/variables.css");
+@import url("./assets/styles/themes/dark.css");
+@import url("./assets/styles/themes/light.css");
+@import url("./components/buttons/buttons.css");
+@import url("./components/modals/modals.css");
+@import url("./components/project-view/project-view.css");
+@import url("./components/sidebar/sidebar.css");
+
+/** PAGE LAYOUT **/
+
+html,
+.page {
+  height: 100%;
+}
+
+.page__wrapper {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+  grid-template-columns: minmax(calc(var(--container-min-width) - 5vw), 1fr) 5fr;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+}
+
+.header {
+  grid-area: header;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.main {
+  grid-area: main;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+/** GLOBAL STATES **/
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+:hover {
+  transition: all var(--transition-fast);
+}
+
+/** GLOBAL STYLES **/
+
+.page {
+  background-color: var(--color-bg-muted);
+  color: var(--color-text);
+  font-family: var(--font-family-sys);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.main {
+  padding: var(--space-0) var(--space-6) var(--space-2) var(--space-6);
+}
+
+/** HEADER STYLES **/
+
+.header {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-4) var(--space-6);
+}
+
+.header__icon {
+  cursor: pointer;
+}
+
+.header__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.header__logo-icon {
+  color: var(--color-primary);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-black);
+}
+
+.header__logo-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-normal);
+}
+
+.header__icon--toggle {
+  font-size: var(--font-size-4xl);
+  margin-left: auto;
+}
+
+/** FOOTER STYLES **/
+
+.footer {
+  color: var(--color-text-extra-muted);
+  padding: var(--space-2) var(--space-6);
+  text-align: center;
+}
+
+.footer__link:hover {
+  color: var(--color-text-extra-muted-hover);
+}

@@ -1,6 +1,4 @@
-export { createProject };
-
-function createProject(name) {
+export function createProject(name) {
   if (!name || name.trim() === ``) return;
   return {
     id: crypto.randomUUID(),

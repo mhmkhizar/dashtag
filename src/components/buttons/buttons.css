@@ -1,0 +1,13 @@
+button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: var(--font-weight-medium);
+  background-color: inherit;
+  color: inherit;
+  border-radius: var(--radius-sm);
+  padding: var(--button-padding-2) var(--button-padding-4);
+  border: none;
+  cursor: pointer;
+}
