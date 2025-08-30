@@ -398,12 +398,6 @@ html {
   cursor: pointer;
 }
 
-.sidebar__list-item-icon:last-child {
-  margin-left: auto;
-  font-size: var(--font-size-xl);
-  transition: all var(--transition-fast);
-}
-
 .sidebar__list-item:hover {
   background-color: var(--color-bg-muted-hover);
 }
@@ -415,6 +409,17 @@ html {
 
 .sidebar__list-item.active:hover {
   background-color: var(--color-primary-muted-hover);
+}
+
+.sidebar__list-item-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar__list-item-icon:last-child {
+  margin-left: auto;
+  font-size: var(--font-size-xl);
+  transition: all var(--transition-fast);
 }
 
 .sidebar__button--tertiary {

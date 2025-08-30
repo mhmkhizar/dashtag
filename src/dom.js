@@ -109,8 +109,10 @@ const SidebarListItem = (() => {
 
   const handleItemHover = (e, visible) => {
     if (!e.target.classList.contains(`sidebar__list-item`)) return;
-    const listItem = e.target;
-    const closeIcon = $(`.icon:last-of-type`, listItem);
+    const currentItem = e.target;
+    const defaultItemID = ProjectService.getDefault().id;
+    if (currentItem.dataset.projectid === defaultItemID) return;
+    const closeIcon = $(`.icon:last-of-type`, currentItem);
     if (visible) {
       closeIcon.classList.remove(`hidden`);
       closeIcon.removeAttribute(`inert`);
