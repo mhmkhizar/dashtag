@@ -100,7 +100,7 @@
 
       <!--* Modals *-->
       <dialog class="modal project-modal" id="projectModal">
-        <form method="dialog" class="modal__form">
+        <form method="dialog" class="modal__form" id="projectModalForm">
           <h3 class="modal__title">Create new project</h3>
 
           <div class="modal__form-group">
@@ -120,6 +120,7 @@
               class="modal__button modal__button--secondary"
               id="closeProjectModalBtn"
               type="button"
+              value="cancel"
             >
               Cancel
             </button>
@@ -127,6 +128,7 @@
               class="modal__button modal__button--primary"
               id="submitProjectFormBtn"
               type="submit"
+              value="confirm"
             >
               Done
             </button>

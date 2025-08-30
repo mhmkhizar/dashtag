@@ -1,46 +1,37 @@
-import {
-  getUserProjects,
-  createProject,
-  saveProject,
-  deleteProject,
-  getDefaultProject,
-} from "./project";
+import { ProjectService } from "./project-service";
 export { DOM };
 
 const DOM = (() => {
-  const init = () => {
-    ProjectModal.init();
-    SidebarList.init();
+  return {
+    init: () => {
+      SidebarList.render();
+      SidebarListItem.init();
+      ProjectModal.init();
+    },
   };
-  return { init };
 })();
 
 const ProjectModal = (() => {
   const openBtn = $(`#openProjectModalBtn`);
   const modal = $(`#projectModal`);
-  const nameInput = $(`#projectName`, modal);
-  const closeBtn = $(`#closeProjectModalBtn`, modal);
-  const submitBtn = $(`#submitProjectFormBtn`, modal);
+  const form = $(`#projectModalForm`, modal);
+  const nameInput = $(`#projectName`, form);
+  const closeBtn = $(`#closeProjectModalBtn`, form);
+  const submitBtn = $(`#submitProjectFormBtn`, form);
 
   const init = () => {
-    activateEvents();
-  };
-
-  const activateEvents = () => {
     openBtn.addEventListener(`click`, openModal);
     closeBtn.addEventListener(`click`, closeModal);
     nameInput.addEventListener(`input`, toggleSubmitBtn);
-    submitBtn.addEventListener(`click`, submitModalForm);
+    modal.addEventListener(`close`, submitModalForm);
   };
 
   const openModal = () => {
-    nameInput.value = ``;
     submitBtn.setAttribute(`inert`, ``);
     modal.showModal();
   };
 
   const closeModal = () => {
-    nameInput.value = ``;
     modal.close();
   };
 
@@ -53,9 +44,12 @@ const ProjectModal = (() => {
   };
 
   const submitModalForm = () => {
-    const project = createProject(nameInput.value);
-    saveProject(project);
-    SidebarList.renderItem(project);
+    if (modal.returnValue === `confirm`) {
+      const name = nameInput.value.trim();
+      const project = ProjectService.add(name);
+      SidebarList.addItem(project);
+    }
+    form.reset();
   };
 
   return { init };
@@ -64,28 +58,9 @@ const ProjectModal = (() => {
 const SidebarList = (() => {
   const list = $(`#sidebarList`);
 
-  const init = () => {
-    activateEvents();
-    renderList();
-  };
-
-  const activateEvents = () => {
-    list.addEventListener(`mouseenter`, (e) => onItemHover(e, true), true);
-    list.addEventListener(`mouseleave`, (e) => onItemHover(e, false), true);
-    list.addEventListener(`click`, (e) => onCloseIconClick(e));
-  };
-
-  const onCloseIconClick = (e) => {
-    if (e.target.id !== `deleteProjectBtn`) return;
-    const closeIcon = e.target;
-    const itemProjectID = closeIcon.closest(`li`).dataset.projectid;
-    deleteProject(itemProjectID);
-    removeItem(`${itemProjectID}`);
-  };
-
-  const renderList = () => {
+  const render = () => {
     list.innerHTML = ``;
-    getUserProjects().forEach(renderItem);
+    ProjectService.getAll().forEach(addItem);
   };
 
   const removeItem = (id) => {
@@ -93,7 +68,7 @@ const SidebarList = (() => {
     item.remove();
   };
 
-  const renderItem = (project) => {
+  const addItem = (project) => {
     const listItem = createElement({
       element: `li`,
       className: `sidebar__list-item`,
@@ -120,15 +95,23 @@ const SidebarList = (() => {
     list.appendChild(listItem);
   };
 
-  const onItemHover = (e, visible) => {
-    if (!e.target.classList.contains(`sidebar__list-item`)) return;
-    const listItem = e.target;
-    toggleCloseIcon(listItem, visible);
+  return { render, removeItem };
+})();
+
+const SidebarListItem = (() => {
+  const list = $(`#sidebarList`);
+
+  const init = () => {
+    list.addEventListener(`mouseenter`, (e) => handleItemHover(e, true), true);
+    list.addEventListener(`mouseleave`, (e) => handleItemHover(e, false), true);
+    list.addEventListener(`click`, (e) => handleCloseIconClick(e));
   };
 
-  const toggleCloseIcon = (parent, show) => {
-    const closeIcon = parent.querySelector(`.icon:last-of-type`);
-    if (show) {
+  const handleItemHover = (e, visible) => {
+    if (!e.target.classList.contains(`sidebar__list-item`)) return;
+    const listItem = e.target;
+    const closeIcon = $(`.icon:last-of-type`, listItem);
+    if (visible) {
       closeIcon.classList.remove(`hidden`);
       closeIcon.removeAttribute(`inert`);
     } else {
@@ -137,7 +120,15 @@ const SidebarList = (() => {
     }
   };
 
-  return { init, renderList, renderItem };
+  const handleCloseIconClick = (e) => {
+    if (e.target.id !== `deleteProjectBtn`) return;
+    const closeIcon = e.target;
+    const itemProjectID = closeIcon.closest(`li`).dataset.projectid;
+    ProjectService.remove(itemProjectID);
+    SidebarList.removeItem(`${itemProjectID}`);
+  };
+
+  return { init };
 })();
 
 function createElement({

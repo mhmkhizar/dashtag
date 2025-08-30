@@ -1,33 +1,4 @@
-export {
-  getDefaultProject,
-  getUserProjects,
-  createProject,
-  saveProject,
-  deleteProject,
-};
-
-const _defaultProject = createProject("My Tasks");
-const _userProjects = [_defaultProject];
-
-function getUserProjects() {
-  return _userProjects.map((p) => ({ ...p }));
-}
-
-function getDefaultProject() {
-  return { ..._defaultProject };
-}
-
-function deleteProject(id) {
-  if (!id) return;
-  const index = _userProjects.findIndex((p) => p.id === id);
-  if (index === -1) return;
-  _userProjects.splice(index, 1);
-}
-
-function saveProject(project) {
-  if (!project) return;
-  _userProjects.push(project);
-}
+export { createProject };
 
 function createProject(name) {
   if (!name || name.trim() === ``) return;
