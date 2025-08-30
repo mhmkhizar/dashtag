@@ -1,10 +1,20 @@
-export { getUserProjects, createProject, saveProject, deleteProject };
+export {
+  getDefaultProject,
+  getUserProjects,
+  createProject,
+  saveProject,
+  deleteProject,
+};
 
-const _defaultProject = createProject(`My Tasks`);
+const _defaultProject = createProject("My Tasks");
 const _userProjects = [_defaultProject];
 
 function getUserProjects() {
-  return [..._userProjects];
+  return _userProjects.map((p) => ({ ...p }));
+}
+
+function getDefaultProject() {
+  return { ..._defaultProject };
 }
 
 function deleteProject(id) {

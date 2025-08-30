@@ -1,9 +1,9 @@
-import { tr } from "date-fns/locale";
 import {
   getUserProjects,
   createProject,
   saveProject,
   deleteProject,
+  getDefaultProject,
 } from "./project";
 export { DOM };
 
@@ -70,8 +70,17 @@ const SidebarList = (() => {
   };
 
   const activateEvents = () => {
-    list.addEventListener(`mouseenter`, (e) => handleItemHover(e, true), true);
-    list.addEventListener(`mouseleave`, (e) => handleItemHover(e, false), true);
+    list.addEventListener(`mouseenter`, (e) => onItemHover(e, true), true);
+    list.addEventListener(`mouseleave`, (e) => onItemHover(e, false), true);
+    list.addEventListener(`click`, (e) => onCloseIconClick(e));
+  };
+
+  const onCloseIconClick = (e) => {
+    if (e.target.id !== `deleteProjectBtn`) return;
+    const closeIcon = e.target;
+    const itemProjectID = closeIcon.closest(`li`).dataset.projectid;
+    deleteProject(itemProjectID);
+    removeItem(`${itemProjectID}`);
   };
 
   const renderList = () => {
@@ -79,10 +88,16 @@ const SidebarList = (() => {
     getUserProjects().forEach(renderItem);
   };
 
+  const removeItem = (id) => {
+    const item = list.querySelector(`[data-projectid="${id}"]`);
+    item.remove();
+  };
+
   const renderItem = (project) => {
     const listItem = createElement({
       element: `li`,
       className: `sidebar__list-item`,
+      attributes: { "data-projectid": `${project.id}` },
     });
     const listIcon = createElement({
       element: `span`,
@@ -97,14 +112,15 @@ const SidebarList = (() => {
     const closeIcon = createElement({
       element: `span`,
       className: `sidebar__list-item-icon icon material-symbols-rounded hidden`,
-      attribute: { name: `inert`, value: `` },
+      id: `deleteProjectBtn`,
+      attributes: { inert: `` },
       textContent: `close`,
     });
     listItem.append(listIcon, itemText, closeIcon);
     list.appendChild(listItem);
   };
 
-  const handleItemHover = (e, visible) => {
+  const onItemHover = (e, visible) => {
     if (!e.target.classList.contains(`sidebar__list-item`)) return;
     const listItem = e.target;
     toggleCloseIcon(listItem, visible);
@@ -128,17 +144,21 @@ function createElement({
   element,
   className,
   id,
-  attribute,
+  attributes = {},
   textContent,
   htmlContent,
 }) {
   if (!element) return;
   const elem = document.createElement(element);
+
   if (className) elem.classList.add(...className.trim().split(/\s+/));
   if (id) elem.id = id;
-  if (attribute) elem.setAttribute(attribute.name, attribute.value);
+  Object.entries(attributes).forEach(([name, value]) => {
+    elem.setAttribute(name, value);
+  });
   if (textContent) elem.textContent = textContent;
   if (htmlContent) elem.innerHTML = htmlContent;
+
   return elem;
 }
 
