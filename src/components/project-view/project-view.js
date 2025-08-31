@@ -1,3 +1,3 @@
-import * as Helper from "../../utils/helper";
+import { Element } from "../../utils/helper";
 
-const projectSection = $(`#project`);
+const projectSection = Element.select(`#project`);

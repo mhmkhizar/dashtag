@@ -1,10 +1,15 @@
-export function $(selector, parent = document) {
+export const Element = {
+  select: selectElement,
+  create: createElement,
+};
+
+function selectElement(selector, parent = document) {
   if (!selector) return;
   const elem = parent.querySelector(selector);
   return elem;
 }
 
-export function createElement({
+function createElement({
   element,
   className,
   id,

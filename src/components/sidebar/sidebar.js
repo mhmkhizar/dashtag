@@ -1,7 +1,7 @@
-import * as Helper from "../../utils/helper";
+import { Element } from "../../utils/helper";
 import * as ProjectService from "../../services/project-service";
 
-const list = Helper.$(`#sidebar-list`);
+const list = Element.select(`#sidebar-list`);
 const activeItem = ``;
 // const activeItem = ProjectService.getDefault();
 
@@ -16,7 +16,7 @@ export function init() {
     const currentItem = e.target;
     const defaultItemID = ProjectService.getDefault().id;
     if (currentItem.dataset.projectid === defaultItemID) return;
-    const closeIcon = Helper.$(`.icon:last-of-type`, currentItem);
+    const closeIcon = Element.select(`.icon:last-of-type`, currentItem);
     if (visible) {
       closeIcon.classList.remove(`hidden`);
       closeIcon.removeAttribute(`inert`);
@@ -38,22 +38,22 @@ function removeItem(id) {
 }
 
 export function addItem(project) {
-  const listItem = Helper.createElement({
+  const listItem = Element.create({
     element: `li`,
     className: `sidebar__list-item`,
     attributes: { "data-projectid": `${project.id}` },
   });
-  const listIcon = Helper.createElement({
+  const listIcon = Element.create({
     element: `span`,
     className: `sidebar__list-item-icon icon material-symbols-rounded`,
     textContent: `list`,
   });
-  const itemText = Helper.createElement({
+  const itemText = Element.create({
     element: `span`,
     className: `sidebar__list-item-text`,
     textContent: project.name,
   });
-  const closeIcon = Helper.createElement({
+  const closeIcon = Element.create({
     element: `span`,
     className: `sidebar__list-item-icon icon material-symbols-rounded hidden`,
     id: `deleteProjectBtn`,
@@ -69,7 +69,7 @@ function handleItemHover(e, visible) {
   const currentItem = e.target;
   const defaultItemID = ProjectService.getDefault().id;
   if (currentItem.dataset.projectid === defaultItemID) return;
-  const closeIcon = Helper.$(`.icon:last-of-type`, currentItem);
+  const closeIcon = Element.select(`.icon:last-of-type`, currentItem);
   if (visible) {
     closeIcon.classList.remove(`hidden`);
     closeIcon.removeAttribute(`inert`);
