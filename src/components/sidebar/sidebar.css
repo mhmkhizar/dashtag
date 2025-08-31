@@ -6,15 +6,10 @@
   margin-bottom: var(--space-8);
 }
 
-.sidebar__button--secondary {
-  background-color: var(--color-bg-strong);
+.sidebar__create-task-btn {
   padding: var(--button-padding-4) var(--button-padding-6);
   border-radius: var(--radius-md);
   box-shadow: var(--box-shadow-low);
-}
-
-.sidebar__button--secondary:hover {
-  background-color: var(--color-bg-strong-hover);
 }
 
 .sidebar__list {
@@ -57,11 +52,9 @@
   transition: all var(--transition-fast);
 }
 
-.sidebar__button--tertiary {
+.sidebar__add-project-btn {
   justify-content: left;
   width: 100%;
-}
-
-.sidebar__button--tertiary:hover {
-  background-color: var(--color-bg-muted-hover);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
 }

@@ -14,13 +14,9 @@
   margin-bottom: var(--space-3);
 }
 
-.project__button {
+.project__add-task-btn {
   justify-content: left;
   width: 100%;
-  color: var(--color-primary-strong);
-  text-shadow: var(--text-shadow-soft);
-}
-
-.project__button:hover {
-  background-color: var(--color-bg-hover);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
 }

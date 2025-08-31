@@ -1,13 +1,50 @@
-button {
+.btn {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   gap: var(--space-3);
-  font-weight: var(--font-weight-medium);
-  background-color: inherit;
-  color: inherit;
-  border-radius: var(--radius-sm);
-  padding: var(--button-padding-2) var(--button-padding-4);
   border: none;
   cursor: pointer;
+}
+
+.btn--secondary-fill {
+  color: inherit;
+  background-color: var(--color-bg-strong);
+  font-weight: var(--font-weight-medium);
+}
+
+.btn--secondary-fill:hover {
+  background-color: var(--color-bg-strong-hover);
+}
+
+.btn--secondary-holo {
+  color: inherit;
+  background-color: inherit;
+  font-weight: var(--font-weight-medium);
+}
+
+.btn--secondary-holo:hover {
+  background-color: var(--color-bg-muted-hover);
+}
+
+.btn--primary-fill {
+  color: inherit;
+  background-color: var(--color-primary-muted);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-md);
+}
+
+.btn--primary-fill:hover {
+  background-color: var(--color-primary-muted-hover);
+}
+
+.btn--primary-holo {
+  color: var(--color-primary-strong);
+  background-color: inherit;
+  font-weight: var(--font-weight-medium);
+  text-shadow: var(--text-shadow-soft);
+}
+
+.btn--primary-holo:hover {
+  background-color: var(--color-bg-hover);
 }

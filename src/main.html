@@ -10,75 +10,78 @@
     <title>MyTasks</title>
   </head>
   <body class="page">
-    <div class="page__wrapper">
+    <div class="page__container">
       <!--* Header *-->
       <header class="header">
-        <span
-          class="header__icon header__icon--menu icon material-symbols-rounded"
-        >
-          menu
-        </span>
+        <button class="header__menu-btn btn">
+          <span class="header__menu-icon icon material-symbols-rounded"
+            >menu</span
+          >
+        </button>
 
-        <div class="header__logo">
-          <span class="header__logo-icon icon material-symbols-rounded">
-            task_alt
-          </span>
-          <h1 class="header__logo-title">MyTasks</h1>
+        <div class="header__brand">
+          <span class="header__brand-icon icon material-symbols-rounded"
+            >task_alt</span
+          >
+          <h1 class="header__brand-title">MyTasks</h1>
         </div>
 
-        <span
-          class="header__icon header__icon--toggle icon material-symbols-rounded"
-        >
-          toggle_off
-        </span>
+        <button class="header__theme-toggle btn">
+          <span class="header__theme-icon icon material-symbols-rounded"
+            >toggle_off</span
+          >
+        </button>
       </header>
 
       <!--* Sidebar *-->
       <aside class="sidebar">
         <div class="sidebar__actions">
           <button
-            class="sidebar__button sidebar__button--secondary"
+            class="sidebar__create-task-btn btn btn--secondary-fill"
             type="button"
           >
-            <span class="sidebar__button-icon icon material-symbols-rounded">
-              add </span
-            ><span class="sidebar__button-text">Create task</span>
+            <span
+              class="sidebar__create-task-icon icon material-symbols-rounded"
+              >add</span
+            >
+            <span class="sidebar__create-task-text">Create task</span>
           </button>
         </div>
 
-        <ul class="sidebar__list" id="sidebarList"></ul>
+        <ul class="sidebar__list" id="sidebar-list"></ul>
 
         <div class="sidebar__footer">
           <button
-            class="sidebar__button sidebar__button--tertiary"
-            id="openProjectModal"
+            class="sidebar__add-project-btn btn btn--secondary-holo"
+            id="open-project-modal"
             type="button"
           >
-            <span class="sidebar__button-icon icon material-symbols-rounded">
-              add
-            </span>
-            <span class="sidebar__button-text">Create project</span>
+            <span
+              class="sidebar__add-project-icon icon material-symbols-rounded"
+              >add</span
+            >
+            <span class="sidebar__add-project-text">Create project</span>
           </button>
         </div>
       </aside>
 
-      <!--* Main *-->
+      <!--* Main Content *-->
       <main class="main">
-        <section class="project" id="projectSection">
-          <h2 class="project__title" id="projectTitle">My Tasks</h2>
+        <section class="project" id="project-view">
+          <h2 class="project__title" id="project-title">My Tasks</h2>
 
           <button
-            class="project__button project__button--primary-variant"
-            id="openAddTaskModal"
+            class="project__add-task-btn btn btn--primary-holo"
+            id="open-add-task-modal"
             type="button"
           >
-            <span class="project__button-icon icon material-symbols-rounded">
-              add_task
-            </span>
-            <span class="project__button-text">Add a task</span>
+            <span class="project__add-task-icon icon material-symbols-rounded"
+              >add_task</span
+            >
+            <span class="project__add-task-text">Add a task</span>
           </button>
 
-          <ul class="project__task-list">
+          <ul class="project__tasks">
             <li class="project__task-item"></li>
           </ul>
         </section>
@@ -86,7 +89,7 @@
 
       <!--* Footer *-->
       <footer class="footer">
-        <p class="footer__text">
+        <p class="footer__copyright">
           Copyright © The Odin Project 2025 — Created By
           <a
             class="footer__link"
@@ -100,16 +103,16 @@
       </footer>
 
       <!--* Modals *-->
-      <dialog class="modal project-modal" id="projectModal">
-        <form method="dialog" class="modal__form" id="projectModalForm">
+      <dialog class="modal modal--project" id="project-modal">
+        <form method="dialog" class="modal__form" id="project-modal-form">
           <h3 class="modal__title">Create new project</h3>
 
-          <div class="modal__form-group">
+          <div class="modal__field">
             <input
               class="modal__input"
               type="text"
-              name="projectName"
-              id="projectName"
+              name="projec-name"
+              id="project-name-input"
               placeholder="Enter name"
               autocomplete="off"
               required
@@ -118,16 +121,16 @@
 
           <div class="modal__actions">
             <button
-              class="modal__button modal__button--secondary"
-              id="closeProjectModal"
+              class="modal__btn btn sidebar__button--secondary-holo"
+              id="close-project-modal"
               type="button"
               value="cancel"
             >
               Cancel
             </button>
             <button
-              class="modal__button modal__button--primary"
-              id="submitProjectForm"
+              class="modal__btn btn btn--primary-holo"
+              id="submit-project-form"
               type="submit"
               value="confirm"
             >

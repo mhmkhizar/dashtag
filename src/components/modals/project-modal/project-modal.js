@@ -1,13 +1,13 @@
-import * as Helper from "../../utils/helper";
-import * as ProjectService from "../../services/project-service";
-import * as Sidebar from "../sidebar/sidebar";
+import * as Helper from "../../../utils/helper";
+import * as ProjectService from "../../../services/project-service";
+import * as Sidebar from "../../sidebar/sidebar";
 
-const openBtn = Helper.$(`#openProjectModal`);
-const modal = Helper.$(`#projectModal`);
-const form = Helper.$(`#projectModalForm`, modal);
-const nameInput = Helper.$(`#projectName`, form);
-const closeBtn = Helper.$(`#closeProjectModal`, form);
-const submitBtn = Helper.$(`#submitProjectForm`, form);
+const openBtn = Helper.$(`#open-project-modal`);
+const modal = Helper.$(`#project-modal`);
+const form = Helper.$(`#project-modal-form`, modal);
+const nameInput = Helper.$(`#project-name-input`, form);
+const closeBtn = Helper.$(`#close-project-modal`, form);
+const submitBtn = Helper.$(`#submit-project-form`, form);
 
 export function init() {
   openBtn.addEventListener(`click`, openModal);

@@ -1,7 +1,7 @@
 import * as Helper from "../../utils/helper";
 import * as ProjectService from "../../services/project-service";
 
-const list = Helper.$(`#sidebarList`);
+const list = Helper.$(`#sidebar-list`);
 const activeItem = ``;
 // const activeItem = ProjectService.getDefault();
 

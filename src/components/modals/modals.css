@@ -14,10 +14,10 @@
 .modal__title {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-medium);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
 }
 
-.modal__form-group {
+.modal__field {
   margin-bottom: var(--space-6);
 }
 
@@ -46,14 +46,15 @@
   gap: var(--space-1);
 }
 
-.modal__button {
-  color: var(--color-primary);
+.modal__btn {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
 }
 
-.modal__button:hover {
+.modal__btn:hover {
   background-color: var(--color-bg-hover);
 }
 
-.modal__button[inert] {
+.modal__btn[inert] {
   color: var(--color-text-extra-muted-hover);
 }
