@@ -2,29 +2,15 @@ import { Element } from "../../utils/helper";
 import * as ProjectService from "../../services/project-service";
 
 const list = Element.select(`#sidebar-list`);
-const activeItem = ``;
-// const activeItem = ProjectService.getDefault();
+const defaultItem = ProjectService.getDefault();
+let activeItem;
 
 export function init() {
   render();
   list.addEventListener(`mouseenter`, (e) => handleItemHover(e, true), true);
   list.addEventListener(`mouseleave`, (e) => handleItemHover(e, false), true);
   list.addEventListener(`click`, (e) => handleCloseIconClick(e));
-
-  list.addEventListener(`click`, (e) => {
-    if (!e.target.classList.contains(`sidebar__list-item`)) return;
-    const currentItem = e.target;
-    const defaultItemID = ProjectService.getDefault().id;
-    if (currentItem.dataset.projectid === defaultItemID) return;
-    const closeIcon = Element.select(`.icon:last-of-type`, currentItem);
-    if (visible) {
-      closeIcon.classList.remove(`hidden`);
-      closeIcon.removeAttribute(`inert`);
-    } else {
-      closeIcon.setAttribute(`inert`, ``);
-      closeIcon.classList.add(`hidden`);
-    }
-  });
+  list.addEventListener(`click`, (e) => toggleActiveItem(e));
 }
 
 function render() {
@@ -60,16 +46,16 @@ export function addItem(project) {
     attributes: { inert: `` },
     textContent: `close`,
   });
+  if (project.id === defaultItem.id) setActiveItem(listItem);
   listItem.append(listIcon, itemText, closeIcon);
   list.appendChild(listItem);
 }
 
 function handleItemHover(e, visible) {
   if (!e.target.classList.contains(`sidebar__list-item`)) return;
-  const currentItem = e.target;
-  const defaultItemID = ProjectService.getDefault().id;
-  if (currentItem.dataset.projectid === defaultItemID) return;
-  const closeIcon = Element.select(`.icon:last-of-type`, currentItem);
+  const item = e.target;
+  if (item.dataset.projectid === defaultItem.id) return;
+  const closeIcon = Element.select(`.icon:last-of-type`, item);
   if (visible) {
     closeIcon.classList.remove(`hidden`);
     closeIcon.removeAttribute(`inert`);
@@ -82,7 +68,37 @@ function handleItemHover(e, visible) {
 function handleCloseIconClick(e) {
   if (e.target.id !== `deleteProjectBtn`) return;
   const closeIcon = e.target;
-  const itemProjectID = closeIcon.closest(`li`).dataset.projectid;
+  const item = closeIcon.closest(`li`);
+  const itemProjectID = item.dataset.projectid;
   const isRemove = ProjectService.remove(itemProjectID);
-  if (isRemove) removeItem(`${itemProjectID}`);
+  if (!isRemove) return;
+  if (item === activeItem) {
+    const previousItem = item.previousElementSibling;
+    const nextItem = item.nextElementSibling;
+    nextItem ? setActiveItem(nextItem) : setActiveItem(previousItem);
+  }
+  removeItem(`${itemProjectID}`);
+}
+
+function toggleActiveItem(e) {
+  const itemClasses = [
+    `sidebar__list-item`,
+    `sidebar__list-item-icon`,
+    `sidebar__list-item-text`,
+  ];
+  const hasAnyItemClass = itemClasses.some((cls) =>
+    e.target.classList.contains(cls)
+  );
+  const isDeleteBtn = e.target.id === `deleteProjectBtn`;
+  const isActiveItem = e.target.closest(`li`).classList.contains(`active`);
+  if (!hasAnyItemClass || isDeleteBtn || isActiveItem) return;
+  const item = e.target.closest(`li`);
+  activeItem.classList.remove(`active`);
+  activeItem = item;
+  item.classList.add(`active`);
+}
+
+function setActiveItem(item) {
+  activeItem = item;
+  activeItem.classList.add(`active`);
 }
