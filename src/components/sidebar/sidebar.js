@@ -1,21 +1,41 @@
 import { Element } from "../../utils/helper";
 import * as ProjectService from "../../services/project-service";
+import * as ProjectView from "../project-view/project-view";
 
 const list = Element.select(`#sidebar-list`);
 const defaultItem = ProjectService.getDefault();
 let activeItem;
 
 export function init() {
-  render();
+  renderList();
+  setActiveItem();
   list.addEventListener(`mouseenter`, (e) => handleItemHover(e, true), true);
   list.addEventListener(`mouseleave`, (e) => handleItemHover(e, false), true);
   list.addEventListener(`click`, (e) => handleCloseIconClick(e));
-  list.addEventListener(`click`, (e) => toggleActiveItem(e));
+  list.addEventListener(`click`, (e) => handleItemClick(e));
 }
 
-function render() {
+function renderList() {
   list.innerHTML = ``;
   ProjectService.getAll().forEach(addItem);
+}
+
+function setActiveItem() {
+  const item = Element.select(`[data-projectid="${defaultItem.id}"]`, list);
+  if (item) item.classList.add(`active`);
+  activeItem = item;
+  renderActiveItem();
+}
+
+function switchActiveItem(nextItem) {
+  activeItem.classList.remove(`active`);
+  activeItem = nextItem;
+  activeItem.classList.add(`active`);
+  renderActiveItem();
+}
+
+function renderActiveItem() {
+  ProjectView.render(activeItem.dataset.projectid);
 }
 
 function removeItem(id) {
@@ -46,7 +66,6 @@ export function addItem(project) {
     attributes: { inert: `` },
     textContent: `close`,
   });
-  if (project.id === defaultItem.id) setActiveItem(listItem);
   listItem.append(listIcon, itemText, closeIcon);
   list.appendChild(listItem);
 }
@@ -73,14 +92,14 @@ function handleCloseIconClick(e) {
   const isRemove = ProjectService.remove(itemProjectID);
   if (!isRemove) return;
   if (item === activeItem) {
-    const previousItem = item.previousElementSibling;
-    const nextItem = item.nextElementSibling;
-    nextItem ? setActiveItem(nextItem) : setActiveItem(previousItem);
+    const beforeItem = item.previousElementSibling;
+    const afterItem = item.nextElementSibling;
+    afterItem ? switchActiveItem(afterItem) : switchActiveItem(beforeItem);
   }
   removeItem(`${itemProjectID}`);
 }
 
-function toggleActiveItem(e) {
+function handleItemClick(e) {
   const itemClasses = [
     `sidebar__list-item`,
     `sidebar__list-item-icon`,
@@ -93,12 +112,5 @@ function toggleActiveItem(e) {
   const isActiveItem = e.target.closest(`li`).classList.contains(`active`);
   if (!hasAnyItemClass || isDeleteBtn || isActiveItem) return;
   const item = e.target.closest(`li`);
-  activeItem.classList.remove(`active`);
-  activeItem = item;
-  item.classList.add(`active`);
-}
-
-function setActiveItem(item) {
-  activeItem = item;
-  activeItem.classList.add(`active`);
+  switchActiveItem(item);
 }
