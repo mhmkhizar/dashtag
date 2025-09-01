@@ -11,7 +11,7 @@
   font-weight: var(--font-weight-normal);
   color: var(--color-text-strong);
   padding-left: var(--space-4);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
   width: var(--container-min-width);
   white-space: nowrap;
   overflow: hidden;
