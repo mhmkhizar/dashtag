@@ -18,8 +18,8 @@ html,
 .page__container {
   height: 100vh;
   display: grid;
-  grid-template-rows: max-content 1fr max-content;
   grid-template-columns: minmax(calc(var(--container-min-width) - 5vw), 1fr) 5fr;
+  grid-template-rows: max-content 1fr max-content;
   grid-template-areas:
     "header header"
     "sidebar main"
@@ -55,6 +55,39 @@ html,
 
 /** GLOBAL STYLES **/
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-text-extra-muted) var(--color-bg-muted-hover);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-muted-hover);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-extra-muted);
+  border: 1px solid var(--color-bg-muted-hover);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-extra-muted-hover);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--color-text-muted);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--color-bg-muted-hover);
+}
+
 .page {
   background-color: var(--color-bg-muted);
   color: var(--color-text);
@@ -66,7 +99,7 @@ html,
 }
 
 .main {
-  padding: var(--space-0) var(--space-6) var(--space-2) var(--space-6);
+  padding: var(--space-4) var(--space-6);
 }
 
 /** HEADER STYLES **/

@@ -12,6 +12,11 @@
   color: var(--color-text-strong);
   padding-left: var(--space-4);
   margin-bottom: var(--space-3);
+  width: var(--container-min-width);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
 }
 
 .project__add-task-btn {
