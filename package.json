@@ -1,14 +1,14 @@
 {
-  "name": "my-tasks",
+  "name": "dash",
   "version": "1.0.0",
-  "description": "Template repository for MERN stack projects.",
-  "homepage": "https://github.com/mhmkhizar/my-tasks",
+  "description": "A simple Todo-List app.",
+  "homepage": "https://github.com/mhmkhizar/dash",
   "bugs": {
-    "url": "https://github.com/mhmkhizar/my-tasks/issues"
+    "url": "https://github.com/mhmkhizar/dash/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mhmkhizar/my-tasks.git"
+    "url": "git+https://github.com/mhmkhizar/dash.git"
   },
   "license": "MIT",
   "author": "Muhammad Khizar",
