@@ -13,7 +13,7 @@
   @apply transition-opacity;
 }
 
-/* *CUSTOM_STATES* */
+/* *STATES* */
 
 .custom-hidden {
   @apply pointer-events-none opacity-0;
@@ -23,19 +23,19 @@
   @apply bg-[var(--sidebar-primary-foreground)] hover:bg-[var(--sidebar-primary-foreground)]/90;
 }
 
-/* *CUSTOM_MODAL* */
+/* *MODAL* */
 
 .modal {
   @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[var(--radius)] bg-[var(--card)] p-6 text-base text-[var(--card-foreground)];
 }
 
-/* *CUSTOM_TEXT_INPUT* */
+/* *TEXT_INPUT* */
 
 .input {
   @apply rounded-[var(--radius)] bg-[var(--input)] px-4 py-2 text-[var(--foreground)] ring-0 placeholder:text-[var(--muted-foreground)] focus-visible:border-[var(--ring)] focus-visible:ring-[3px] focus-visible:ring-[var(--ring)]/50 focus-visible:outline-none;
 }
 
-/* *CUSTOM_BUTTONS_STYLES* */
+/* *BUTTON_STYLES* */
 
 .button {
   @apply flex cursor-pointer items-center gap-2 rounded-[var(--radius)] leading-none;
@@ -62,7 +62,7 @@
   @apply cursor-default bg-inherit text-[var(--muted-foreground)] hover:bg-inherit;
 }
 
-/* *CUSTOM_BUTTON_SIZES* */
+/* *BUTTON_SIZES* */
 
 .button-2xs {
   @apply px-1 py-0.5;
@@ -92,7 +92,7 @@
   @apply px-12 py-6;
 }
 
-/* *CUSTOM_ICONS* */
+/* *ICON_STYLES* */
 
 .material-symbols-rounded {
   font-variation-settings:
@@ -106,7 +106,7 @@
   font-variation-settings: "wght" 300;
 }
 
-/* *CUSTOM_SCROLLBAR* */
+/* *SCROLLBAR* */
 
 * {
   scrollbar-width: thin;

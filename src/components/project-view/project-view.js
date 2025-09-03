@@ -1,4 +1,4 @@
-import { Element } from "../../utils/helper";
+import { Element } from "../component-utils/helper";
 import * as ProjectServie from "../../services/project-service";
 
 const titleContainer = Element.select(`#title-container`);

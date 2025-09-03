@@ -1,4 +1,4 @@
-import { Element } from "../../utils/helper";
+import { Element } from "../component-utils/helper";
 import * as ProjectService from "../../services/project-service";
 import * as ProjectView from "../project-view/project-view";
 
@@ -51,17 +51,17 @@ export function addItem(project) {
   });
   const hashIcon = Element.create({
     element: `span`,
-    className: `icon material-symbols-rounded icon-wght-300`,
+    className: `icon sidebar-list-item-icon material-symbols-rounded icon-wght-300`,
     textContent: `tag`,
   });
   const itemText = Element.create({
     element: `span`,
-    className: `truncate`,
+    className: `sidebar-list-item-text truncate`,
     textContent: project.name,
   });
   const closeIcon = Element.create({
     element: `span`,
-    className: `icon delete-project-button material-symbols-rounded ml-auto !text-xl custom-hidden`,
+    className: `icon sidebar-list-item-icon delete-project-button material-symbols-rounded ml-auto !text-xl custom-hidden`,
     attributes: { inert: `` },
     textContent: `close`,
   });
@@ -107,7 +107,7 @@ function handleItemClick(e) {
   const hasAnyItemClass = itemClasses.some((cls) =>
     e.target.classList.contains(cls),
   );
-  const isDeleteBtn = e.target.id === `deleteProjectBtn`;
+  const isDeleteBtn = e.target.classList.contains(`delete-project-button`);
   const isActiveItem = e.target.closest(`li`).classList.contains(`active`);
   if (!hasAnyItemClass || isDeleteBtn || isActiveItem) return;
   const item = e.target.closest(`li`);
