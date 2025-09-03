@@ -12,7 +12,7 @@
   </head>
   <!-- *Body* -->
   <body
-    class="h-full bg-[var(--background)] font-[family-name:var(--my-font)] text-base text-[var(--foreground)]"
+    class="h-full bg-[var(--background)] font-[family-name:var(--font-sys)] text-base text-[var(--foreground)]"
   >
     <!-- *Wrapper* -->
     <div
@@ -40,7 +40,7 @@
         <section class="flex flex-col overflow-y-auto">
           <!-- *Sidebar_Primary_Actions -->
           <section class="p-6">
-            <!-- Create_Task_Button -->
+            <!-- Create_Task_button -->
             <button
               class="button button-primary button-lg shadow-2xs"
               type="button"
@@ -69,7 +69,7 @@
 
           <!-- *Sidebar_Secondary_Actions -->
           <section class="p-2">
-            <!-- Create_Project_Button -->
+            <!-- Create_Project_button -->
             <button
               class="button button-ghost button-sm w-full"
               id="open-project-modal"
@@ -86,7 +86,7 @@
           <section class="text- flex items-center gap-2">
             <img
               class="w-1/6 rounded-full border border-[var(--border)] object-cover"
-              src="./images/profile_picture.png"
+              src="./assets/images/profile_picture.png"
               alt="Author Image"
             />
             <div class="flex-1 leading-5">
@@ -116,6 +116,9 @@
           >
             <span class="material-symbols-rounded"> arrow_menu_close </span>
           </button>
+          <span
+            class="mr-3 inline-block h-[1.6rem] w-[0.1rem] bg-[var(--border)]"
+          ></span>
           <h2 class="text-lg">My Tasks</h2>
         </header>
 
@@ -151,10 +154,7 @@
 
     <!-- *Modals* -->
     <!-- *Project_Modal* -->
-    <dialog
-      class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[var(--radius)] bg-[var(--card)] p-6 text-base text-[var(--card-foreground)]"
-      id="project-modal"
-    >
+    <dialog class="modal" id="project-modal">
       <!-- *Form* -->
       <form method="dialog" class="flex flex-col" id="project-modal-form">
         <!-- Title -->
@@ -164,7 +164,7 @@
         <!-- Name_Input -->
         <div class="mb-6">
           <input
-            class="rounded-[var(--radius)] bg-[var(--input)] px-4 py-2 text-[var(--foreground)] ring-0 placeholder:text-[var(--muted-foreground)] focus-visible:border-[var(--ring)] focus-visible:ring-[3px] focus-visible:ring-[var(--ring)]/50 focus-visible:outline-none"
+            class="input"
             type="text"
             name="projec-name"
             id="project-name-input"
@@ -176,7 +176,7 @@
 
         <!-- Actions_Group -->
         <div class="flex items-center justify-end gap-2">
-          <!-- Cancel_Button -->
+          <!-- Cancel_button -->
           <button
             class="button button-ghost button-sm"
             id="close-project-modal"
@@ -185,7 +185,7 @@
           >
             Cancel
           </button>
-          <!-- Done_Button -->
+          <!-- Done_button -->
           <button
             class="button button-primary button-sm"
             id="submit-project-form"
