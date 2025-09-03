@@ -1,153 +1,96 @@
-/** IMPORTS **/
-@import url("./assets/styles/base/resets.css");
-@import url("./assets/styles/base/variables.css");
-@import url("./assets/styles/themes/dark.css");
-@import url("./assets/styles/themes/light.css");
-@import url("./components/buttons/buttons.css");
-@import url("./components/modals/modals.css");
-@import url("./components/project-view/project-view.css");
-@import url("./components/sidebar/sidebar.css");
+@import "tailwindcss";
 
-/** PAGE LAYOUT **/
-
-html,
-.page {
-  height: 100%;
+.active-item {
+  @apply bg-[var(--sidebar-primary-foreground)] hover:bg-[var(--sidebar-primary-foreground)]/90;
 }
 
-.page__container {
-  height: 100vh;
-  display: grid;
-  grid-template-columns: minmax(calc(var(--container-min-width) - 5vw), 1fr) 5fr;
-  grid-template-rows: max-content 1fr max-content;
-  grid-template-areas:
-    "header header"
-    "sidebar main"
-    "footer footer";
+.button {
+  @apply flex cursor-pointer items-center gap-2 rounded-[var(--radius)] leading-none transition-all;
 }
 
-.header {
-  grid-area: header;
+.button-primary {
+  @apply bg-[var(--primary)] font-medium text-blue-50 hover:bg-[var(--primary)]/90;
 }
 
-.sidebar {
-  grid-area: sidebar;
+.button-secondary {
+  @apply bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--secondary)]/90;
 }
 
-.main {
-  grid-area: main;
+.button-outline {
+  @apply border border-[var(--border)] bg-[var(--input)]/30 hover:bg-[var(--input)]/20;
 }
 
-.footer {
-  grid-area: footer;
+.button-ghost {
+  @apply hover:bg-current/10;
 }
 
-/** GLOBAL STATES **/
-
-.hidden {
-  opacity: 0;
-  visibility: hidden;
+.button-disabled {
+  @apply cursor-default bg-inherit text-[var(--muted-foreground)] hover:bg-inherit;
 }
 
-:hover {
-  transition: all var(--transition-fast);
+.button-2xs {
+  @apply px-1 py-0.5;
 }
 
-/** GLOBAL STYLES **/
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-text-extra-muted) var(--color-bg-muted-hover);
+.button-xs {
+  @apply px-2 py-1;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+.button-sm {
+  @apply px-4 py-2;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--color-bg-muted-hover);
-  border-radius: 4px;
+.button-md {
+  @apply px-6 py-3;
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--color-text-extra-muted);
-  border: 1px solid var(--color-bg-muted-hover);
-  border-radius: 4px;
+.button-lg {
+  @apply px-8 py-4;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-extra-muted-hover);
+.button-xl {
+  @apply px-10 py-5;
 }
 
-::-webkit-scrollbar-thumb:active {
-  background: var(--color-text-muted);
+.button-2xl {
+  @apply px-12 py-6;
 }
 
-::-webkit-scrollbar-corner {
-  background: var(--color-bg-muted-hover);
-}
-
-.page {
-  background-color: var(--color-bg-muted);
-  color: var(--color-text);
-  font-family: var(--font-family-sys);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-normal);
-  line-height: var(--line-height-normal);
-  letter-spacing: var(--letter-spacing-normal);
-}
-
-.main {
-  padding: var(--space-4) var(--space-6);
-}
-
-/** HEADER STYLES **/
-
-.header {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  gap: var(--space-5);
-  padding: var(--space-4) var(--space-6);
-}
-
-.header__brand {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-}
-
-.header__brand-icon {
-  color: var(--color-primary);
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-black);
-}
-
-.header__brand-title {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-normal);
-}
-
-.header__theme-toggle {
-  margin-left: auto;
-}
-
-.header__theme-icon {
-  font-size: var(--font-size-4xl);
-}
-
-/** FOOTER STYLES **/
-
-.footer {
-  padding: var(--space-2) var(--space-6);
-  text-align: center;
-}
-
-.footer__copyright {
-  color: var(--color-text-extra-muted);
-}
-
-.footer__link:hover {
-  color: var(--color-text-extra-muted-hover);
+:root {
+  /* 0.303 0.075 */
+  --my-font:
+    system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --radius: 0.65rem;
+  --background: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.21 0.006 285.885);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.21 0.006 285.885);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.546 0.245 262.881);
+  --primary-foreground: oklch(0.379 0.146 265.522);
+  --secondary: oklch(0.274 0.006 286.033);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.274 0.006 286.033);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(0.274 0.006 286.033);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.488 0.243 264.376);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.21 0.006 285.885);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.546 0.245 262.881);
+  --sidebar-primary-foreground: oklch(0.379 0.146 265.522);
+  --sidebar-accent: oklch(0.274 0.006 286.033);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.488 0.243 264.376);
 }

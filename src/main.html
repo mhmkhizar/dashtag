@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<!doctype html>
+<html lang="en" class="h-full">
+  <!-- *Head* -->
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,123 +10,197 @@
     />
     <title>MyTasks</title>
   </head>
-  <body class="page">
-    <div class="page__container">
-      <!--* Header *-->
-      <header class="header">
-        <button class="header__menu-btn btn" type="button">
-          <span class="header__menu-icon icon material-symbols-rounded"
-            >menu</span
-          >
-        </button>
-
-        <div class="header__brand">
-          <span class="header__brand-icon icon material-symbols-rounded"
-            >task_alt</span
-          >
-          <h1 class="header__brand-title">MyTasks</h1>
-        </div>
-
-        <button class="header__theme-toggle btn" type="button">
-          <span class="header__theme-icon icon material-symbols-rounded"
-            >toggle_off</span
-          >
-        </button>
-      </header>
-
-      <!--* Sidebar *-->
-      <aside class="sidebar">
-        <div class="sidebar__actions">
-          <button
-            class="sidebar__create-task-btn btn btn--secondary-fill"
-            type="button"
-          >
+  <!-- *Body* -->
+  <body
+    class="h-full bg-[var(--background)] font-[family-name:var(--my-font)] text-[var(--foreground)]"
+  >
+    <!-- *Wrapper* -->
+    <div
+      class="grid h-dvh [grid-template-columns:280px_5fr] [grid-template-rows:1fr] [grid-template-areas:'sidebar_main'_'sidebar_main']"
+    >
+      <!-- *Sidebar* -->
+      <aside
+        class="flex flex-col bg-[var(--sidebar)] text-[var(--sidebare-foreground)] [grid-area:sidebar]"
+      >
+        <!-- *Sidebar_Header* -->
+        <header
+          class="flex items-center border-b border-[var(--sidebar-border)] p-4"
+        >
+          <!-- Brand_Container -->
+          <div class="flex items-center gap-1">
             <span
-              class="sidebar__create-task-icon icon material-symbols-rounded"
-              >add</span
+              class="material-symbols-rounded !text-3xl !font-black text-[var(--primary)]"
+              >task_alt</span
             >
-            <span class="sidebar__create-task-text">Create task</span>
-          </button>
-        </div>
+            <h1 class="text-xl">MyTasks</h1>
+          </div>
+        </header>
 
-        <ul class="sidebar__list" id="sidebar-list"></ul>
-
-        <div class="sidebar__footer">
-          <button
-            class="sidebar__add-project-btn btn btn--secondary-holo"
-            id="open-project-modal"
-            type="button"
-          >
-            <span
-              class="sidebar__add-project-icon icon material-symbols-rounded"
-              >add</span
+        <!-- *Sidbar_Body* -->
+        <section class="flex flex-col">
+          <!-- *Sidebar_Primary_Actions -->
+          <section class="p-6">
+            <!-- Create_Task_Button -->
+            <button
+              class="button button-primary button-lg shadow-2xs"
+              type="button"
             >
-            <span class="sidebar__add-project-text">Create project</span>
-          </button>
-        </div>
+              <span class="material-symbols-rounded">add</span>
+              <span>Create</span>
+            </button>
+          </section>
+
+          <ul class="flex flex-col gap-0.5 p-2" id="sidebar-list">
+            <!-- Sidebar_List_Item -->
+            <li
+              class="flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 transition-all hover:bg-current/10"
+            >
+              <span class="material-symbols-rounded">list</span
+              ><span>My Tasks</span
+              ><span class="material-symbols-rounded ml-auto !text-xl"
+                >close</span
+              >
+            </li>
+            <!-- Sidebar_List_Item -->
+            <li
+              class="flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 transition-all hover:bg-current/10"
+            >
+              <span class="material-symbols-rounded">list</span
+              ><span>My Tasks</span
+              ><span class="material-symbols-rounded ml-auto !text-xl"
+                >close</span
+              >
+            </li>
+          </ul>
+
+          <!-- *Sidebar_Secondary_Actions -->
+          <section class="p-2">
+            <!-- Create_Project_Button -->
+            <button
+              class="button button-ghost button-sm w-full"
+              id="open-project-modal"
+              type="button"
+            >
+              <span class="material-symbols-rounded">add</span>
+              <span class="">Create project</span>
+            </button>
+          </section>
+        </section>
+
+        <!-- *Sidebar_Footer* -->
+        <footer class="mt-auto border-t border-[var(--border)] p-2">
+          <section class="text- flex items-center gap-2">
+            <img
+              class="w-1/5 rounded-full border border-[var(--border)] object-cover"
+              src="./images/profile_picture.png"
+              alt="Author Image"
+            />
+            <div class="flex-1 leading-5">
+              <p>Muhammad Khizar</p>
+              <p>
+                <a
+                  class="hover:underline"
+                  href="https://github.com/mhmkhizar/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  mhmkhizar
+                </a>
+              </p>
+            </div>
+          </section>
+        </footer>
       </aside>
 
-      <!--* Main Content *-->
-      <main class="main">
-        <section class="project" id="project-view">
-          <ul class="project__tasks">
-            <li class="project__task-item"></li>
+      <!-- *MAIN_CONTENT* -->
+      <main class="h-full [grid-area:main]">
+        <!-- *Main_Header* -->
+        <header class="flex items-center gap-2 p-4">
+          <!-- Panel_Close_Icon -->
+          <button
+            class="button p-1 text-[var(--muted-foreground)] hover:bg-[var(--muted)]"
+          >
+            <span class="material-symbols-rounded"> arrow_menu_close </span>
+          </button>
+          <h2 class="text-xl">My Tasks</h2>
+        </header>
+
+        <!-- *Tasks_Section* -->
+        <section class="p-6 pt-0" id="project-view">
+          <!-- *Main_Primary_Actions* -->
+          <button
+            class="button button-outline mb-6 w-full justify-center px-4 py-2"
+            type="button"
+          >
+            <span class="material-symbols-rounded">add</span
+            ><span>Add a task</span>
+          </button>
+
+          <!-- *Tasks_List -->
+          <ul
+            class="rounded-lg bg-[var(--card)] p-4 text-[var(--card-foreground)]"
+          >
+            <li
+              class="flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 transition-all hover:bg-current/10"
+            >
+              <span class="material-symbols-rounded">list</span
+              ><span>My Task</span
+              ><span class="material-symbols-rounded ml-auto !text-xl"
+                >close</span
+              >
+            </li>
           </ul>
         </section>
       </main>
-
-      <!--* Footer *-->
-      <footer class="footer">
-        <p class="footer__copyright">
-          Copyright © The Odin Project 2025 — Created By
-          <a
-            class="footer__link"
-            href="https://github.com/mhmkhizar"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Muhammad Khizar
-          </a>
-        </p>
-      </footer>
-
-      <!--* Modals *-->
-      <dialog class="modal modal--project" id="project-modal">
-        <form method="dialog" class="modal__form" id="project-modal-form">
-          <h3 class="modal__title">Create new project</h3>
-
-          <div class="modal__field">
-            <input
-              class="modal__input"
-              type="text"
-              name="projec-name"
-              id="project-name-input"
-              placeholder="Enter name"
-              autocomplete="off"
-              required
-            />
-          </div>
-
-          <div class="modal__actions">
-            <button
-              class="modal__btn btn sidebar__button--secondary-holo"
-              id="close-project-modal"
-              type="button"
-              value="cancel"
-            >
-              Cancel
-            </button>
-            <button
-              class="modal__btn btn btn--primary-holo"
-              id="submit-project-form"
-              type="submit"
-              value="confirm"
-            >
-              Done
-            </button>
-          </div>
-        </form>
-      </dialog>
     </div>
+
+    <!-- *Modals* -->
+    <!-- *Project_Modal* -->
+    <dialog
+      class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[var(--radius)] bg-[var(--card)] p-6 text-[var(--card-foreground)]"
+      id="project-modal"
+    >
+      <!-- *Form* -->
+      <form method="dialog" class="flex flex-col" id="project-modal-form">
+        <!-- Title -->
+        <h3 class="mb-4 text-xl">Create new project</h3>
+
+        <!-- Input_Groups -->
+        <!-- Name_Input -->
+        <div class="mb-6">
+          <input
+            class="rounded-[var(--radius)] bg-[var(--input)] px-4 py-2 text-[var(--foreground)] ring-0 placeholder:text-[var(--muted-foreground)] focus-visible:border-[var(--ring)] focus-visible:ring-[3px] focus-visible:ring-[var(--ring)]/50 focus-visible:outline-none"
+            type="text"
+            name="projec-name"
+            id="project-name-input"
+            placeholder="Enter name"
+            autocomplete="off"
+            required
+          />
+        </div>
+
+        <!-- Actions_Group -->
+        <div class="flex items-center justify-end gap-2">
+          <!-- Cancel_Button -->
+          <button
+            class="button button-ghost button-sm"
+            id="close-project-modal"
+            type="button"
+            value="cancel"
+          >
+            Cancel
+          </button>
+          <!-- Done_Button -->
+          <button
+            class="button button-primary button-sm"
+            id="submit-project-form"
+            type="submit"
+            value="confirm"
+          >
+            Done
+          </button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>

@@ -1,6 +1,6 @@
-import { Element } from "../../../utils/helper";
-import * as ProjectService from "../../../services/project-service";
-import * as Sidebar from "../../sidebar/sidebar";
+import { Element } from "../../utils/helper";
+import * as ProjectService from "../../services/project-service";
+import * as Sidebar from "../sidebar/sidebar";
 
 const openBtn = Element.select(`#open-project-modal`);
 const modal = Element.select(`#project-modal`);
