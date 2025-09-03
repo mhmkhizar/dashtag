@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,0,0"
     />
-    <title>MyTasks</title>
+    <title>DashTag</title>
   </head>
   <!-- *Body* -->
   <body
-    class="h-full bg-[var(--background)] font-[family-name:var(--my-font)] text-[var(--foreground)]"
+    class="h-full bg-[var(--background)] font-[family-name:var(--my-font)] text-base text-[var(--foreground)]"
   >
     <!-- *Wrapper* -->
     <div
@@ -20,24 +20,24 @@
     >
       <!-- *Sidebar* -->
       <aside
-        class="flex flex-col bg-[var(--sidebar)] text-[var(--sidebare-foreground)] [grid-area:sidebar]"
+        class="flex flex-col bg-[var(--sidebar)] text-sm text-[var(--sidebare-foreground)] [grid-area:sidebar]"
       >
         <!-- *Sidebar_Header* -->
         <header
           class="flex items-center border-b border-[var(--sidebar-border)] p-4"
         >
           <!-- Brand_Container -->
-          <div class="flex items-center gap-1">
+          <div class="flex items-center">
             <span
-              class="material-symbols-rounded !text-3xl !font-black text-[var(--primary)]"
-              >task_alt</span
+              class="material-symbols-rounded !text-3xl text-[var(--primary)]"
+              >numbers</span
             >
-            <h1 class="text-xl">MyTasks</h1>
+            <h1 class="text-lg">dashTag</h1>
           </div>
         </header>
 
         <!-- *Sidbar_Body* -->
-        <section class="flex flex-col">
+        <section class="flex flex-col overflow-y-auto">
           <!-- *Sidebar_Primary_Actions -->
           <section class="p-6">
             <!-- Create_Task_Button -->
@@ -50,22 +50,16 @@
             </button>
           </section>
 
-          <ul class="flex flex-col gap-0.5 p-2" id="sidebar-list">
+          <!-- Sidebar_List -->
+          <ul
+            class="scrol flex flex-col gap-0.5 overflow-y-auto p-2 text-sm"
+            id="sidebar-list"
+          >
             <!-- Sidebar_List_Item -->
             <li
               class="flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 transition-all hover:bg-current/10"
             >
-              <span class="material-symbols-rounded">list</span
-              ><span>My Tasks</span
-              ><span class="material-symbols-rounded ml-auto !text-xl"
-                >close</span
-              >
-            </li>
-            <!-- Sidebar_List_Item -->
-            <li
-              class="flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 transition-all hover:bg-current/10"
-            >
-              <span class="material-symbols-rounded">list</span
+              <span class="material-symbols-rounded">tag</span
               ><span>My Tasks</span
               ><span class="material-symbols-rounded ml-auto !text-xl"
                 >close</span
@@ -91,7 +85,7 @@
         <footer class="mt-auto border-t border-[var(--border)] p-2">
           <section class="text- flex items-center gap-2">
             <img
-              class="w-1/5 rounded-full border border-[var(--border)] object-cover"
+              class="w-1/6 rounded-full border border-[var(--border)] object-cover"
               src="./images/profile_picture.png"
               alt="Author Image"
             />
@@ -99,7 +93,7 @@
               <p>Muhammad Khizar</p>
               <p>
                 <a
-                  class="hover:underline"
+                  class="text-[var(--muted-foreground)] hover:underline"
                   href="https://github.com/mhmkhizar/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -113,7 +107,7 @@
       </aside>
 
       <!-- *MAIN_CONTENT* -->
-      <main class="h-full [grid-area:main]">
+      <main class="h-full text-base [grid-area:main]">
         <!-- *Main_Header* -->
         <header class="flex items-center gap-2 p-4">
           <!-- Panel_Close_Icon -->
@@ -122,7 +116,7 @@
           >
             <span class="material-symbols-rounded"> arrow_menu_close </span>
           </button>
-          <h2 class="text-xl">My Tasks</h2>
+          <h2 class="text-lg">My Tasks</h2>
         </header>
 
         <!-- *Tasks_Section* -->
@@ -143,8 +137,9 @@
             <li
               class="flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 transition-all hover:bg-current/10"
             >
-              <span class="material-symbols-rounded">list</span
-              ><span>My Task</span
+              <span class="material-symbols-rounded"
+                >check_box_outline_blank</span
+              ><span>Task #01</span
               ><span class="material-symbols-rounded ml-auto !text-xl"
                 >close</span
               >
