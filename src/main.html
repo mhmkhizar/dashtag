@@ -16,7 +16,7 @@
   >
     <!-- *Wrapper* -->
     <div
-      class="grid h-dvh [grid-template-columns:280px_5fr] [grid-template-rows:1fr] [grid-template-areas:'sidebar_main'_'sidebar_main']"
+      class="grid h-dvh grid-cols-[280px_1fr] grid-rows-1 [grid-template-areas:'sidebar_main'_'sidebar_main']"
     >
       <!-- *Sidebar* -->
       <aside
@@ -120,7 +120,7 @@
         </header>
 
         <!-- *Tasks_Section* -->
-        <section class="p-6 pt-0" id="project-view">
+        <section class="mx-auto max-w-[80ch] p-6 pt-0" id="project-view">
           <!-- *Main_Primary_Actions* -->
           <button
             class="button button-outline mb-6 w-full justify-center px-4 py-2"
@@ -152,13 +152,13 @@
     <!-- *Modals* -->
     <!-- *Project_Modal* -->
     <dialog
-      class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[var(--radius)] bg-[var(--card)] p-6 text-[var(--card-foreground)]"
+      class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[var(--radius)] bg-[var(--card)] p-6 text-base text-[var(--card-foreground)]"
       id="project-modal"
     >
       <!-- *Form* -->
       <form method="dialog" class="flex flex-col" id="project-modal-form">
         <!-- Title -->
-        <h3 class="mb-4 text-xl">Create new project</h3>
+        <h3 class="mb-4 text-lg">Create new project</h3>
 
         <!-- Input_Groups -->
         <!-- Name_Input -->
