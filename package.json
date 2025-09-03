@@ -1,14 +1,14 @@
 {
-  "name": "dash",
+  "name": "dashtag",
   "version": "1.0.0",
   "description": "A simple Todo-List app.",
-  "homepage": "https://github.com/mhmkhizar/dash",
+  "homepage": "https://github.com/mhmkhizar/dashtag",
   "bugs": {
-    "url": "https://github.com/mhmkhizar/dash/issues"
+    "url": "https://github.com/mhmkhizar/dashtag/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mhmkhizar/dash.git"
+    "url": "git+https://github.com/mhmkhizar/dashtag.git"
   },
   "license": "MIT",
   "author": "Muhammad Khizar",
