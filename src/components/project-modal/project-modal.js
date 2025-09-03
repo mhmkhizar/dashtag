@@ -1,4 +1,4 @@
-import { Element } from "../../utils/helper";
+import { Element } from "../component-utils/helper";
 import * as ProjectService from "../../services/project-service";
 import * as Sidebar from "../sidebar/sidebar";
 
