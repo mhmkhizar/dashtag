@@ -22,15 +22,15 @@ function renderList() {
 
 function setActiveItem() {
   const item = Element.select(`[data-projectid="${defaultItem.id}"]`, list);
-  if (item) item.classList.add(`active`);
+  if (item) item.classList.add(`active-item`);
   activeItem = item;
   renderActiveItem();
 }
 
 function switchActiveItem(nextItem) {
-  activeItem.classList.remove(`active`);
+  activeItem.classList.remove(`active-item`);
   activeItem = nextItem;
-  activeItem.classList.add(`active`);
+  activeItem.classList.add(`active-item`);
   renderActiveItem();
 }
 
@@ -46,46 +46,45 @@ function removeItem(id) {
 export function addItem(project) {
   const listItem = Element.create({
     element: `li`,
-    className: `sidebar__list-item`,
+    className: `sidebar-list-item flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 hover:bg-current/10`,
     attributes: { "data-projectid": `${project.id}` },
   });
-  const listIcon = Element.create({
+  const hashIcon = Element.create({
     element: `span`,
-    className: `sidebar__list-item-icon icon material-symbols-rounded`,
-    textContent: `list`,
+    className: `icon material-symbols-rounded icon-wght-300`,
+    textContent: `tag`,
   });
   const itemText = Element.create({
     element: `span`,
-    className: `sidebar__list-item-text`,
+    className: `truncate`,
     textContent: project.name,
   });
   const closeIcon = Element.create({
     element: `span`,
-    className: `sidebar__list-item-icon icon material-symbols-rounded hidden`,
-    id: `deleteProjectBtn`,
+    className: `icon delete-project-button material-symbols-rounded ml-auto !text-xl custom-hidden`,
     attributes: { inert: `` },
     textContent: `close`,
   });
-  listItem.append(listIcon, itemText, closeIcon);
+  listItem.append(hashIcon, itemText, closeIcon);
   list.appendChild(listItem);
 }
 
-function handleItemHover(e, visible) {
-  if (!e.target.classList.contains(`sidebar__list-item`)) return;
+function handleItemHover(e, isVisible) {
+  if (!e.target.classList.contains(`sidebar-list-item`)) return;
   const item = e.target;
   if (item.dataset.projectid === defaultItem.id) return;
-  const closeIcon = Element.select(`.icon:last-of-type`, item);
-  if (visible) {
-    closeIcon.classList.remove(`hidden`);
+  const closeIcon = Element.select(`span:last-of-type`, item);
+  if (isVisible) {
     closeIcon.removeAttribute(`inert`);
+    closeIcon.classList.remove(`custom-hidden`);
   } else {
     closeIcon.setAttribute(`inert`, ``);
-    closeIcon.classList.add(`hidden`);
+    closeIcon.classList.add(`custom-hidden`);
   }
 }
 
 function handleCloseIconClick(e) {
-  if (e.target.id !== `deleteProjectBtn`) return;
+  if (!e.target.classList.contains(`delete-project-button`)) return;
   const closeIcon = e.target;
   const item = closeIcon.closest(`li`);
   const itemProjectID = item.dataset.projectid;
@@ -101,12 +100,12 @@ function handleCloseIconClick(e) {
 
 function handleItemClick(e) {
   const itemClasses = [
-    `sidebar__list-item`,
-    `sidebar__list-item-icon`,
-    `sidebar__list-item-text`,
+    `sidebar-list-item`,
+    `sidebar-list-item-icon`,
+    `sidebar-list-item-text`,
   ];
   const hasAnyItemClass = itemClasses.some((cls) =>
-    e.target.classList.contains(cls)
+    e.target.classList.contains(cls),
   );
   const isDeleteBtn = e.target.id === `deleteProjectBtn`;
   const isActiveItem = e.target.closest(`li`).classList.contains(`active`);

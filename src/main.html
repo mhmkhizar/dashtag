@@ -29,7 +29,7 @@
           <!-- Brand_Container -->
           <div class="flex items-center">
             <span
-              class="material-symbols-rounded !text-3xl text-[var(--primary)]"
+              class="icon material-symbols-rounded !text-3xl text-[var(--primary)]"
               >numbers</span
             >
             <h1 class="text-lg">dashTag</h1>
@@ -45,7 +45,7 @@
               class="button button-primary button-lg shadow-2xs"
               type="button"
             >
-              <span class="material-symbols-rounded">add</span>
+              <span class="icon material-symbols-rounded">add</span>
               <span>Create</span>
             </button>
           </section>
@@ -55,16 +55,18 @@
             class="scrol flex flex-col gap-0.5 overflow-y-auto p-2 text-sm"
             id="sidebar-list"
           >
-            <!-- Sidebar_List_Item -->
-            <li
-              class="flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 transition-all hover:bg-current/10"
+            <!-- <li
+              class="sidebar-list-item flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 hover:bg-current/10"
             >
-              <span class="material-symbols-rounded icon-wght-300">tag</span
-              ><span>My Tasks</span
-              ><span class="material-symbols-rounded ml-auto !text-xl"
-                >close</span
+              <span class="icon material-symbols-rounded icon-wght-300">tag</span>
+              <span class="sidebar-list-item-text truncate">My Tasks</span>
+              <span
+                class="icon material-symbols-rounded invisible ml-auto !text-xl"
+                id="delete-project-button"
               >
-            </li>
+                close
+              </span>
+            </li> -->
           </ul>
 
           <!-- *Sidebar_Secondary_Actions -->
@@ -75,7 +77,7 @@
               id="open-project-modal"
               type="button"
             >
-              <span class="material-symbols-rounded">add</span>
+              <span class="icon material-symbols-rounded">add</span>
               <span class="">Create project</span>
             </button>
           </section>
@@ -114,40 +116,34 @@
           <button
             class="button p-1 text-[var(--muted-foreground)] hover:bg-[var(--muted)]"
           >
-            <span class="material-symbols-rounded"> arrow_menu_close </span>
+            <span class="icon material-symbols-rounded">
+              arrow_menu_close
+            </span>
           </button>
-          <span
-            class="mr-3 inline-block h-[1.6rem] w-[0.1rem] bg-[var(--border)]"
-          ></span>
-          <h2 class="text-lg">My Tasks</h2>
+          <!-- Title Section -->
+          <section
+            class="flex items-center gap-2"
+            id="title-container"
+          ></section>
         </header>
 
         <!-- *Tasks_Section* -->
-        <section class="mx-auto max-w-[96ch] p-6 pt-0" id="project-view">
-          <!-- *Main_Primary_Actions* -->
-          <button
-            class="button button-outline mb-6 w-full justify-center px-4 py-2"
-            type="button"
-          >
-            <span class="material-symbols-rounded">add</span
-            ><span>Add a task</span>
-          </button>
-
+        <section class="mx-auto max-w-[96ch] p-6 pt-0" id="tasks-section">
           <!-- *Tasks_List -->
-          <ul
+          <!-- <ul
             class="rounded-lg bg-[var(--card)] p-4 text-[var(--card-foreground)]"
           >
             <li
-              class="flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 transition-all hover:bg-current/10"
+              class="flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 hover:bg-current/10"
             >
-              <span class="material-symbols-rounded icon-wght-300"
+              <span class="icon material-symbols-rounded icon-wght-300"
                 >check_box_outline_blank</span
               ><span>Task #01</span
-              ><span class="material-symbols-rounded ml-auto !text-xl"
+              ><span class="icon material-symbols-rounded ml-auto !text-xl"
                 >close</span
               >
             </li>
-          </ul>
+          </ul> -->
         </section>
       </main>
     </div>

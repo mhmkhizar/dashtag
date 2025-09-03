@@ -1,32 +1,36 @@
 import { Element } from "../../utils/helper";
 import * as ProjectServie from "../../services/project-service";
 
-const section = Element.select(`#project-view`);
+const titleContainer = Element.select(`#title-container`);
+const tasksSection = Element.select(`#tasks-section`);
 
 export function render(projectID) {
-  section.innerHTML = ``;
+  titleContainer.innerHTML = ``;
+  tasksSection.innerHTML = ``;
+
   const project = ProjectServie.get(projectID);
+
   const title = Element.create({
     element: `h2`,
-    className: `project__title`,
+    className: `border-l border-[var(--border)] px-4 text-lg`,
     textContent: `${project.name}`,
   });
+  titleContainer.appendChild(title);
+
   const addTaskBtn = Element.create({
     element: `button`,
-    className: `project__add-task-btn btn btn--primary-holo`,
+    className: `button button-outline mb-6 w-full justify-center px-4 py-2`,
     attributes: { type: `button` },
   });
   const addTaskIcon = Element.create({
     element: `span`,
-    className: `project__add-task-icon icon material-symbols-rounded`,
+    className: `material-symbols-rounded icon-wght-300`,
     textContent: `add_task`,
   });
   const addTaskText = Element.create({
     element: `span`,
-    className: `project__add-task-text`,
     textContent: `Add a task`,
   });
-
   addTaskBtn.append(addTaskIcon, addTaskText);
-  section.append(title, addTaskBtn);
+  tasksSection.append(addTaskBtn);
 }

@@ -2,7 +2,22 @@
 @import url("./assets/styles/theme.css");
 @import url("./assets/styles/variables.css");
 
+/* *TRANSITIONS* */
+
+.button,
+.sidebar-list-item {
+  @apply transition-colors;
+}
+
+.icon {
+  @apply transition-opacity;
+}
+
 /* *CUSTOM_STATES* */
+
+.custom-hidden {
+  @apply pointer-events-none opacity-0;
+}
 
 .active-item {
   @apply bg-[var(--sidebar-primary-foreground)] hover:bg-[var(--sidebar-primary-foreground)]/90;
@@ -23,7 +38,7 @@
 /* *CUSTOM_BUTTONS_STYLES* */
 
 .button {
-  @apply flex cursor-pointer items-center gap-2 rounded-[var(--radius)] leading-none transition-all;
+  @apply flex cursor-pointer items-center gap-2 rounded-[var(--radius)] leading-none;
 }
 
 .button-primary {
@@ -42,7 +57,8 @@
   @apply hover:bg-current/10;
 }
 
-.button-disabled {
+.button-disabled,
+.button[inert] {
   @apply cursor-default bg-inherit text-[var(--muted-foreground)] hover:bg-inherit;
 }
 
@@ -119,8 +135,4 @@
 
 ::-webkit-scrollbar-thumb:active {
   background: rgba(255, 255, 255, 0.7);
-}
-
-.scrollbar-gutter-stable {
-  scrollbar-gutter: stable;
 }
