@@ -20,7 +20,7 @@
 }
 
 .active-item {
-  @apply bg-[var(--sidebar-primary-foreground)] hover:bg-[var(--sidebar-primary-foreground)]/90;
+  @apply bg-[var(--sidebar-primary-foreground)] hover:bg-[var(--sidebar-primary-foreground)]/80;
 }
 
 /* *MODAL* */
@@ -42,15 +42,15 @@
 }
 
 .button-primary {
-  @apply bg-[var(--primary)] font-medium text-blue-50 hover:bg-[var(--primary)]/90;
+  @apply bg-[var(--primary)] font-medium text-blue-50 hover:bg-[var(--primary)]/80;
 }
 
 .button-secondary {
-  @apply bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--secondary)]/90;
+  @apply bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--secondary)]/80;
 }
 
 .button-outline {
-  @apply border border-[var(--border)] bg-[var(--input)]/30 hover:bg-[var(--input)]/20;
+  @apply border border-[var(--border)] bg-[var(--input)]/30 hover:bg-[var(--input)]/10;
 }
 
 .button-ghost {

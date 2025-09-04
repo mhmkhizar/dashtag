@@ -1,6 +1,6 @@
-import * as Helper from "../component-utils/helper";
-import * as ProjectService from "../../services/project-service";
-import * as ProjectView from "../project-view/project-view";
+import * as Helper from "./utils/helper";
+import * as ProjectService from "../services/project-service";
+import * as ProjectView from "./project-view";
 
 const list = document.querySelector(`#sidebar-list`);
 const defaultItem = ProjectService.getDefault();

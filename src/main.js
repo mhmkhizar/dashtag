@@ -1,6 +1,6 @@
 import "./main.css";
-import * as Sidebar from "./components/sidebar/sidebar";
-import * as ProjectModal from "./components/project-modal/project-modal";
+import * as Sidebar from "./components/sidebar";
+import * as ProjectModal from "./components/project-modal";
 
 Sidebar.init();
 ProjectModal.init();

@@ -1,5 +1,5 @@
-import * as ProjectService from "../../services/project-service";
-import * as Sidebar from "../sidebar/sidebar";
+import * as ProjectService from "../services/project-service";
+import * as Sidebar from "./sidebar";
 
 const openBtn = document.querySelector(`#open-project-modal`);
 const modal = document.querySelector(`#project-modal`);

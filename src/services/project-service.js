@@ -1,7 +1,8 @@
 import * as Project from "../models/project";
+import * as Storage from "../utils/storage";
 
-const _defaultProject = Project.createProject("My Tasks");
-const _projects = [_defaultProject];
+const _projects = [];
+const _defaultProject = add("My Tasks");
 
 export function getDefault() {
   return { ..._defaultProject };
@@ -19,6 +20,7 @@ export function getAll() {
 export function add(name) {
   const project = Project.createProject(name);
   if (!project) return;
+  Storage.save(project.id, project);
   _projects.push(project);
   return { ...project };
 }
