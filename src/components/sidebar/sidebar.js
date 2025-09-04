@@ -1,14 +1,18 @@
-import { Element } from "../component-utils/helper";
+import * as Helper from "../component-utils/helper";
 import * as ProjectService from "../../services/project-service";
 import * as ProjectView from "../project-view/project-view";
 
-const list = Element.select(`#sidebar-list`);
+const list = document.querySelector(`#sidebar-list`);
 const defaultItem = ProjectService.getDefault();
 let activeItem;
 
 export function init() {
   renderList();
   setActiveItem();
+  activateEvents();
+}
+
+function activateEvents() {
   list.addEventListener(`mouseenter`, (e) => handleItemHover(e, true), true);
   list.addEventListener(`mouseleave`, (e) => handleItemHover(e, false), true);
   list.addEventListener(`click`, (e) => handleCloseIconClick(e));
@@ -21,20 +25,16 @@ function renderList() {
 }
 
 function setActiveItem() {
-  const item = Element.select(`[data-projectid="${defaultItem.id}"]`, list);
+  const item = list.querySelector(`[data-projectid="${defaultItem.id}"]`);
   if (item) item.classList.add(`active-item`);
   activeItem = item;
-  renderActiveItem();
+  ProjectView.render(activeItem.dataset.projectid);
 }
 
 function switchActiveItem(nextItem) {
   activeItem.classList.remove(`active-item`);
   activeItem = nextItem;
   activeItem.classList.add(`active-item`);
-  renderActiveItem();
-}
-
-function renderActiveItem() {
   ProjectView.render(activeItem.dataset.projectid);
 }
 
@@ -44,27 +44,28 @@ function removeItem(id) {
 }
 
 export function addItem(project) {
-  const listItem = Element.create({
+  const listItem = Helper.element.create({
     element: `li`,
-    className: `sidebar-list-item flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 hover:bg-current/10`,
+    classes: `sidebar-list-item flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 hover:bg-current/10`,
     attributes: { "data-projectid": `${project.id}` },
   });
-  const hashIcon = Element.create({
+  const hashIcon = Helper.element.create({
     element: `span`,
-    className: `icon sidebar-list-item-icon material-symbols-rounded icon-wght-300`,
+    classes: `icon sidebar-list-item-icon material-symbols-rounded icon-wght-300`,
     textContent: `tag`,
   });
-  const itemText = Element.create({
+  const itemText = Helper.element.create({
     element: `span`,
-    className: `sidebar-list-item-text truncate`,
+    classes: `sidebar-list-item-text truncate`,
     textContent: project.name,
   });
-  const closeIcon = Element.create({
+  const closeIcon = Helper.element.create({
     element: `span`,
-    className: `icon sidebar-list-item-icon delete-project-button material-symbols-rounded ml-auto !text-xl custom-hidden`,
+    classes: `icon sidebar-list-item-icon delete-project-button material-symbols-rounded ml-auto !text-xl custom-hidden`,
     attributes: { inert: `` },
     textContent: `close`,
   });
+
   listItem.append(hashIcon, itemText, closeIcon);
   list.appendChild(listItem);
 }
@@ -73,7 +74,7 @@ function handleItemHover(e, isVisible) {
   if (!e.target.classList.contains(`sidebar-list-item`)) return;
   const item = e.target;
   if (item.dataset.projectid === defaultItem.id) return;
-  const closeIcon = Element.select(`span:last-of-type`, item);
+  const closeIcon = item.querySelector(`span:last-of-type`);
   if (isVisible) {
     closeIcon.removeAttribute(`inert`);
     closeIcon.classList.remove(`custom-hidden`);

@@ -1,13 +1,12 @@
-import { Element } from "../component-utils/helper";
 import * as ProjectService from "../../services/project-service";
 import * as Sidebar from "../sidebar/sidebar";
 
-const openBtn = Element.select(`#open-project-modal`);
-const modal = Element.select(`#project-modal`);
-const form = Element.select(`#project-modal-form`, modal);
-const nameInput = Element.select(`#project-name-input`, form);
-const closeBtn = Element.select(`#close-project-modal`, form);
-const submitBtn = Element.select(`#submit-project-form`, form);
+const openBtn = document.querySelector(`#open-project-modal`);
+const modal = document.querySelector(`#project-modal`);
+const form = modal.querySelector(`#project-modal-form`);
+const nameInput = form.querySelector(`#project-name-input`);
+const closeBtn = form.querySelector(`#close-project-modal`);
+const submitBtn = form.querySelector(`#submit-project-form`);
 
 export function init() {
   openBtn.addEventListener(`click`, openModal);
