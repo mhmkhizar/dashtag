@@ -1,8 +1,8 @@
-export function createProject(id = crypto.randomUUID(), name) {
-  if (!name || name.trim() === ``) return;
+export function create({ id = crypto.randomUUID(), title }) {
+  if (!title || title.trim() === ``) return;
   return {
     id,
-    name: name.trim().toString(),
+    title: title.trim().toString(),
     tasks: [],
     addTask(task) {
       this.tasks.push(task);

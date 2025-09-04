@@ -2,7 +2,27 @@ import * as Project from "../models/project";
 import * as Storage from "../utils/storage";
 
 const _projects = [];
-const _defaultProject = add("My Tasks");
+let _defaultProject;
+
+export function init() {
+  loadFromStorage();
+}
+
+function loadFromStorage() {
+  const storedProjects = Storage.retrieve();
+  if (storedProjects) {
+    _projects.splice(0, _projects.length, ...storedProjects);
+    _defaultProject = storedProjects[0];
+  } else {
+    _defaultProject = setDefault();
+  }
+}
+
+function setDefault() {
+  const project = add("My Tasks");
+  Storage.save(_projects);
+  return project;
+}
 
 export function getDefault() {
   return { ..._defaultProject };
@@ -18,10 +38,8 @@ export function getAll() {
 }
 
 export function add(name) {
-  const project = Project.createProject(name);
-  if (!project) return;
+  const project = Project.create({ title: name });
   _projects.push(project);
-  console.log(_projects);
   Storage.save(_projects);
   return { ...project };
 }

@@ -3,10 +3,11 @@ import * as ProjectService from "../services/project-service";
 import * as ProjectView from "./project-view";
 
 const list = document.querySelector(`#sidebar-list`);
-const defaultItem = ProjectService.getDefault();
+let defaultItem;
 let activeItem;
 
 export function init() {
+  defaultItem = ProjectService.getDefault();
   renderList();
   setActiveItem();
   activateEvents();
@@ -25,6 +26,7 @@ function renderList() {
 }
 
 function setActiveItem() {
+  if (!defaultItem) return;
   const item = list.querySelector(`[data-projectid="${defaultItem.id}"]`);
   if (item) item.classList.add(`active-item`);
   activeItem = item;
@@ -57,7 +59,7 @@ export function addItem(project) {
   const itemText = Helper.element.create({
     element: `span`,
     classes: `sidebar-list-item-text truncate`,
-    textContent: project.name,
+    textContent: project.title,
   });
   const closeIcon = Helper.element.create({
     element: `span`,
@@ -73,7 +75,7 @@ export function addItem(project) {
 function handleItemHover(e, isVisible) {
   if (!e.target.classList.contains(`sidebar-list-item`)) return;
   const item = e.target;
-  if (item.dataset.projectid === defaultItem.id) return;
+  if (!defaultItem || item.dataset.projectid === defaultItem.id) return;
   const closeIcon = item.querySelector(`span:last-of-type`);
   if (isVisible) {
     closeIcon.removeAttribute(`inert`);

@@ -1,10 +1,10 @@
-export function createTask(
+export function create({
   id = crypto.randomUUID(),
   title,
   description,
   dueDate,
   priority,
-) {
+}) {
   if (!title || title.trim() === ``) return;
   return {
     id,

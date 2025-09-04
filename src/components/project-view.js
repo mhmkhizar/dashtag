@@ -13,7 +13,7 @@ export function render(projectID) {
   const title = Helper.element.create({
     element: `h2`,
     classes: `border-l border-[var(--border)] px-4 text-lg truncate`,
-    textContent: `${project.name}`,
+    textContent: `${project.title}`,
     id: `projectTitle`,
   });
   titleContainer.appendChild(title);
