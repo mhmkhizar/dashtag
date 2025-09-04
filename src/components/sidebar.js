@@ -48,7 +48,7 @@ function removeItem(id) {
 export function addItem(project) {
   const listItem = Helper.element.create({
     element: `li`,
-    classes: `sidebar-list-item flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 hover:bg-current/10`,
+    classes: `sidebar-list-item flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 h-8 hover:bg-current/10`,
     attributes: { "data-projectid": `${project.id}` },
   });
   const hashIcon = Helper.element.create({

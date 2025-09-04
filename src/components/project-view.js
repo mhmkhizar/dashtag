@@ -20,7 +20,7 @@ export function render(projectID) {
 
   const addTaskBtn = Helper.element.create({
     element: `button`,
-    classes: `button button-outline mb-6 w-full justify-center px-4 py-2`,
+    classes: `button button-outline button-sm mb-6 w-full justify-center`,
     attributes: { type: `button` },
   });
   const addTaskIcon = Helper.element.create({

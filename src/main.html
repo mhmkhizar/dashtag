@@ -12,7 +12,7 @@
   </head>
   <!-- *Body* -->
   <body
-    class="h-full bg-[var(--background)] font-[family-name:var(--font-sys)] text-base text-[var(--foreground)]"
+    class="h-full bg-[var(--background)] font-[family-name:var(--roboto)] text-base text-[var(--foreground)]"
   >
     <!-- *Wrapper* -->
     <div
@@ -39,7 +39,7 @@
         <!-- *Sidbar_Body* -->
         <section class="flex flex-col overflow-y-auto">
           <!-- *Sidebar_Primary_Actions -->
-          <section class="p-6">
+          <section class="mb-4 p-6 pb-0">
             <!-- Create_Task_button -->
             <button
               class="button button-primary button-lg shadow-2xs"
@@ -50,35 +50,64 @@
             </button>
           </section>
 
-          <!-- Sidebar_List -->
-          <ul
-            class="scrol flex flex-col gap-0.5 overflow-y-auto p-2 text-sm"
-            id="sidebar-list"
-          >
-            <!-- <li
-              class="sidebar-list-item flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 hover:bg-current/10"
-            >
-              <span class="icon material-symbols-rounded icon-wght-300">tag</span>
-              <span class="sidebar-list-item-text truncate">My Tasks</span>
-              <span
-                class="icon material-symbols-rounded invisible ml-auto !text-xl"
-                id="delete-project-button"
+          <!-- *Sidebar_Filters_Section* -->
+          <section class="p-2">
+            <ul class="flex flex-col gap-0.5">
+              <li
+                class="flex h-8 cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 hover:bg-current/10"
               >
-                close
-              </span>
-            </li> -->
-          </ul>
+                <span
+                  class="icon material-symbols-rounded icon-wght-300 !text-2xl"
+                  >event</span
+                >
+                <span>Today</span>
+              </li>
+              <li
+                class="flex h-8 cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 hover:bg-current/10"
+              >
+                <span class="icon material-symbols-rounded icon-wght-300"
+                  >star</span
+                >
+                <span>Starred</span>
+              </li>
+            </ul>
+          </section>
+
+          <!-- *Sidebar_Project_List_Section* -->
+          <section class="p-2">
+            <!-- Sidebar_Project_List_Title -->
+            <h3 class="mb-2 px-4 font-medium text-[var(--muted-foreground)]">
+              Projects
+            </h3>
+            <!-- Sidebar_Project_List -->
+            <ul class="flex flex-col gap-0.5 overflow-y-auto" id="sidebar-list">
+              <!-- <li
+                class="sidebar-list-item flex h-8 cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 hover:bg-current/10"
+              >
+                <span class="icon material-symbols-rounded icon-wght-300"
+                  >tag</span
+                >
+                <span class="sidebar-list-item-text truncate">My Tasks</span>
+                <span
+                  class="icon material-symbols-rounded invisible ml-auto !text-xl"
+                  id="delete-project-button"
+                >
+                  close
+                </span>
+              </li> -->
+            </ul>
+          </section>
 
           <!-- *Sidebar_Secondary_Actions -->
           <section class="p-2">
             <!-- Create_Project_button -->
             <button
-              class="button button-ghost button-sm w-full"
+              class="button button-ghost h-8 w-full px-4"
               id="open-project-modal"
               type="button"
             >
               <span class="icon material-symbols-rounded">add</span>
-              <span class="">Create project</span>
+              <span class="">Create new project</span>
             </button>
           </section>
         </section>
@@ -130,9 +159,13 @@
         </header>
 
         <!-- *Tasks_Section* -->
-        <section class="mx-auto max-w-[96ch] p-6 pt-0" id="tasks-section">
-          <!-- *Tasks_List -->
-          <!-- <ul
+        <section
+          class="mx-auto max-w-[96ch] p-6 pt-0"
+          id="tasks-section"
+        ></section>
+        <!-- *Tasks_List -->
+        <section class="mx-auto max-w-[96ch] p-6 pt-0" id="tasks-section-demo">
+          <ul
             class="rounded-lg bg-[var(--card)] p-4 text-[var(--card-foreground)]"
           >
             <li
@@ -145,7 +178,7 @@
                 >close</span
               >
             </li>
-          </ul> -->
+          </ul>
         </section>
       </main>
     </div>
