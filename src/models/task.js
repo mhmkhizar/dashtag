@@ -1,15 +1,20 @@
-export function createTask(title, description, dueDate, priority) {
+export function createTask(
+  id = crypto.randomUUID(),
+  title,
+  description,
+  dueDate,
+  priority,
+) {
   if (!title || title.trim() === ``) return;
-
   return {
-    id: crypto.randomUUID(),
+    id,
     title: title.trim().toString(),
     description,
     dueDate,
     priority,
     completed: false,
-    toggleCompleted() {
-      this.completed = !this.completed;
+    markComplete() {
+      this.completed = true;
     },
   };
 }

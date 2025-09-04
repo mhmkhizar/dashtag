@@ -21,6 +21,8 @@ export function add(name) {
   const project = Project.createProject(name);
   if (!project) return;
   _projects.push(project);
+  console.log(_projects);
+  Storage.save(_projects);
   return { ...project };
 }
 
