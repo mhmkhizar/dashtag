@@ -20,7 +20,6 @@ export function getAll() {
 export function add(name) {
   const project = Project.createProject(name);
   if (!project) return;
-  Storage.save(project.id, project);
   _projects.push(project);
   return { ...project };
 }
