@@ -1,10 +1,10 @@
 import * as ProjectService from "../services/project-service";
-import * as Sidebar from "./sidebar";
+import * as ProjectList from "./sidebar/projects-list";
 
 const openBtn = document.querySelector(`#open-project-modal`);
 const modal = document.querySelector(`#project-modal`);
-const form = modal.querySelector(`#project-modal-form`);
-const nameInput = form.querySelector(`#project-name-input`);
+const form = modal.querySelector(`#project-form`);
+const nameInput = form.querySelector(`#project-form-name-input`);
 const closeBtn = form.querySelector(`#close-project-modal`);
 const submitBtn = form.querySelector(`#submit-project-form`);
 
@@ -36,7 +36,7 @@ function submitModalForm() {
   if (modal.returnValue === `confirm`) {
     const name = nameInput.value.trim();
     const project = ProjectService.add(name);
-    Sidebar.addItem(project);
+    ProjectList.addItem(project);
   }
   form.reset();
   modal.returnValue = ``;

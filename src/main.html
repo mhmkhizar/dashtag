@@ -52,6 +52,7 @@
 
           <!-- *Sidebar_Filters_Section* -->
           <section class="p-2">
+            <!-- Filters_List -->
             <ul class="flex flex-col gap-0.5">
               <li
                 class="flex h-8 cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 hover:bg-current/10"
@@ -74,13 +75,16 @@
           </section>
 
           <!-- *Sidebar_Project_List_Section* -->
-          <section class="p-2">
-            <!-- Sidebar_Project_List_Title -->
+          <section class="overflow-y-auto p-2">
+            <!-- Project_List_Title -->
             <h3 class="mb-2 px-4 font-medium text-[var(--muted-foreground)]">
               Projects
             </h3>
-            <!-- Sidebar_Project_List -->
-            <ul class="flex flex-col gap-0.5 overflow-y-auto" id="sidebar-list">
+            <!-- Project_List -->
+            <ul
+              class="flex flex-col gap-0.5 overflow-y-auto"
+              id="sidebar-project-list"
+            >
               <!-- <li
                 class="sidebar-list-item flex h-8 cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 hover:bg-current/10"
               >
@@ -114,6 +118,7 @@
 
         <!-- *Sidebar_Footer* -->
         <footer class="mt-auto border-t border-[var(--border)] p-2">
+          <!-- User_Info_Section -->
           <section class="text- flex items-center gap-2">
             <img
               class="h-10 w-10 rounded-full border border-[var(--border)] object-cover"
@@ -139,7 +144,7 @@
         </footer>
       </aside>
 
-      <!-- *MAIN_CONTENT* -->
+      <!-- *Main_Content* -->
       <main class="h-full overflow-x-auto text-base [grid-area:main]">
         <!-- *Main_Header* -->
         <header class="flex items-center gap-2 p-4">
@@ -151,17 +156,17 @@
               arrow_menu_close
             </span>
           </button>
-          <!-- Title Section -->
+          <!-- Title_Container -->
           <section
             class="flex max-w-full items-center gap-2 overflow-x-auto"
-            id="title-container"
+            id="project-title-container"
           ></section>
         </header>
 
-        <!-- *Tasks_Section* -->
+        <!-- *Main_Tasks_Section* -->
         <section
           class="mx-auto max-w-[96ch] p-6 pt-0"
-          id="tasks-section"
+          id="main-tasks-section"
         ></section>
         <!-- *Tasks_List -->
         <section class="mx-auto max-w-[96ch] p-6 pt-0" id="tasks-section-demo">
@@ -186,8 +191,8 @@
     <!-- *Modals* -->
     <!-- *Project_Modal* -->
     <dialog class="modal" id="project-modal">
-      <!-- *Form* -->
-      <form method="dialog" class="flex flex-col" id="project-modal-form">
+      <!-- Form -->
+      <form method="dialog" class="flex flex-col" id="project-form">
         <!-- Title -->
         <h3 class="mb-4 text-lg">Create new project</h3>
 
@@ -198,7 +203,7 @@
             class="input"
             type="text"
             name="projec-name"
-            id="project-name-input"
+            id="project-form-name-input"
             placeholder="Enter name"
             autocomplete="off"
             required

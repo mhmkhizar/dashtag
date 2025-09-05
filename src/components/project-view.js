@@ -1,8 +1,8 @@
 import * as Helper from "./utils/helper";
 import * as ProjectServie from "../services/project-service";
 
-const titleContainer = document.querySelector(`#title-container`);
-const tasksContainer = document.querySelector(`#tasks-section`);
+const titleContainer = document.querySelector(`#project-title-container`);
+const tasksContainer = document.querySelector(`#main-tasks-section`);
 
 export function render(projectID) {
   titleContainer.innerHTML = ``;
