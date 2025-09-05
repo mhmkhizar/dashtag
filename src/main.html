@@ -24,7 +24,7 @@
       >
         <!-- *Sidebar_Header* -->
         <header
-          class="flex items-center border-b border-[var(--sidebar-border)] p-4"
+          class="mb-2 flex items-center border-b border-[var(--sidebar-border)] p-4"
         >
           <!-- Brand_Container -->
           <div class="flex items-center">
@@ -38,20 +38,8 @@
 
         <!-- *Sidbar_Body* -->
         <section class="flex flex-col overflow-y-auto">
-          <!-- *Sidebar_Primary_Actions -->
-          <section class="p-4">
-            <!-- Create_Task_button -->
-            <button
-              class="button button-primary button-lg shadow-2xs"
-              type="button"
-            >
-              <span class="icon material-symbols-rounded">add</span>
-              <span>Create</span>
-            </button>
-          </section>
-
           <!-- *Sidebar_Filters_Section* -->
-          <section class="p-2">
+          <section class="mb-2 p-2">
             <!-- Filters_List -->
             <ul class="flex flex-col gap-0.5">
               <li
@@ -75,7 +63,7 @@
           </section>
 
           <!-- *Project_List_Title_Container* -->
-          <section class="px-6 py-2">
+          <section class="px-6">
             <h3 class="font-medium text-[var(--muted-foreground)]">Projects</h3>
           </section>
 
@@ -153,26 +141,31 @@
           id="project-section"
         ></section>
 
-        <!-- *Tasks_List -->
+        <!-- *Tasks_List* -->
         <ul
           class="mx-auto max-w-[96ch] rounded-lg bg-[var(--card)] py-6 text-[var(--card-foreground)]"
         >
+          <!-- List_Item -->
           <li
             class="flex w-full items-start gap-2 px-6 pt-2 pb-3 hover:bg-current/10"
           >
+            <!-- Check_Icon -->
             <span class="icon material-symbols-rounded icon-wght-200 leading-0"
               >check_box_outline_blank</span
             >
 
+            <!-- Title_&_DueDate -->
             <div class="flex w-[calc(100%-4rem)] flex-col items-start gap-1">
+              <!-- Title -->
               <span class="w-full truncate">Buy some milk</span>
-
+              <!-- DueDate -->
               <span
-                class="w-fit rounded-[var(--radius)] border border-current/20 px-2 py-0.5 text-sm font-light text-[var(--destructive)]"
-                >Sat 20 September</span
+                class="w-fit rounded-[var(--radius)] border border-current/35 px-2 py-0.5 text-sm text-current/85"
+                >Sat 20 Sept</span
               >
             </div>
 
+            <!-- Star_Icon -->
             <span
               class="icon material-symbols-rounded icon-wght-200 custom-hidden leading-0"
               >kid_star</span
@@ -224,6 +217,102 @@
           >
             Done
           </button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- *Task_Modal* -->
+    <dialog class="modal w-[clamp(45ch,50%,75ch)]" id="task-modal">
+      <!-- Form -->
+      <form method="dialog " class="space-y-2">
+        <!-- *Title_&_Star_Input_Group* -->
+        <div class="flex items-center gap-4">
+          <!-- Title_Input -->
+          <input
+            class="input"
+            type="text"
+            name="task-title"
+            id="task-title"
+            placeholder="Title"
+          />
+          <!-- Star_Input -->
+          <div class="h-full leading-0">
+            <input type="hidden" name="is-starred" id="is-starred" value="0" />
+            <span
+              class="material-symbols-rounded icon material-symbols-rounded icon-wght-200"
+              >kid_star</span
+            >
+          </div>
+        </div>
+        <div>
+          <textarea
+            class="textarea"
+            name="task-desc"
+            id="task-desc"
+            rows="4"
+            placeholder="Description"
+          ></textarea>
+        </div>
+        <div>
+          <!-- Today -->
+          <label>
+            <input
+              type="radio"
+              name="due_date"
+              value="today"
+              class="peer hidden"
+            />
+            <div
+              class="cursor-pointer rounded-lg border px-4 py-2 text-gray-600 transition peer-checked:border-blue-600 peer-checked:bg-blue-600 peer-checked:text-white"
+            >
+              Today
+            </div>
+          </label>
+
+          <!-- Tomorrow -->
+          <label>
+            <input
+              type="radio"
+              name="due_date"
+              value="tomorrow"
+              class="peer hidden"
+            />
+            <div
+              class="cursor-pointer rounded-lg border px-4 py-2 text-gray-600 transition peer-checked:border-blue-600 peer-checked:bg-blue-600 peer-checked:text-white"
+            >
+              Tomorrow
+            </div>
+          </label>
+
+          <!-- Pick a date -->
+          <div>
+            <!-- Radio for custom -->
+            <input
+              type="radio"
+              name="due_date"
+              value="custom"
+              id="custom-radio"
+              class="hidden"
+            />
+
+            <!-- Visible button -->
+            <button
+              type="button"
+              id="custom-date-btn"
+              class="flex items-center gap-2 rounded-lg border px-4 py-2 text-gray-600 transition hover:bg-gray-100"
+            >
+              <span class="material-symbols-rounded">calendar_month</span>
+              <span id="custom-date-label">Pick a date</span>
+            </button>
+
+            <!-- Hidden date input -->
+            <input
+              type="date"
+              id="custom-date-input"
+              name="custom_date"
+              class="hidden"
+            />
+          </div>
         </div>
       </form>
     </dialog>

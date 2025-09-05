@@ -31,8 +31,13 @@
 
 /* *TEXT_INPUT* */
 
-.input {
-  @apply rounded-[var(--radius)] bg-[var(--input)] px-4 py-2 text-[var(--foreground)] ring-0 placeholder:text-[var(--muted-foreground)] focus-visible:border-[var(--ring)] focus-visible:ring-[3px] focus-visible:ring-[var(--ring)]/50 focus-visible:outline-none;
+.input,
+.textarea {
+  @apply w-full rounded-[var(--radius)] bg-[var(--input)] px-4 py-2 text-[var(--foreground)] ring-0 placeholder:text-[var(--muted-foreground)] focus-visible:border-[var(--ring)] focus-visible:ring-[3px] focus-visible:ring-[var(--ring)]/50 focus-visible:outline-none;
+}
+
+.textarea {
+  @apply resize-none;
 }
 
 /* *BUTTON_STYLES* */
@@ -100,6 +105,10 @@
     "wght" 400,
     "GRAD" 0,
     "opsz" 24;
+}
+
+.icon-fill {
+  font-variation-settings: "FILL" 1;
 }
 
 .icon-wght-300 {

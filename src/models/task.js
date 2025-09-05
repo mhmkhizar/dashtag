@@ -3,7 +3,7 @@ export function create({
   title,
   description,
   dueDate,
-  priority,
+  starred = false,
 }) {
   if (!title || title.trim() === ``) return;
   return {
@@ -11,7 +11,7 @@ export function create({
     title: title.trim().toString(),
     description,
     dueDate,
-    priority,
+    starred,
     completed: false,
     markComplete() {
       this.completed = true;

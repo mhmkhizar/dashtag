@@ -4,3 +4,6 @@ import * as ProjectService from "./services/project-service";
 
 ProjectService.init();
 Sidebar.init();
+
+const modal = document.querySelector(`#task-modal`);
+modal.showModal();
