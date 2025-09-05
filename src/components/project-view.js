@@ -1,63 +1,41 @@
 import * as Helper from "./utils/helper";
 import * as ProjectServie from "../services/project-service";
 
-const titleContainer = document.querySelector(`#project-title-container`);
-const tasksContainer = document.querySelector(`#main-tasks-section`);
+const projectSection = document.querySelector(`#project-section`);
 
-export function render(projectID) {
-  titleContainer.innerHTML = ``;
-  tasksContainer.innerHTML = ``;
+export function render(projectid) {
+  projectSection.innerHTML = ``;
+  const project = ProjectServie.get(projectid);
 
-  const project = ProjectServie.get(projectID);
+  const title = generateTitle(project.title);
+  const addTaskBtn = generateAddTaskBtn();
+  projectSection.append(title, addTaskBtn);
+}
 
-  const title = Helper.element.create({
+function generateTitle(title) {
+  const h2 = Helper.element.create({
     element: `h2`,
-    classes: `border-l border-[var(--border)] px-4 text-lg truncate`,
-    textContent: `${project.title}`,
-    id: `projectTitle`,
+    classes: `truncate mb-2 text-lg`,
+    textContent: `${title}`,
   });
-  titleContainer.appendChild(title);
+  return h2;
+}
 
-  const addTaskBtn = Helper.element.create({
+function generateAddTaskBtn() {
+  const button = Helper.element.create({
     element: `button`,
-    classes: `button button-outline button-sm mb-6 w-full justify-center`,
+    classes: `button button-outline button-sm w-full justify-center`,
     attributes: { type: `button` },
   });
-  const addTaskIcon = Helper.element.create({
+  const iconSpan = Helper.element.create({
     element: `span`,
     classes: `material-symbols-rounded icon-wght-300`,
     textContent: `add_task`,
   });
-  const addTaskText = Helper.element.create({
+  const textSpan = Helper.element.create({
     element: `span`,
     textContent: `Add a task`,
   });
-  addTaskBtn.append(addTaskIcon, addTaskText);
-  tasksContainer.append(addTaskBtn);
-
-  const titleTooltip = Helper.element.create({
-    element: `div`,
-    classes: `absolute z-50 hidden px-3 py-1 text-sm text-white bg-gray-800 rounded-lg shadow-lg max-w-[75ch] whitespace-normal break-words`,
-    id: `tooltip`,
-  });
-  titleContainer.appendChild(titleTooltip);
-
-  const titleD = document.querySelector(`#projectTitle`);
-  const tool = document.querySelector(`#tooltip`);
-  titleD.addEventListener("mouseenter", (e) => {
-    tool.textContent = `${titleD.textContent}`;
-    tool.classList.remove("hidden");
-
-    tool.style.left = e.pageX + 10 + "px";
-    tool.style.top = e.pageY + 10 + "px";
-  });
-
-  titleD.addEventListener("mousemove", (e) => {
-    tool.style.left = e.pageX + 10 + "px";
-    tool.style.top = e.pageY + 10 + "px";
-  });
-
-  titleD.addEventListener("mouseleave", () => {
-    tool.classList.add("hidden");
-  });
+  button.append(iconSpan, textSpan);
+  return button;
 }

@@ -39,7 +39,7 @@
         <!-- *Sidbar_Body* -->
         <section class="flex flex-col overflow-y-auto">
           <!-- *Sidebar_Primary_Actions -->
-          <section class="mb-4 p-6 pb-0">
+          <section class="p-4">
             <!-- Create_Task_button -->
             <button
               class="button button-primary button-lg shadow-2xs"
@@ -74,12 +74,13 @@
             </ul>
           </section>
 
+          <!-- *Project_List_Title_Container* -->
+          <section class="px-6 py-2">
+            <h3 class="font-medium text-[var(--muted-foreground)]">Projects</h3>
+          </section>
+
           <!-- *Sidebar_Project_List_Section* -->
           <section class="overflow-y-auto p-2">
-            <!-- Project_List_Title -->
-            <h3 class="mb-2 px-4 font-medium text-[var(--muted-foreground)]">
-              Projects
-            </h3>
             <!-- Project_List -->
             <ul
               class="flex flex-col gap-0.5 overflow-y-auto"
@@ -145,46 +146,39 @@
       </aside>
 
       <!-- *Main_Content* -->
-      <main class="h-full overflow-x-auto text-base [grid-area:main]">
-        <!-- *Main_Header* -->
-        <header class="flex items-center gap-2 p-4">
-          <!-- Panel_Close_Icon -->
-          <button
-            class="button p-1 text-[var(--muted-foreground)] hover:bg-[var(--muted)]"
-          >
-            <span class="icon material-symbols-rounded">
-              arrow_menu_close
-            </span>
-          </button>
-          <!-- Title_Container -->
-          <section
-            class="flex max-w-full items-center gap-2 overflow-x-auto"
-            id="project-title-container"
-          ></section>
-        </header>
-
-        <!-- *Main_Tasks_Section* -->
+      <main class="h-full overflow-x-auto p-6 text-base [grid-area:main]">
+        <!-- *Main_Project_Section* -->
         <section
-          class="mx-auto max-w-[96ch] p-6 pt-0"
-          id="main-tasks-section"
+          class="mx-auto mb-8 max-w-[96ch] rounded-lg bg-[var(--card)] p-6 text-[var(--card-foreground)]"
+          id="project-section"
         ></section>
+
         <!-- *Tasks_List -->
-        <section class="mx-auto max-w-[96ch] p-6 pt-0" id="tasks-section-demo">
-          <ul
-            class="rounded-lg bg-[var(--card)] p-4 text-[var(--card-foreground)]"
+        <ul
+          class="mx-auto max-w-[96ch] rounded-lg bg-[var(--card)] py-6 text-[var(--card-foreground)]"
+        >
+          <li
+            class="flex w-full items-start gap-2 px-6 pt-2 pb-3 hover:bg-current/10"
           >
-            <li
-              class="flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 py-0.5 hover:bg-current/10"
+            <span class="icon material-symbols-rounded icon-wght-200 leading-0"
+              >check_box_outline_blank</span
             >
-              <span class="icon material-symbols-rounded icon-wght-300"
-                >check_box_outline_blank</span
-              ><span>Task #01</span
-              ><span class="icon material-symbols-rounded ml-auto !text-xl"
-                >close</span
+
+            <div class="flex w-[calc(100%-4rem)] flex-col items-start gap-1">
+              <span class="w-full truncate">Buy some milk</span>
+
+              <span
+                class="w-fit rounded-[var(--radius)] border border-current/20 px-2 py-0.5 text-sm font-light text-[var(--destructive)]"
+                >Sat 20 September</span
               >
-            </li>
-          </ul>
-        </section>
+            </div>
+
+            <span
+              class="icon material-symbols-rounded icon-wght-200 custom-hidden leading-0"
+              >kid_star</span
+            >
+          </li>
+        </ul>
       </main>
     </div>
 

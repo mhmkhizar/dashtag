@@ -40,28 +40,32 @@ export function removeItem(id) {
 }
 
 export function addItem(project) {
-  const listItem = Helper.element.create({
+  const listItem = generateListItem(project);
+  list.appendChild(listItem);
+}
+
+function generateListItem(item) {
+  const li = Helper.element.create({
     element: `li`,
     classes: `project-list-item flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 h-8 hover:bg-current/10`,
-    attributes: { "data-projectid": `${project.id}` },
+    attributes: { "data-projectid": `${item.id}` },
   });
-  const hashIcon = Helper.element.create({
+  const hashIconSpan = Helper.element.create({
     element: `span`,
     classes: `icon project-item-icon material-symbols-rounded icon-wght-300`,
     textContent: `tag`,
   });
-  const itemText = Helper.element.create({
+  const textSpan = Helper.element.create({
     element: `span`,
     classes: `project-item-text truncate`,
-    textContent: project.title,
+    textContent: item.title,
   });
-  const closeIcon = Helper.element.create({
+  const closeIconSpan = Helper.element.create({
     element: `span`,
     classes: `icon project-item-icon delete-project-button material-symbols-rounded ml-auto !text-xl custom-hidden`,
     attributes: { inert: `` },
     textContent: `close`,
   });
-
-  listItem.append(hashIcon, itemText, closeIcon);
-  list.appendChild(listItem);
+  li.append(hashIconSpan, textSpan, closeIconSpan);
+  return li;
 }
