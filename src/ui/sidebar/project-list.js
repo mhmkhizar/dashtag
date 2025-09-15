@@ -1,7 +1,7 @@
 import * as Helper from "../helper";
 import * as ProjectService from "../../logic/project-service";
 import * as ProjectSection from "../project-section";
-import * as SidebarListItem from "./sidebar-list-item";
+import * as ProjectListItem from "./project-list-item";
 
 export const list = document.querySelector(`#sidebar-project-list`);
 export let defaultItem;
@@ -11,7 +11,7 @@ export function init() {
   defaultItem = ProjectService.getDefault();
   render();
   setActiveItem();
-  SidebarListItem.init();
+  ProjectListItem.init();
 }
 
 function render() {

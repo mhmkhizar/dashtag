@@ -1,5 +1,5 @@
 import * as ProjectService from "../logic/project-service";
-import * as SidebarList from "./sidebar/sidebar-list";
+import * as ProjectList from "./sidebar/project-list";
 
 const openBtn = document.querySelector(`#open-project-dialog`);
 const dialog = document.querySelector(`#project-dialog`);
@@ -40,7 +40,7 @@ function submitDialogForm() {
   if (dialog.returnValue === `confirm`) {
     const name = nameInput.value.trim();
     const project = ProjectService.add(name);
-    SidebarList.addItem(project);
+    ProjectList.addItem(project);
   }
   form.reset();
   dialog.returnValue = ``;

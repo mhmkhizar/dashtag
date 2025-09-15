@@ -1,7 +1,7 @@
-import * as SidebarList from "./sidebar-list";
+import * as ProjectList from "./project-list";
 import * as ProjectDialog from "../project-dialog";
 
 export function init() {
-  SidebarList.init();
+  ProjectList.init();
   ProjectDialog.initOpenBtn();
 }
