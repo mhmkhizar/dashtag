@@ -1,6 +1,6 @@
 import "./main.css";
-import * as Sidebar from "./components/sidebar/sidebar";
-import * as ProjectService from "./services/project-service";
+import * as ProjectService from "./logic/project-service";
+import * as Sidebar from "./ui/sidebar/sidebar";
 
 ProjectService.init();
 Sidebar.init();

@@ -96,7 +96,7 @@
             <!-- Create_Project_button -->
             <button
               class="button button-ghost h-8 w-full px-4"
-              id="open-project-modal"
+              id="open-project-dialog"
               type="button"
             >
               <span class="icon material-symbols-rounded">add</span>
@@ -175,9 +175,9 @@
       </main>
     </div>
 
-    <!-- *Modals* -->
-    <!-- *Project_Modal* -->
-    <dialog class="modal" id="project-modal">
+    <!-- *dialogs* -->
+    <!-- *Project_dialog* -->
+    <dialog class="dialog" id="project-dialog">
       <!-- Form -->
       <form method="dialog" class="flex flex-col" id="project-form">
         <!-- *Title* -->
@@ -202,7 +202,7 @@
           <!-- Cancel_button -->
           <button
             class="button button-ghost button-sm"
-            id="close-project-modal"
+            id="close-project-dialog"
             type="button"
             value="cancel"
           >
@@ -221,8 +221,8 @@
       </form>
     </dialog>
 
-    <!-- *Task_Modal* -->
-    <dialog class="modal w-[clamp(45ch,50%,75ch)]" id="task-modal">
+    <!-- *Task_dialog* -->
+    <dialog class="dialog w-[clamp(45ch,50%,75ch)]" id="task-dialog">
       <!-- Form -->
       <form method="dialog " class="space-y-2">
         <!-- *Input_Group* -->
@@ -304,7 +304,7 @@
           <!-- Cancel_button -->
           <button
             class="button button-ghost button-sm"
-            id="close-task-modal"
+            id="close-task-dialog"
             type="button"
             value="cancel"
           >

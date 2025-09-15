@@ -1,8 +1,4 @@
-export const element = {
-  create: createElement,
-};
-
-function createElement({
+export function createElement({
   element,
   classes,
   id,

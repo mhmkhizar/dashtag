@@ -1,5 +1,5 @@
-import * as Helper from "./utils/helper";
-import * as ProjectServie from "../services/project-service";
+import * as Helper from "./helper";
+import * as ProjectServie from "../logic/project-service";
 
 const projectSection = document.querySelector(`#project-section`);
 
@@ -23,7 +23,7 @@ function render(projectid) {
 }
 
 function generateTitle(title) {
-  const h2 = Helper.element.create({
+  const h2 = Helper.createElement({
     element: `h2`,
     classes: `truncate mb-2 text-lg`,
     textContent: `${title}`,
@@ -32,18 +32,18 @@ function generateTitle(title) {
 }
 
 function generateAddTaskBtn() {
-  const button = Helper.element.create({
+  const button = Helper.createElement({
     element: `button`,
     classes: `button button-outline button-sm w-full justify-center`,
     attributes: { type: `button` },
     id: `addTaskBtn`,
   });
-  const iconSpan = Helper.element.create({
+  const iconSpan = Helper.createElement({
     element: `span`,
     classes: `material-symbols-rounded icon-wght-300`,
     textContent: `add_task`,
   });
-  const textSpan = Helper.element.create({
+  const textSpan = Helper.createElement({
     element: `span`,
     textContent: `Add a task`,
   });

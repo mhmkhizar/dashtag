@@ -1,4 +1,4 @@
-import * as Project from "../models/project";
+import * as Project from "./project";
 
 export function save(projectsArray) {
   if (!projectsArray) return;

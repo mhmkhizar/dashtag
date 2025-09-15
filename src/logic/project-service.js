@@ -1,5 +1,5 @@
-import * as Project from "../models/project";
-import * as Storage from "../utils/storage";
+import * as Project from "./project";
+import * as Storage from "./storage";
 
 const _projects = [];
 let _defaultProject;

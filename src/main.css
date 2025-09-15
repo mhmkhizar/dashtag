@@ -39,7 +39,7 @@
 
 /* *MODAL* */
 
-.modal {
+.dialog {
   @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[var(--radius)] bg-[var(--card)] p-6 text-base text-[var(--card-foreground)];
 }
 

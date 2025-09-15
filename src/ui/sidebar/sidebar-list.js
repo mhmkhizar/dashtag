@@ -1,7 +1,7 @@
-import * as Helper from "../utils/helper";
-import * as ProjectService from "../../services/project-service";
-import * as ProjectView from "../project-view";
-import * as ProjectListItem from "./projects-list-item";
+import * as Helper from "../helper";
+import * as ProjectService from "../../logic/project-service";
+import * as ProjectSection from "../project-section";
+import * as SidebarListItem from "./sidebar-list-item";
 
 export const list = document.querySelector(`#sidebar-project-list`);
 export let defaultItem;
@@ -11,7 +11,7 @@ export function init() {
   defaultItem = ProjectService.getDefault();
   render();
   setActiveItem();
-  ProjectListItem.init();
+  SidebarListItem.init();
 }
 
 function render() {
@@ -24,14 +24,14 @@ function setActiveItem() {
   const item = list.querySelector(`[data-projectid="${defaultItem.id}"]`);
   if (item) item.classList.add(`active-item`);
   activeItem = item;
-  ProjectView.init(activeItem.dataset.projectid);
+  ProjectSection.init(activeItem.dataset.projectid);
 }
 
 export function switchActiveItem(nextItem) {
   activeItem.classList.remove(`active-item`);
   activeItem = nextItem;
   activeItem.classList.add(`active-item`);
-  ProjectView.init(activeItem.dataset.projectid);
+  ProjectSection.init(activeItem.dataset.projectid);
 }
 
 export function removeItem(id) {
@@ -45,22 +45,22 @@ export function addItem(project) {
 }
 
 function generateListItem(item) {
-  const li = Helper.element.create({
+  const li = Helper.createElement({
     element: `li`,
     classes: `project-list-item flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 h-8 hover:bg-current/10`,
     attributes: { "data-projectid": `${item.id}` },
   });
-  const hashIconSpan = Helper.element.create({
+  const hashIconSpan = Helper.createElement({
     element: `span`,
     classes: `icon project-item-icon material-symbols-rounded icon-wght-300`,
     textContent: `tag`,
   });
-  const textSpan = Helper.element.create({
+  const textSpan = Helper.createElement({
     element: `span`,
     classes: `project-item-text truncate`,
     textContent: item.title,
   });
-  const closeIconSpan = Helper.element.create({
+  const closeIconSpan = Helper.createElement({
     element: `span`,
     classes: `icon project-item-icon delete-project-button material-symbols-rounded ml-auto !text-xl custom-hidden`,
     attributes: { inert: `` },
