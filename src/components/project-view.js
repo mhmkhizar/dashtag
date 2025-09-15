@@ -3,7 +3,17 @@ import * as ProjectServie from "../services/project-service";
 
 const projectSection = document.querySelector(`#project-section`);
 
-export function render(projectid) {
+const taskModal = document.querySelector(`#task-modal`);
+
+export function init(projectid) {
+  render(projectid);
+  const addTaskBtn = document.querySelector(`#addTaskBtn`);
+  addTaskBtn.addEventListener(`click`, (e) => {
+    taskModal.showModal();
+  });
+}
+
+function render(projectid) {
   projectSection.innerHTML = ``;
   const project = ProjectServie.get(projectid);
 
@@ -26,6 +36,7 @@ function generateAddTaskBtn() {
     element: `button`,
     classes: `button button-outline button-sm w-full justify-center`,
     attributes: { type: `button` },
+    id: `addTaskBtn`,
   });
   const iconSpan = Helper.element.create({
     element: `span`,

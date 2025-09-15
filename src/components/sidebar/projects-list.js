@@ -24,14 +24,14 @@ function setActiveItem() {
   const item = list.querySelector(`[data-projectid="${defaultItem.id}"]`);
   if (item) item.classList.add(`active-item`);
   activeItem = item;
-  ProjectView.render(activeItem.dataset.projectid);
+  ProjectView.init(activeItem.dataset.projectid);
 }
 
 export function switchActiveItem(nextItem) {
   activeItem.classList.remove(`active-item`);
   activeItem = nextItem;
   activeItem.classList.add(`active-item`);
-  ProjectView.render(activeItem.dataset.projectid);
+  ProjectView.init(activeItem.dataset.projectid);
 }
 
 export function removeItem(id) {
