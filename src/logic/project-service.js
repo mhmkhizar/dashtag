@@ -30,6 +30,11 @@ export function getDefault() {
 
 export function get(id) {
   const project = _projects.find((p) => p.id === id);
+  return project;
+}
+
+export function getCopy(id) {
+  const project = _projects.find((p) => p.id === id);
   return { ...project };
 }
 

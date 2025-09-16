@@ -37,7 +37,7 @@ function handleDialogClose() {
 }
 
 function submitForm() {
-  const name = titleInput.value.trim();
-  const project = ProjectService.add(name);
+  const title = titleInput.value.trim();
+  const project = ProjectService.add(title);
   ProjectList.addItem(project);
 }

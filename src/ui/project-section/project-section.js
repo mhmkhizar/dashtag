@@ -14,7 +14,7 @@ export function init(projectid) {
 
 function render(projectid) {
   projectSection.innerHTML = ``;
-  const project = ProjectServie.get(projectid);
+  const project = ProjectServie.getCopy(projectid);
 
   const title = generateTitle(project.title);
   const addTaskBtn = generateAddTaskBtn();

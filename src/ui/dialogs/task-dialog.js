@@ -1,23 +1,26 @@
+import { format } from "date-fns";
+import * as Task from "../../logic/task";
+import * as TaskList from "../task-section/task-list";
+
 const dialog = document.querySelector(`#task-dialog`);
 const form = dialog.querySelector(`#task-form`);
 const titleInput = document.querySelector(`#task-title-input`);
+const starInput = document.querySelector(`#task-star-input`);
 const descInput = document.querySelector(`#task-desc-input`);
-const todayInput = document.querySelector(`#task-today-input`);
-const todayLabel = document.querySelector(`#task-today-label`);
-const tomorrowInput = document.querySelector(`#task-tomorrow-input`);
-const tomorrowLabel = document.querySelector(`#task-tomorrow-label`);
 const dateInput = document.querySelector(`#task-date-input`);
 const dateLabel = document.querySelector(`#task-date-label`);
 const closeBtn = form.querySelector(`#close-task-dialog`);
 const submitBtn = form.querySelector(`#submit-task-form`);
 
 export function init() {
-  closeBtn.addEventListener(`click`, closeDialog);
   titleInput.addEventListener(`input`, toggleSubmitBtn);
+  dateInput.addEventListener(`input`, updateDateLabel);
+  closeBtn.addEventListener(`click`, closeDialog);
   dialog.addEventListener(`close`, handleDialogClose);
 }
 
 export function openDialog() {
+  updateDateLabel();
   submitBtn.setAttribute(`inert`, ``);
   dialog.showModal();
 }
@@ -35,20 +38,36 @@ function toggleSubmitBtn() {
 }
 
 function handleDialogClose() {
+  if (dialog.returnValue === `save`) submitForm();
   form.reset();
   dialog.returnValue = ``;
 }
 
-todayInput.addEventListener(`input`, (e) => dateLabelsToggle(e));
-tomorrowInput.addEventListener(`input`, (e) => dateLabelsToggle(e));
-dateInput.addEventListener(`input`, (e) => dateLabelsToggle(e));
+function submitForm() {
+  const title = titleInput.value.trim();
+  const starred = starInput.checked;
+  const description = descInput.value.trim();
+  let dueDate = dateInput.value;
+  dueDate ? (dueDate = new Date(dateInput.value)) : (dueDate = null);
 
-function handleDateInput(e) {}
-
-function dateLabelsToggle(e) {
-  const dateLabels = [todayLabel, tomorrowLabel, dateLabel];
-  dateLabels.forEach((label) => {
-    if (label.getAttribute(`for`) === e.target.id) return;
-    label.classList.toggle(`hidden`);
+  const task = Task.create({
+    title: title,
+    starred: starred,
+    description: description,
+    dueDate: dueDate,
   });
+
+  TaskList.addItem(task);
+}
+
+function updateDateLabel() {
+  if (!dateInput.value) return renderDateLabel(`—— / ———— / ————`, true);
+  const formattedDate = format(new Date(dateInput.value), `dd/MMMM/yyyy`);
+  renderDateLabel(formattedDate, false);
+}
+
+function renderDateLabel(text, muted) {
+  dateLabel.textContent = text;
+  if (muted) dateLabel.classList.add(`text-[var(--muted-foreground)]`);
+  else dateLabel.classList.remove(`text-[var(--muted-foreground)]`);
 }

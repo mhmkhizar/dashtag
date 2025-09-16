@@ -244,51 +244,26 @@
         </div>
         <!-- *Input_Group* -->
         <div
-          class="flex items-center border-b border-[var(--border)] pb-6"
-          id="date-input-group"
+          class="-my-1.5 flex items-center gap-2 border-b border-[var(--border)] pb-6"
         >
-          <!-- Today_Date -->
-          <div>
-            <input type="checkbox" id="task-today-input" class="peer hidden" />
-            <label
-              for="task-today-input"
-              id="task-today-label"
-              class="mr-2 cursor-pointer rounded-[var(--radius)] bg-[var(--input)] px-4 py-2 leading-0 text-[var(--muted-foreground)] peer-checked:border-[var(--ring)] peer-checked:font-medium peer-checked:text-blue-400 peer-checked:ring-[3px] peer-checked:ring-[var(--ring)]/50"
-              >Today</label
-            >
-          </div>
-          <!-- Tomorrow_Date -->
-          <div>
-            <input
-              type="checkbox"
-              id="task-tomorrow-input"
-              class="peer hidden"
-            />
-            <label
-              for="task-tomorrow-input"
-              id="task-tomorrow-label"
-              class="mr-2 cursor-pointer rounded-[var(--radius)] bg-[var(--input)] px-4 py-2 text-[var(--muted-foreground)] peer-checked:border-[var(--ring)] peer-checked:font-medium peer-checked:text-blue-400 peer-checked:ring-[3px] peer-checked:ring-[var(--ring)]/50"
-              >Tomorrow</label
-            >
-          </div>
           <!-- Date_Input -->
-          <div class="relative">
+          <div class="relative hover:cursor-pointer">
             <input
               type="date"
               id="task-date-input"
-              class="peer custom-hidden absolute inset-0 right-2 cursor-pointer text-4xl"
+              class="peer custom-hidden absolute inset-0 right-2 cursor-pointer text-4xl hover:cursor-pointer"
             />
             <label
               for="task-date-input"
-              id="task-date-label"
-              class="peer-valid:text-var(--muted-foreground) -my-1.5 mr-2 flex h-[2.2rem] items-center justify-center rounded-[var(--radius)] bg-[var(--input)] px-4 text-[var(--muted-foreground)] peer-user-valid:border-[var(--ring)] peer-user-valid:text-blue-400 peer-user-valid:ring-[3px] peer-user-valid:ring-[var(--ring)]/50"
-              ><span class="icon material-symbols-rounded icon-wght-300"
+              class="flex h-[2.2rem] items-center justify-center rounded-[var(--radius)] bg-[var(--input)] px-4 text-[var(--muted-foreground)] peer-hover:cursor-pointer peer-hover:text-[var(--primary)] hover:cursor-pointer"
+              ><span
+                class="icon material-symbols-rounded icon-wght-300 hover:cursor-pointer"
                 >edit_calendar</span
               ></label
             >
           </div>
-          <!-- Formatted_Date_Para -->
-          <p id="formatted-date-para"></p>
+          <!-- Date_Label -->
+          <p id="task-date-label"></p>
         </div>
         <!-- *Actions_Group* -->
         <div class="flex items-center justify-end gap-2 pt-6">
@@ -306,7 +281,7 @@
             class="button button-primary button-sm"
             id="submit-task-form"
             type="submit"
-            value="confirm"
+            value="save"
           >
             Save
           </button>
