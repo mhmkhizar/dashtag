@@ -1,6 +1,5 @@
-import * as Helper from "../helper";
 import * as ProjectService from "../../logic/project-service";
-import * as ProjectSection from "../project-section";
+import * as ProjectSection from "../project-section/project-section";
 import * as ProjectListItem from "./project-list-item";
 
 export const list = document.querySelector(`#sidebar-project-list`);
@@ -40,32 +39,6 @@ export function removeItem(id) {
 }
 
 export function addItem(project) {
-  const listItem = generateListItem(project);
+  const listItem = ProjectListItem.generate(project);
   list.appendChild(listItem);
-}
-
-function generateListItem(item) {
-  const li = Helper.createElement({
-    element: `li`,
-    classes: `project-list-item flex cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 h-8 hover:bg-current/10`,
-    attributes: { "data-projectid": `${item.id}` },
-  });
-  const hashIconSpan = Helper.createElement({
-    element: `span`,
-    classes: `icon project-item-icon material-symbols-rounded icon-wght-300`,
-    textContent: `tag`,
-  });
-  const textSpan = Helper.createElement({
-    element: `span`,
-    classes: `project-item-text truncate`,
-    textContent: item.title,
-  });
-  const closeIconSpan = Helper.createElement({
-    element: `span`,
-    classes: `icon project-item-icon delete-project-button material-symbols-rounded ml-auto !text-xl custom-hidden`,
-    attributes: { inert: `` },
-    textContent: `close`,
-  });
-  li.append(hashIconSpan, textSpan, closeIconSpan);
-  return li;
 }

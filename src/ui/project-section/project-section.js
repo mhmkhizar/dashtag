@@ -1,16 +1,15 @@
-import * as Helper from "./helper";
-import * as ProjectServie from "../logic/project-service";
+import * as Helper from "../helper";
+import * as ProjectServie from "../../logic/project-service";
+import * as TaskDialog from "../dialogs/task-dialog";
 
 const projectSection = document.querySelector(`#project-section`);
 
-const taskModal = document.querySelector(`#task-modal`);
-
 export function init(projectid) {
   render(projectid);
-  const addTaskBtn = document.querySelector(`#addTaskBtn`);
-  addTaskBtn.addEventListener(`click`, (e) => {
-    taskModal.showModal();
-  });
+
+  const openTaskDialog = document.querySelector(`#open-task-dialog`);
+  openTaskDialog.addEventListener(`click`, TaskDialog.openDialog);
+  TaskDialog.init();
 }
 
 function render(projectid) {
@@ -36,7 +35,7 @@ function generateAddTaskBtn() {
     element: `button`,
     classes: `button button-outline button-sm w-full justify-center`,
     attributes: { type: `button` },
-    id: `addTaskBtn`,
+    id: `open-task-dialog`,
   });
   const iconSpan = Helper.createElement({
     element: `span`,
