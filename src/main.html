@@ -73,22 +73,7 @@
             <ul
               class="flex flex-col gap-0.5 overflow-y-auto"
               id="sidebar-project-list"
-            >
-              <!-- <li
-                class="sidebar-list-item flex h-8 cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 hover:bg-current/10"
-              >
-                <span class="icon material-symbols-rounded icon-wght-300"
-                  >tag</span
-                >
-                <span class="sidebar-list-item-text truncate">My Tasks</span>
-                <span
-                  class="icon material-symbols-rounded invisible ml-auto !text-xl"
-                  id="delete-project-button"
-                >
-                  close
-                </span>
-              </li> -->
-            </ul>
+            ></ul>
           </section>
 
           <!-- *Sidebar_Secondary_Actions -->
@@ -144,15 +129,14 @@
         <!-- *Tasks_List* -->
         <ul
           class="mx-auto max-w-[96ch] rounded-lg bg-[var(--card)] py-6 text-[var(--card-foreground)]"
+          id="project-section-task-list"
         >
           <!-- List_Item -->
           <li
             class="flex w-full items-start gap-2 px-6 pt-2 pb-3 hover:bg-current/10"
           >
-            <!-- Check_Icon -->
-            <span class="icon material-symbols-rounded icon-wght-200 leading-0"
-              >check_box_outline_blank</span
-            >
+            <!-- Check_Input -->
+            <input class="mt-1.5" type="checkbox" />
 
             <!-- Title_&_DueDate -->
             <div class="flex w-[calc(100%-4rem)] flex-col items-start gap-1">
@@ -165,18 +149,23 @@
               >
             </div>
 
-            <!-- Star_Icon -->
+            <!-- Delete_Icon -->
             <span
               class="icon material-symbols-rounded icon-wght-200 custom-hidden leading-0"
-              >kid_star</span
+              >delete</span
+            >
+            <!-- Star_Icon -->
+            <span
+              class="icon material-symbols-rounded icon-fill custom-hidden ml-1 leading-0 text-[var(--primary)]"
+              >star</span
             >
           </li>
         </ul>
       </main>
     </div>
 
-    <!-- *dialogs* -->
-    <!-- *Project_dialog* -->
+    <!-- *Dialogs* -->
+    <!-- *Project_Dialog* -->
     <dialog class="dialog" id="project-dialog">
       <!-- Form -->
       <form method="dialog" class="flex flex-col" id="project-form">
@@ -189,8 +178,7 @@
           <input
             class="input"
             type="text"
-            name="projec-name"
-            id="project-form-name-input"
+            id="project-title-input"
             placeholder="Enter name"
             autocomplete="off"
             required
@@ -221,25 +209,24 @@
       </form>
     </dialog>
 
-    <!-- *Task_dialog* -->
+    <!-- *Task_Dialog* -->
     <dialog class="dialog w-[clamp(45ch,50%,75ch)]" id="task-dialog">
       <!-- Form -->
-      <form method="dialog " class="space-y-2">
+      <form method="dialog" class="space-y-2" id="task-form">
         <!-- *Input_Group* -->
         <div class="flex items-center gap-4">
           <!-- Title_Input -->
           <input
             class="input"
             type="text"
-            name="task-title"
-            id="task-title"
+            id="task-title-input"
             placeholder="Title"
           />
           <!-- Star_Input -->
           <div>
-            <input type="checkbox" id="star" class="peer hidden" />
+            <input type="checkbox" id="task-star-input" class="peer hidden" />
             <label
-              for="star"
+              for="task-star-input"
               class="cursor-pointer text-3xl text-[var(--muted-foreground)] peer-checked:text-blue-400"
               >★</label
             >
@@ -250,36 +237,37 @@
           <!-- Textarea -->
           <textarea
             class="textarea"
-            name="task-desc"
-            id="task-desc"
+            id="task-desc-input"
             rows="2"
             placeholder="Description"
           ></textarea>
         </div>
         <!-- *Input_Group* -->
         <div
-          class="my-[-6px] flex items-center gap-2 border-b border-[var(--border)] pb-6"
+          class="flex items-center border-b border-[var(--border)] pb-6"
+          id="date-input-group"
         >
           <!-- Today_Date -->
           <div>
-            <input
-              type="checkbox"
-              name="date-"
-              id="today"
-              class="peer hidden"
-            />
+            <input type="checkbox" id="task-today-input" class="peer hidden" />
             <label
-              for="today"
-              class="cursor-pointer rounded-[var(--radius)] bg-[var(--input)] px-4 py-2 leading-0 text-[var(--muted-foreground)] peer-checked:border-[var(--ring)] peer-checked:font-medium peer-checked:text-blue-400 peer-checked:ring-[3px] peer-checked:ring-[var(--ring)]/50"
+              for="task-today-input"
+              id="task-today-label"
+              class="mr-2 cursor-pointer rounded-[var(--radius)] bg-[var(--input)] px-4 py-2 leading-0 text-[var(--muted-foreground)] peer-checked:border-[var(--ring)] peer-checked:font-medium peer-checked:text-blue-400 peer-checked:ring-[3px] peer-checked:ring-[var(--ring)]/50"
               >Today</label
             >
           </div>
           <!-- Tomorrow_Date -->
           <div>
-            <input type="checkbox" id="tomorrow" class="peer hidden" />
+            <input
+              type="checkbox"
+              id="task-tomorrow-input"
+              class="peer hidden"
+            />
             <label
-              for="tomorrow"
-              class="cursor-pointer rounded-[var(--radius)] bg-[var(--input)] px-4 py-2 text-[var(--muted-foreground)] peer-checked:border-[var(--ring)] peer-checked:font-medium peer-checked:text-blue-400 peer-checked:ring-[3px] peer-checked:ring-[var(--ring)]/50"
+              for="task-tomorrow-input"
+              id="task-tomorrow-label"
+              class="mr-2 cursor-pointer rounded-[var(--radius)] bg-[var(--input)] px-4 py-2 text-[var(--muted-foreground)] peer-checked:border-[var(--ring)] peer-checked:font-medium peer-checked:text-blue-400 peer-checked:ring-[3px] peer-checked:ring-[var(--ring)]/50"
               >Tomorrow</label
             >
           </div>
@@ -287,17 +275,20 @@
           <div class="relative">
             <input
               type="date"
-              id="date"
-              class="peer absolute inset-0 right-2 cursor-pointer text-4xl opacity-0"
+              id="task-date-input"
+              class="peer custom-hidden absolute inset-0 right-2 cursor-pointer text-4xl"
             />
             <label
-              for="date"
-              class="peer-valid:text-var(--muted-foreground) flex h-[2.2rem] items-center justify-center rounded-[var(--radius)] bg-[var(--input)] px-4 text-[var(--muted-foreground)] peer-user-valid:border-[var(--ring)] peer-user-valid:text-blue-400 peer-user-valid:ring-[3px] peer-user-valid:ring-[var(--ring)]/50"
+              for="task-date-input"
+              id="task-date-label"
+              class="peer-valid:text-var(--muted-foreground) -my-1.5 mr-2 flex h-[2.2rem] items-center justify-center rounded-[var(--radius)] bg-[var(--input)] px-4 text-[var(--muted-foreground)] peer-user-valid:border-[var(--ring)] peer-user-valid:text-blue-400 peer-user-valid:ring-[3px] peer-user-valid:ring-[var(--ring)]/50"
               ><span class="icon material-symbols-rounded icon-wght-300"
                 >edit_calendar</span
               ></label
             >
           </div>
+          <!-- Formatted_Date_Para -->
+          <p id="formatted-date-para"></p>
         </div>
         <!-- *Actions_Group* -->
         <div class="flex items-center justify-end gap-2 pt-6">
