@@ -7,14 +7,15 @@ const titleInput = form.querySelector(`#project-title-input`);
 const closeBtn = form.querySelector(`#close-project-dialog`);
 const submitBtn = form.querySelector(`#submit-project-form`);
 
-export function init() {
+function init() {
+  submitBtn.setAttribute(`inert`, ``);
   closeBtn.addEventListener(`click`, closeDialog);
   titleInput.addEventListener(`input`, toggleSubmitBtn);
   dialog.addEventListener(`close`, handleDialogClose);
 }
 
 export function openDialog() {
-  submitBtn.setAttribute(`inert`, ``);
+  init();
   dialog.showModal();
 }
 

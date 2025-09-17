@@ -36,7 +36,7 @@ function handleHover(e, isVisible) {
 }
 
 function handleCloseIconClick(e) {
-  if (!e.target.classList.contains(`delete-project-button`)) return;
+  if (e.target.id !== `delete-project-btn`) return;
   const closeIcon = e.target;
   const item = closeIcon.closest(`li`);
   const itemProjectID = item.dataset.projectid;
@@ -58,7 +58,7 @@ function hadleClick(e) {
     `project-item-icon`,
     `project-item-text`,
   ].some((cls) => e.target.classList.contains(cls));
-  const isDeleteBtn = e.target.classList.contains(`delete-project-button`);
+  const isDeleteBtn = e.target.id === `delete-project-btn`;
   const isActiveItem = e.target.closest(`li`).classList.contains(`active`);
   if (!hasAnyItemClass || isDeleteBtn || isActiveItem) return;
   const item = e.target.closest(`li`);
@@ -83,9 +83,10 @@ export function generate(item) {
   });
   const closeIconSpan = Helper.createElement({
     element: `span`,
-    classes: `icon project-item-icon delete-project-button material-symbols-rounded ml-auto !text-xl custom-hidden`,
+    classes: `icon project-item-icon material-symbols-rounded ml-auto !text-xl custom-hidden`,
     attributes: { inert: `` },
     textContent: `close`,
+    id: `delete-project-btn`,
   });
 
   itemLi.append(hashIconSpan, textSpan, closeIconSpan);

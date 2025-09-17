@@ -6,5 +6,4 @@ const openProjectDialog = document.querySelector(`#open-project-dialog`);
 export function init() {
   ProjectList.init();
   openProjectDialog.addEventListener(`click`, ProjectDialog.openDialog);
-  ProjectDialog.init();
 }

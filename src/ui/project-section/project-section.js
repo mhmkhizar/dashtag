@@ -1,24 +1,35 @@
 import * as Helper from "../helper";
 import * as ProjectServie from "../../logic/project-service";
 import * as TaskDialog from "../dialogs/task-dialog";
+import * as TaskList from "./task-list";
 
-const projectSection = document.querySelector(`#project-section`);
+const section = document.querySelector(`#project-section`);
 
 export function init(projectid) {
   render(projectid);
-
   const openTaskDialog = document.querySelector(`#open-task-dialog`);
   openTaskDialog.addEventListener(`click`, TaskDialog.openDialog);
-  TaskDialog.init();
 }
 
 function render(projectid) {
-  projectSection.innerHTML = ``;
+  section.innerHTML = ``;
   const project = ProjectServie.getCopy(projectid);
 
+  const container = generateContainer({ classes: `px-6 mb-6` });
   const title = generateTitle(project.title);
   const addTaskBtn = generateAddTaskBtn();
-  projectSection.append(title, addTaskBtn);
+  const taskList = TaskList.generate();
+
+  container.append(title, addTaskBtn);
+  section.append(container, taskList);
+}
+
+function generateContainer({ classes }) {
+  const div = Helper.createElement({
+    element: `div`,
+    classes: classes,
+  });
+  return div;
 }
 
 function generateTitle(title) {

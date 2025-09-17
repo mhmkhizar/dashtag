@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import * as Task from "../../logic/task";
-import * as TaskList from "../task-section/task-list";
+import * as TaskList from "../project-section/task-list";
 
 const dialog = document.querySelector(`#task-dialog`);
 const form = dialog.querySelector(`#task-form`);
@@ -12,7 +12,9 @@ const dateLabel = document.querySelector(`#task-date-label`);
 const closeBtn = form.querySelector(`#close-task-dialog`);
 const submitBtn = form.querySelector(`#submit-task-form`);
 
-export function init() {
+function init() {
+  updateDateLabel();
+  submitBtn.setAttribute(`inert`, ``);
   titleInput.addEventListener(`input`, toggleSubmitBtn);
   dateInput.addEventListener(`input`, updateDateLabel);
   closeBtn.addEventListener(`click`, closeDialog);
@@ -20,8 +22,7 @@ export function init() {
 }
 
 export function openDialog() {
-  updateDateLabel();
-  submitBtn.setAttribute(`inert`, ``);
+  init();
   dialog.showModal();
 }
 
