@@ -20,12 +20,11 @@ function loadFromStorage() {
 
 function setDefault() {
   const project = add("My Tasks");
-  Storage.save(_projects);
   return project;
 }
 
 export function getDefault() {
-  return { ..._defaultProject };
+  return _defaultProject;
 }
 
 export function get(id) {
@@ -33,20 +32,15 @@ export function get(id) {
   return project;
 }
 
-export function getCopy(id) {
-  const project = _projects.find((p) => p.id === id);
-  return { ...project };
-}
-
 export function getAll() {
-  return _projects.map((p) => ({ ...p }));
+  return _projects;
 }
 
 export function add(name) {
   const project = Project.create({ title: name });
   _projects.push(project);
   Storage.save(_projects);
-  return { ...project };
+  return project;
 }
 
 export function remove(id) {

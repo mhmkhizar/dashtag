@@ -13,7 +13,7 @@ export function init(projectid) {
 
 function render(projectid) {
   section.innerHTML = ``;
-  const project = ProjectServie.getCopy(projectid);
+  const project = ProjectServie.get(projectid);
 
   const container = generateContainer({ classes: `px-6 mb-6` });
   const title = generateTitle(project.title);
