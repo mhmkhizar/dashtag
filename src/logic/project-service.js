@@ -3,8 +3,8 @@ import * as Storage from "./storage";
 
 const _projects = [];
 const _defaultProject = {};
-const _starredProject = {};
-const _completedProject = {};
+const _starredTasksProject = {};
+const _completedTasksProject = {};
 
 export function init() {
   loadFromStorage();
