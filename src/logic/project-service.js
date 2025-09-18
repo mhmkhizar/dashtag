@@ -3,6 +3,8 @@ import * as Storage from "./storage";
 
 const _projects = [];
 const _defaultProject = {};
+const _starredProject = {};
+const _completedProject = {};
 
 export function init() {
   loadFromStorage();
@@ -11,7 +13,11 @@ export function init() {
 function loadFromStorage() {
   const storedProjects = Storage.retrieve();
   _projects.splice(0, _projects.length, ...storedProjects);
-  if (storedProjects) Object.assign(_defaultProject, storedProjects[0]);
+  loadDefaultProject(storedProjects);
+}
+
+function loadDefaultProject(projects) {
+  if (projects) Object.assign(_defaultProject, projects[0]);
   else Object.assign(_defaultProject, setDefault());
 }
 
