@@ -13,28 +13,40 @@ export function generate(item) {
     classes: `flex w-full items-start gap-4 py-3 px-6 transition-colors hover:bg-current/10`,
     id: `task-item`,
   });
-  const starCheckInput = Helper.createElement({
-    element: `input`,
-    classes: `mt-[0.4rem]`,
-    attributes: { type: `checkbox` },
+  const checkIconSpan = Helper.createElement({
+    element: `span`,
+    classes: `icon material-symbols-rounded icon-wght-200 w-[1.5rem] h-[1.5rem] -scale-80`,
+    textContent: `check_box_outline_blank`,
   });
-  const titleAndDateDiv = Helper.createElement({
+  const containerDiv = Helper.createElement({
     element: `div`,
-    classes: `flex w-[calc(100%-2rem)] flex-col items-start gap-1`,
+    classes: `flex w-[calc(100%-7.5rem)] flex-col items-start`,
   });
   const titleSpan = Helper.createElement({
     element: `span`,
     classes: `w-full truncate`,
     textContent: `${item.title}`,
   });
-  const dateSpan = Helper.createElement({
-    element: `span`,
-    classes: `${generateDateSpanClasses(item)}`,
-    textContent: `${generateDateSpanText(item)}`,
-  });
+  containerDiv.appendChild(titleSpan);
+  if (item.description) {
+    const descSpan = Helper.createElement({
+      element: `span`,
+      classes: `text-sm text-[var(--muted-foreground)] mb-1 w-full truncate`,
+      textContent: `${item.description}`,
+    });
+    containerDiv.appendChild(descSpan);
+  }
+  if (item.dueDate !== null) {
+    const dateSpan = Helper.createElement({
+      element: `span`,
+      classes: `w-fit rounded-[var(--radius)] border border-current/35 px-2 py-0.5 text-sm text-current/85`,
+      textContent: `${format(item.dueDate, `dd-MMMM-yyy`)}`,
+    });
+    containerDiv.appendChild(dateSpan);
+  }
   const deleteIconSpan = Helper.createElement({
     element: `span`,
-    classes: `icon material-symbols-rounded icon-wght-200 custom-hidden`,
+    classes: `icon material-symbols-rounded icon-wght-200 custom-hidden w-[1.5rem] h-[1.5rem]`,
     textContent: `delete`,
     id: `delete-task-btn`,
   });
@@ -43,10 +55,10 @@ export function generate(item) {
     classes: `${generateStarIconClasses(item)}`,
     textContent: `star`,
     id: `task-star-icon`,
+    attributes: { "data-id": `${generateStarIconDataID(item)}` },
   });
 
-  titleAndDateDiv.append(titleSpan, dateSpan);
-  itemLi.append(starCheckInput, titleAndDateDiv, deleteIconSpan, starIconSpan);
+  itemLi.append(checkIconSpan, containerDiv, deleteIconSpan, starIconSpan);
   return itemLi;
 }
 
@@ -57,30 +69,16 @@ function handleHover(e, show) {
   const starIcon = item.querySelector(`#task-star-icon`);
   if (show) {
     deleteIcon.classList.remove(`custom-hidden`);
-    starIcon.classList.remove(`custom-hidden`);
+    if (starIcon.dataset.id === `off`)
+      starIcon.classList.remove(`custom-hidden`);
   } else {
     deleteIcon.classList.add(`custom-hidden`);
-    starIcon.classList.add(`custom-hidden`);
+    if (starIcon.dataset.id === `off`) starIcon.classList.add(`custom-hidden`);
   }
-}
-
-function generateDateSpanClasses(item) {
-  let classes = `w-fit rounded-[var(--radius)] border border-current/35 px-2 py-0.5 text-sm text-current/85`;
-  const arr = classes.split(` `);
-  if (item.dueDate === null) {
-    arr.push(`opacity-25`);
-    classes = arr.join(` `);
-  }
-  return classes;
-}
-
-function generateDateSpanText(item) {
-  if (item.dueDate === null) return `—— / ———— / ————`;
-  return format(item.dueDate, `dd-MMMM-yyy`);
 }
 
 function generateStarIconClasses(item) {
-  let classes = `icon material-symbols-rounded icon-wght-200 custom-hidden`;
+  let classes = `icon material-symbols-rounded icon-wght-200 custom-hidden w-[1.5rem] h-[1.5rem]`;
   let arr = classes.split(` `);
   if (item.starred) {
     arr = arr.filter(
@@ -90,4 +88,9 @@ function generateStarIconClasses(item) {
     classes = arr.join(` `);
   }
   return classes;
+}
+
+function generateStarIconDataID(item) {
+  if (item.starred) return `on`;
+  else return `off`;
 }
