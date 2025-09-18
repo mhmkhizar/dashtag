@@ -2,12 +2,12 @@ import * as Helper from "../helper";
 import * as ProjectServie from "../../logic/project-service";
 import * as TaskDialog from "../dialogs/task-dialog";
 import * as TaskList from "./task-list";
-import * as TaskListItem from "./task-list-item";
 
 const section = document.querySelector(`#project-section`);
 
 export function init(projectid) {
   render(projectid);
+  TaskList.init();
   const openTaskDialog = document.querySelector(`#open-task-dialog`);
   openTaskDialog.addEventListener(`click`, TaskDialog.openDialog);
 }
@@ -23,7 +23,6 @@ function render(projectid) {
 
   container.append(title, addTaskBtn);
   section.append(container, taskList);
-  TaskListItem.init();
 }
 
 function generateContainer({ classes }) {

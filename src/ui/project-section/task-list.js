@@ -1,29 +1,32 @@
 import * as Helper from "../helper";
 import * as ProjectService from "../../logic/project-service";
 import * as TaskListItem from "./task-list-item";
-import * as TaskService from "../../logic/task-service";
 import * as ProjectList from "../sidebar/project-list";
 
+let list;
+
 export function init() {
+  list = document.querySelector(`#task-list`);
   render();
+  TaskListItem.init();
 }
 
 function render() {
-  const activeListItem = ProjectList.getActiveItem();
-  const currentProject = ProjectService.get(activeListItem.dataset.projectid);
+  list.innerHTML = ``;
+  const currentProject = ProjectService.get(
+    ProjectList.getActiveItem().dataset.projectid,
+  );
   currentProject.tasks.forEach((task) => addItem(task));
 }
 
 export function addItem(task) {
-  const list = document.querySelector(`#task-list`);
   const listItem = TaskListItem.generate(task);
   list.appendChild(listItem);
 }
 
 export function removeItem(id) {
-  const activeListItem = ProjectList.getActiveItem();
-  const currentProject = ProjectService.get(activeListItem.dataset.projectid);
-  TaskService.remove(id, currentProject.id);
+  const item = list.querySelector(`[data-taskid="${id}"]`);
+  item.remove();
 }
 
 export function generate() {

@@ -10,4 +10,5 @@ export function remove({ taskID, projectID }) {
   const project = ProjectService.get(projectID);
   project.removeTask(taskID);
   ProjectService.updateLocalStorage();
+  return true;
 }

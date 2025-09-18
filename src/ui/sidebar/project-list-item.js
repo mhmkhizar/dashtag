@@ -46,7 +46,7 @@ function handleCloseIconClick(e) {
       ? ProjectList.switchActiveItem(afterItem)
       : ProjectList.switchActiveItem(beforeItem);
   }
-  ProjectList.removeItem(`${itemProjectID}`);
+  ProjectList.removeItem(itemProjectID);
 }
 
 function hadleClick(e) {

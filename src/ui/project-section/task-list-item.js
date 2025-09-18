@@ -1,10 +1,15 @@
 import { format } from "date-fns";
 import * as Helper from "../helper";
+import * as TaskService from "../../logic/task-service";
+import * as TaskList from "./task-list";
+import * as ProjectService from "../../logic/project-service";
+import * as ProjectList from "../sidebar/project-list";
 
 export function init() {
   const taskList = document.querySelector(`#task-list`);
   taskList.addEventListener(`mouseenter`, (e) => handleHover(e, true), true);
   taskList.addEventListener(`mouseleave`, (e) => handleHover(e, false), true);
+  taskList.addEventListener(`click`, (e) => handleDeleteIconClick(e));
 }
 
 export function generate(item) {
@@ -12,10 +17,11 @@ export function generate(item) {
     element: `li`,
     classes: `flex w-full items-start gap-4 py-3 px-6 transition-colors hover:bg-current/10`,
     id: `task-item`,
+    attributes: { "data-taskid": `${item.id}` },
   });
   const checkIconSpan = Helper.createElement({
     element: `span`,
-    classes: `icon material-symbols-rounded icon-wght-200 w-[1.5rem] h-[1.5rem] -scale-80`,
+    classes: `icon material-symbols-rounded icon-wght-200 w-[1.5rem] h-[1.5rem] -scale-80 cursor-pointer`,
     textContent: `check_box_outline_blank`,
   });
   const containerDiv = Helper.createElement({
@@ -46,7 +52,7 @@ export function generate(item) {
   }
   const deleteIconSpan = Helper.createElement({
     element: `span`,
-    classes: `icon material-symbols-rounded icon-wght-200 custom-hidden w-[1.5rem] h-[1.5rem]`,
+    classes: `icon material-symbols-rounded icon-wght-200 custom-hidden w-[1.5rem] h-[1.5rem] cursor-pointer`,
     textContent: `delete`,
     id: `delete-task-btn`,
   });
@@ -77,8 +83,22 @@ function handleHover(e, show) {
   }
 }
 
-function handleDeleteIconClick() {
-  console.log(`heelo`);
+function handleDeleteIconClick(e) {
+  if (e.target.id !== `delete-task-btn`) return;
+  if (e.cancelBubble) return;
+  e.cancelBubble = true;
+  const deleteIcon = e.target;
+  const item = deleteIcon.closest(`li`);
+  const itemTaskID = item.dataset.taskid;
+  const currentProject = ProjectService.get(
+    ProjectList.getActiveItem().dataset.projectid,
+  );
+  const isRemove = TaskService.remove({
+    taskID: itemTaskID,
+    projectID: currentProject.id,
+  });
+  if (!isRemove) return;
+  TaskList.removeItem(itemTaskID);
 }
 
 function generateStarIconClasses(item) {
