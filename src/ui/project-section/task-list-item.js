@@ -77,6 +77,10 @@ function handleHover(e, show) {
   }
 }
 
+function handleDeleteIconClick() {
+  console.log(`heelo`);
+}
+
 function generateStarIconClasses(item) {
   let classes = `icon material-symbols-rounded icon-wght-200 custom-hidden w-[1.5rem] h-[1.5rem]`;
   let arr = classes.split(` `);

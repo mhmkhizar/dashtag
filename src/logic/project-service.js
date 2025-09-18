@@ -36,10 +36,10 @@ export function getAll() {
   return _projects;
 }
 
-export function add(name) {
-  const project = Project.create({ title: name });
+export function add(title) {
+  const project = Project.create({ title: title });
   _projects.push(project);
-  Storage.save(_projects);
+  updateLocalStorage();
   return project;
 }
 
@@ -48,6 +48,10 @@ export function remove(id) {
   const index = _projects.findIndex((p) => p.id === id);
   if (index === -1) return;
   _projects.splice(index, 1);
-  Storage.save(_projects);
+  updateLocalStorage();
   return true;
+}
+
+export function updateLocalStorage() {
+  Storage.save(_projects);
 }

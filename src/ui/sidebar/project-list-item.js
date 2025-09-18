@@ -3,26 +3,23 @@ import * as ProjectService from "../../logic/project-service";
 import * as ProjectList from "./project-list";
 
 export function init() {
-  ProjectList.list.addEventListener(
-    `mouseenter`,
-    (e) => handleHover(e, true),
-    true,
-  );
-  ProjectList.list.addEventListener(
+  const projectList = ProjectList.get();
+  projectList.addEventListener(`mouseenter`, (e) => handleHover(e, true), true);
+  projectList.addEventListener(
     `mouseleave`,
     (e) => handleHover(e, false),
     true,
   );
-  ProjectList.list.addEventListener(`click`, (e) => handleCloseIconClick(e));
-  ProjectList.list.addEventListener(`click`, (e) => hadleClick(e));
+  projectList.addEventListener(`click`, (e) => handleCloseIconClick(e));
+  projectList.addEventListener(`click`, (e) => hadleClick(e));
 }
 
 function handleHover(e, isVisible) {
   if (!e.target.classList.contains(`project-list-item`)) return;
   const item = e.target;
   if (
-    !ProjectList.defaultItem ||
-    item.dataset.projectid === ProjectList.defaultItem.id
+    !ProjectList.getDefaultItem() ||
+    item.dataset.projectid === ProjectList.getDefaultItem().id
   )
     return;
   const closeIcon = item.querySelector(`span:last-of-type`);
@@ -42,7 +39,7 @@ function handleCloseIconClick(e) {
   const itemProjectID = item.dataset.projectid;
   const isRemove = ProjectService.remove(itemProjectID);
   if (!isRemove) return;
-  if (item === ProjectList.activeItem) {
+  if (item === ProjectList.getActiveItem()) {
     const beforeItem = item.previousElementSibling;
     const afterItem = item.nextElementSibling;
     afterItem
@@ -59,7 +56,7 @@ function hadleClick(e) {
     `project-item-text`,
   ].some((cls) => e.target.classList.contains(cls));
   const isDeleteBtn = e.target.id === `delete-project-btn`;
-  const isActiveItem = e.target.closest(`li`).classList.contains(`active`);
+  const isActiveItem = e.target.closest(`li`).classList.contains(`active-item`);
   if (!hasAnyItemClass || isDeleteBtn || isActiveItem) return;
   const item = e.target.closest(`li`);
   ProjectList.switchActiveItem(item);

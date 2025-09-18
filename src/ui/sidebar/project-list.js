@@ -1,10 +1,23 @@
 import * as ProjectService from "../../logic/project-service";
 import * as ProjectSection from "../project-section/project-section";
 import * as ProjectListItem from "./project-list-item";
+import * as TaskList from "../project-section/task-list";
 
-export const list = document.querySelector(`#sidebar-project-list`);
-export let defaultItem;
-export let activeItem;
+const list = document.querySelector(`#sidebar-project-list`);
+let defaultItem;
+let activeItem;
+
+export function get() {
+  return list;
+}
+
+export function getDefaultItem() {
+  return defaultItem;
+}
+
+export function getActiveItem() {
+  return activeItem;
+}
 
 export function init() {
   defaultItem = ProjectService.getDefault();
@@ -24,6 +37,7 @@ function setActiveItem() {
   if (item) item.classList.add(`active-item`);
   activeItem = item;
   ProjectSection.init(activeItem.dataset.projectid);
+  TaskList.init();
 }
 
 export function switchActiveItem(nextItem) {
@@ -31,6 +45,7 @@ export function switchActiveItem(nextItem) {
   activeItem = nextItem;
   activeItem.classList.add(`active-item`);
   ProjectSection.init(activeItem.dataset.projectid);
+  TaskList.init();
 }
 
 export function removeItem(id) {

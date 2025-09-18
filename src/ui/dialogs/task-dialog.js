@@ -1,6 +1,9 @@
 import { format } from "date-fns";
 import * as Task from "../../logic/task";
 import * as TaskList from "../project-section/task-list";
+import * as ProjectList from "../sidebar/project-list";
+import * as TaskService from "../../logic/task-service";
+import * as ProjectService from "../../logic/project-service";
 
 const dialog = document.querySelector(`#task-dialog`);
 const form = dialog.querySelector(`#task-form`);
@@ -58,6 +61,9 @@ function submitForm() {
     dueDate: dueDate,
   });
 
+  const currentProjectID = ProjectList.getActiveItem().dataset.id;
+  const currentProject = ProjectService.get(currentProjectID);
+  TaskService.add({ task: task, projectID: currentProject.id });
   TaskList.addItem(task);
 }
 
