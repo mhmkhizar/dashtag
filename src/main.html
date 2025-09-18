@@ -41,23 +41,28 @@
           <!-- *Sidebar_Filters_Section* -->
           <section class="mb-2 p-2">
             <!-- Filters_List -->
-            <ul class="flex flex-col gap-0.5">
+            <ul class="flex flex-col gap-0.5" id="filter-btns">
               <li
                 class="flex h-8 cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 hover:bg-current/10"
+                id="starred-filter-btn"
               >
-                <span class="icon material-symbols-rounded icon-wght-300"
+                <span
+                  class="icon material-symbols-rounded icon-wght-300"
+                  id="starred-filter-icon"
                   >star</span
                 >
-                <span>Starred</span>
+                <span id="starred-filter-text">Starred</span>
               </li>
               <li
                 class="flex h-8 cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 hover:bg-current/10"
+                id="completed-filter-btn"
               >
                 <span
                   class="icon material-symbols-rounded icon-wght-300 !text-2xl"
+                  id="completed-filter-icon"
                   >check</span
                 >
-                <span>Completed</span>
+                <span id="completed-filter-text">Completed</span>
               </li>
             </ul>
           </section>
