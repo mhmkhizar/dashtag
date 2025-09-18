@@ -61,8 +61,8 @@ function submitForm() {
     dueDate: dueDate,
   });
 
-  const currentProjectID = ProjectList.getActiveItem().dataset.id;
-  const currentProject = ProjectService.get(currentProjectID);
+  const activeListItem = ProjectList.getActiveItem();
+  const currentProject = ProjectService.get(activeListItem.dataset.projectid);
   TaskService.add({ task: task, projectID: currentProject.id });
   TaskList.addItem(task);
 }
