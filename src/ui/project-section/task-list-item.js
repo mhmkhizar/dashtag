@@ -1,9 +1,6 @@
 import { format } from "date-fns";
 import * as Helper from "../helper";
 import * as TaskService from "../../logic/task-service";
-import * as TaskList from "./task-list";
-import * as ProjectService from "../../logic/project-service";
-import * as Sidebar from "../sidebar/sidebar";
 
 export function init() {
   const taskList = document.querySelector(`#task-list`);
@@ -54,15 +51,8 @@ function handleDeleteIconClick(e) {
   const deleteIcon = e.target;
   const item = deleteIcon.closest(`li`);
   const itemTaskID = item.dataset.taskid;
-  const currentProject = ProjectService.get(
-    Sidebar.getActiveItem().dataset.projectid,
-  );
-  const isRemove = TaskService.remove({
-    taskID: itemTaskID,
-    projectID: currentProject.id,
-  });
+  const isRemove = TaskService.remove(itemTaskID);
   if (!isRemove) return;
-  TaskList.removeItem(itemTaskID);
 }
 
 function generateItemLi(item) {

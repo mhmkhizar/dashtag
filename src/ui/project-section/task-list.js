@@ -1,4 +1,3 @@
-import * as Helper from "../helper";
 import * as ProjectService from "../../logic/project-service";
 import * as TaskListItem from "./task-list-item";
 import * as Sidebar from "../sidebar/sidebar";

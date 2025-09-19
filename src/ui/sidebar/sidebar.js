@@ -6,10 +6,10 @@ import * as ProjectSection from "../project-section/project-section";
 let activeItem;
 
 export function init() {
-  const lists = document.querySelector(`#sidebar-lists`);
-  const openProjectDialog = document.querySelector(`#open-project-dialog`);
   FilterList.init();
   ProjectList.init();
+  const lists = document.querySelector(`#sidebar-lists`);
+  const openProjectDialog = document.querySelector(`#open-project-dialog`);
   lists.addEventListener(`click`, (e) => handleItemClick(e));
   openProjectDialog.addEventListener(`click`, ProjectDialog.openDialog);
 }

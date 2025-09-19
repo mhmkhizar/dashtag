@@ -1,5 +1,6 @@
 import * as Project from "./project";
 import * as Storage from "./storage";
+import * as ProjectList from "../ui/sidebar/project-list";
 
 const _projects = [];
 const _defaultProject = {};
@@ -45,18 +46,6 @@ function setCompletedTasksProject() {
   return project;
 }
 
-export function getDefaultProject() {
-  return _defaultProject;
-}
-
-export function getStarredTasksProject() {
-  return _starredTasksProject;
-}
-
-export function getCompletedTasksProject() {
-  return _completedTasksProject;
-}
-
 export function get(id) {
   const project = _projects.find((p) => p.id === id);
   return project;
@@ -69,6 +58,7 @@ export function getAll() {
 export function add({ title, id }) {
   const project = Project.create({ title: title, id: id });
   _projects.push(project);
+  ProjectList.addItem(project);
   updateLocalStorage();
   return project;
 }

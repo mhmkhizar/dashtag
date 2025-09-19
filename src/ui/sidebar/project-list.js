@@ -3,12 +3,11 @@ import * as ProjectSection from "../project-section/project-section";
 import * as ProjectListItem from "./project-list-item";
 import * as Sidebar from "./sidebar";
 
-let list;
+const list = document.querySelector(`#sidebar-project-list`);
 let defaultItem;
 
 export function init() {
-  list = document.querySelector(`#sidebar-project-list`);
-  defaultItem = ProjectService.getDefaultProject();
+  defaultItem = ProjectService.get(`default-project`);
   addEventListeners();
   render();
   setDefaultAndActive();

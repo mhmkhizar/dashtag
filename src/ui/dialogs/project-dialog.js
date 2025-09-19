@@ -1,5 +1,4 @@
 import * as ProjectService from "../../logic/project-service";
-import * as ProjectList from "../sidebar/project-list";
 
 const dialog = document.querySelector(`#project-dialog`);
 const form = dialog.querySelector(`#project-form`);
@@ -39,6 +38,5 @@ function handleDialogClose() {
 
 function submitForm() {
   const title = titleInput.value.trim();
-  const project = ProjectService.add({ title: title });
-  ProjectList.addItem(project);
+  ProjectService.add({ title: title });
 }

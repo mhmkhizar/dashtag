@@ -1,6 +1,5 @@
 import { format } from "date-fns";
 import * as Task from "../../logic/task";
-import * as TaskList from "../project-section/task-list";
 import * as Sidebar from "../sidebar/sidebar";
 import * as TaskService from "../../logic/task-service";
 import * as ProjectService from "../../logic/project-service";
@@ -65,7 +64,6 @@ function submitForm() {
     Sidebar.getActiveItem().dataset.projectid,
   );
   TaskService.add({ task: task, projectID: currentProject.id });
-  TaskList.addItem(task);
 }
 
 function updateDateLabel() {

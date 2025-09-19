@@ -7,8 +7,8 @@ let starredItem;
 let completedItem;
 
 export function init() {
-  starredItem = ProjectService.getStarredTasksProject();
-  completedItem = ProjectService.getCompletedTasksProject();
+  starredItem = ProjectService.get(`starred-tasks-project`);
+  completedItem = ProjectService.get(`completed-tasks-project`);
   render();
 }
 
