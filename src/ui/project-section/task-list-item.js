@@ -1,17 +1,11 @@
 import { format } from "date-fns";
 import * as Helper from "../helper";
 import * as TaskService from "../../logic/task-service";
-
-export function init() {
-  const taskList = document.querySelector(`#task-list`);
-  taskList.addEventListener(`mouseenter`, (e) => handleHover(e, true), true);
-  taskList.addEventListener(`mouseleave`, (e) => handleHover(e, false), true);
-  taskList.addEventListener(`click`, (e) => handleDeleteIconClick(e));
-}
+import * as Sidebar from "../sidebar/sidebar";
 
 export function generate(item) {
   const itemLi = generateItemLi(item);
-  const checkIconSpan = generateCheckIconSpan();
+  const checkIconSpan = generateCheckIconSpan(item);
   const containerDiv = generateContainerDiv();
   const titleSpan = generateTitleSpan(item);
   containerDiv.appendChild(titleSpan);
@@ -29,7 +23,7 @@ export function generate(item) {
   return itemLi;
 }
 
-function handleHover(e, show) {
+export function handleHover(e, show) {
   if (e.target.id !== `task-item`) return;
   const item = e.target;
   const deleteIcon = item.querySelector(`#delete-task-btn`);
@@ -44,15 +38,22 @@ function handleHover(e, show) {
   }
 }
 
-function handleDeleteIconClick(e) {
+export function handleCheckIconClick(e) {
+  if (e.target.id !== `check-task-btn`) return;
+  const checkIcon = e.target;
+  const item = checkIcon.closest(`li`);
+  const itemID = item.dataset.taskid;
+  TaskService.markComplete(itemID);
+}
+
+export function handleDeleteIconClick(e) {
   if (e.target.id !== `delete-task-btn`) return;
   if (e.cancelBubble) return;
   e.cancelBubble = true;
   const deleteIcon = e.target;
   const item = deleteIcon.closest(`li`);
   const itemTaskID = item.dataset.taskid;
-  const isRemove = TaskService.remove(itemTaskID);
-  if (!isRemove) return;
+  TaskService.remove(itemTaskID);
 }
 
 function generateItemLi(item) {
@@ -64,11 +65,14 @@ function generateItemLi(item) {
   });
 }
 
-function generateCheckIconSpan() {
+function generateCheckIconSpan(item) {
   return Helper.createElement({
     element: `span`,
-    classes: `icon material-symbols-rounded icon-wght-200 w-[1.5rem] h-[1.5rem] -scale-80 cursor-pointer`,
-    textContent: `check_box_outline_blank`,
+    classes: item.completed
+      ? `icon material-symbols-rounded icon-fill text-[var(--primary)] w-[1.5rem] h-[1.5rem] cursor-pointer`
+      : `icon material-symbols-rounded icon-wght-200 w-[1.5rem] h-[1.5rem] -scale-80 cursor-pointer`,
+    textContent: item.completed ? `check_box` : `check_box_outline_blank`,
+    id: `check-task-btn`,
   });
 }
 

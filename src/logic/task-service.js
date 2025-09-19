@@ -12,10 +12,27 @@ export function add({ task, projectID }) {
   ProjectService.updateLocalStorage();
 }
 
-export function remove(taskId) {
+export function remove(taskID) {
   const projects = ProjectService.getAll();
-  projects.forEach((project) => project.removeTask(taskId));
-  TaskList.removeItem(taskId);
+  projects.forEach((project) => project.removeTask(taskID));
+  TaskList.removeItem(taskID);
   ProjectService.updateLocalStorage();
   return true;
+}
+
+export function markComplete(taskID) {
+  const projects = ProjectService.getAll();
+  const completedTasksProject = ProjectService.get(`completed-tasks-project`);
+  projects.forEach((project) => {
+    const task = project.tasks.find((task) => task.id === taskID);
+    if (!task) return;
+    task.markComplete();
+    project.removeTask(task.id);
+    completedTasksProject.addTask(task);
+  });
+}
+
+function hasTask({ projectID, taskID }) {
+  const project = ProjectService.get(projectID);
+  return project.tasks.some((task) => task.id === taskID);
 }

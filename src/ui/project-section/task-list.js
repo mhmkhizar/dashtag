@@ -6,8 +6,8 @@ let list;
 
 export function init() {
   list = document.querySelector(`#task-list`);
+  addEventListeners(list);
   render();
-  TaskListItem.init();
 }
 
 function render() {
@@ -26,4 +26,19 @@ export function addItem(task) {
 export function removeItem(id) {
   const item = list.querySelector(`[data-taskid="${id}"]`);
   item.remove();
+}
+
+function addEventListeners(list) {
+  list.addEventListener(
+    `mouseenter`,
+    (e) => TaskListItem.handleHover(e, true),
+    true,
+  );
+  list.addEventListener(
+    `mouseleave`,
+    (e) => TaskListItem.handleHover(e, false),
+    true,
+  );
+  list.addEventListener(`click`, (e) => TaskListItem.handleDeleteIconClick(e));
+  list.addEventListener(`click`, (e) => TaskListItem.handleCheckIconClick(e));
 }
