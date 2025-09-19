@@ -27,8 +27,7 @@ function render(projectid) {
 }
 
 function handleMainBtnClick(e) {
-  if (e.target.id !== `project-section-main-btn`) return;
-  const btnProjectID = e.target.dataset.projectid;
+  const btnProjectID = e.target.closest(`button`).dataset.projectid;
   const filterProjectIds = [`starred-tasks-project`, `completed-tasks-project`];
   if (filterProjectIds.includes(btnProjectID)) {
     TaskService.removeAll(btnProjectID);

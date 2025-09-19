@@ -22,8 +22,16 @@ export function remove(taskID) {
 
 export function removeAll(projectID) {
   const project = ProjectService.get(projectID);
+  const projects = ProjectService.getAll();
+  const taskIDs = project.tasks.map((task) => task.id);
   project.tasks = [];
   TaskList.removeAllItem();
+  projects.forEach(
+    (project) =>
+      (project.tasks = project.tasks.filter(
+        (task) => !taskIDs.includes(task.id),
+      )),
+  );
   ProjectService.updateLocalStorage();
 }
 
