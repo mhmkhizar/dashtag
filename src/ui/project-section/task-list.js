@@ -1,7 +1,7 @@
 import * as Helper from "../helper";
 import * as ProjectService from "../../logic/project-service";
 import * as TaskListItem from "./task-list-item";
-import * as ProjectList from "../sidebar/project-list";
+import * as Sidebar from "../sidebar/sidebar";
 
 let list;
 
@@ -14,7 +14,7 @@ export function init() {
 function render() {
   list.innerHTML = ``;
   const currentProject = ProjectService.get(
-    ProjectList.getActiveItem().dataset.projectid,
+    Sidebar.getActiveItem().dataset.projectid,
   );
   currentProject.tasks.forEach((task) => addItem(task));
 }

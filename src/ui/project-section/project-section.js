@@ -37,7 +37,10 @@ function generateTitle(title) {
   const h2 = Helper.createElement({
     element: `h2`,
     classes: `truncate mb-2 text-lg`,
-    textContent: `${title}`,
+    textContent:
+      title !== `Starred` && title !== `Completed`
+        ? `${title}`
+        : `${title} Tasks`,
   });
   return h2;
 }

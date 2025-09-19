@@ -3,11 +3,12 @@ import * as Helper from "../helper";
 export function generate(item) {
   const itemLi = Helper.createElement({
     element: `li`,
-    classes: `flex h-8 cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 hover:bg-current/10`,
+    classes: `filter-list-item flex h-8 cursor-pointer items-center gap-2 rounded-[var(--radius)] px-4 hover:bg-current/10`,
     attributes: { "data-projectid": `${item.id}` },
   });
   const textSpan = Helper.createElement({
     element: `span`,
+    classes: `filter-item-text`,
     textContent: `${item.title}`,
   });
 
@@ -15,13 +16,13 @@ export function generate(item) {
   if (isStarredTasksProject(item)) {
     iconSpan = Helper.createElement({
       element: `span`,
-      classes: `icon material-symbols-rounded icon-wght-300`,
+      classes: `filter-item-icon icon material-symbols-rounded icon-wght-300`,
       textContent: `star`,
     });
   } else {
     iconSpan = Helper.createElement({
       element: `span`,
-      classes: `icon material-symbols-rounded icon-wght-300 !text-2xl`,
+      classes: `filter-item-icon icon material-symbols-rounded icon-wght-300 !text-2xl`,
       textContent: `check`,
     });
   }

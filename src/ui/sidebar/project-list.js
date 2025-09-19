@@ -2,11 +2,31 @@ import * as ProjectService from "../../logic/project-service";
 import * as ProjectSection from "../project-section/project-section";
 import * as ProjectListItem from "./project-list-item";
 import * as TaskList from "../project-section/task-list";
+import * as Sidebar from "./sidebar";
 
-const list = document.querySelector(`#sidebar-project-list`);
-
-let activeItem;
+let list;
 let defaultItem;
+
+export function init() {
+  list = document.querySelector(`#sidebar-project-list`);
+  defaultItem = ProjectService.getDefaultProject();
+
+  list.addEventListener(`click`, (e) =>
+    ProjectListItem.handleCloseIconClick(e),
+  );
+  list.addEventListener(
+    `mouseenter`,
+    (e) => ProjectListItem.handleHover(e, true),
+    true,
+  );
+  list.addEventListener(
+    `mouseleave`,
+    (e) => ProjectListItem.handleHover(e, false),
+    true,
+  );
+  render();
+  setDefaultAndActive();
+}
 
 export function get() {
   return list;
@@ -14,17 +34,6 @@ export function get() {
 
 export function getDefaultItem() {
   return defaultItem;
-}
-
-export function getActiveItem() {
-  return activeItem;
-}
-
-export function init() {
-  defaultItem = ProjectService.getDefaultProject();
-  render();
-  setActiveItem();
-  ProjectListItem.init();
 }
 
 function render() {
@@ -36,21 +45,11 @@ function render() {
   });
 }
 
-function setActiveItem() {
-  if (!defaultItem) return;
+function setDefaultAndActive() {
   const item = list.querySelector(`[data-projectid="${defaultItem.id}"]`);
   if (item) item.classList.add(`active-item`);
-  activeItem = item;
-  ProjectSection.init(activeItem.dataset.projectid);
-  TaskList.init();
-}
-
-export function switchActiveItem(nextItem) {
-  activeItem.classList.remove(`active-item`);
-  activeItem = nextItem;
-  activeItem.classList.add(`active-item`);
-  ProjectSection.init(activeItem.dataset.projectid);
-  TaskList.init();
+  Sidebar.setActiveItem(item);
+  ProjectSection.init(item.dataset.projectid);
 }
 
 export function removeItem(id) {

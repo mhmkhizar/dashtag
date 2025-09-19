@@ -3,7 +3,7 @@ import * as Helper from "../helper";
 import * as TaskService from "../../logic/task-service";
 import * as TaskList from "./task-list";
 import * as ProjectService from "../../logic/project-service";
-import * as ProjectList from "../sidebar/project-list";
+import * as Sidebar from "../sidebar/sidebar";
 
 export function init() {
   const taskList = document.querySelector(`#task-list`);
@@ -91,7 +91,7 @@ function handleDeleteIconClick(e) {
   const item = deleteIcon.closest(`li`);
   const itemTaskID = item.dataset.taskid;
   const currentProject = ProjectService.get(
-    ProjectList.getActiveItem().dataset.projectid,
+    Sidebar.getActiveItem().dataset.projectid,
   );
   const isRemove = TaskService.remove({
     taskID: itemTaskID,
