@@ -10,20 +10,7 @@ let defaultItem;
 export function init() {
   list = document.querySelector(`#sidebar-project-list`);
   defaultItem = ProjectService.getDefaultProject();
-
-  list.addEventListener(`click`, (e) =>
-    ProjectListItem.handleCloseIconClick(e),
-  );
-  list.addEventListener(
-    `mouseenter`,
-    (e) => ProjectListItem.handleHover(e, true),
-    true,
-  );
-  list.addEventListener(
-    `mouseleave`,
-    (e) => ProjectListItem.handleHover(e, false),
-    true,
-  );
+  addEventListeners();
   render();
   setDefaultAndActive();
 }
@@ -39,8 +26,11 @@ export function getDefaultItem() {
 function render() {
   list.innerHTML = ``;
   ProjectService.getAll().forEach((p) => {
-    if (p.id === `starred-tasks-project` || p.id === `completed-tasks-project`)
-      return;
+    const filterProjectIds = [
+      `starred-tasks-project`,
+      `completed-tasks-project`,
+    ];
+    if (filterProjectIds.includes(p.id)) return;
     addItem(p);
   });
 }
@@ -60,4 +50,20 @@ export function removeItem(id) {
 export function addItem(project) {
   const item = ProjectListItem.generate(project);
   list.appendChild(item);
+}
+
+function addEventListeners() {
+  list.addEventListener(`click`, (e) =>
+    ProjectListItem.handleCloseIconClick(e),
+  );
+  list.addEventListener(
+    `mouseenter`,
+    (e) => ProjectListItem.handleHover(e, true),
+    true,
+  );
+  list.addEventListener(
+    `mouseleave`,
+    (e) => ProjectListItem.handleHover(e, false),
+    true,
+  );
 }

@@ -17,8 +17,8 @@ function render(projectid) {
   const project = ProjectServie.get(projectid);
 
   const container = generateContainer({ classes: `px-6 mb-6` });
-  const title = generateTitle(project.title);
-  const addTaskBtn = generateAddTaskBtn();
+  const title = generateTitle(project);
+  const addTaskBtn = generateAddTaskBtn(project);
   const taskList = TaskList.generate();
 
   container.append(title, addTaskBtn);
@@ -33,19 +33,19 @@ function generateContainer({ classes }) {
   return div;
 }
 
-function generateTitle(title) {
+function generateTitle(project) {
   const h2 = Helper.createElement({
     element: `h2`,
     classes: `truncate mb-2 text-lg`,
     textContent:
-      title !== `Starred` && title !== `Completed`
-        ? `${title}`
-        : `${title} Tasks`,
+      project.title !== `Starred` && project.title !== `Completed`
+        ? `${project.title}`
+        : `${project.title} Tasks`,
   });
   return h2;
 }
 
-function generateAddTaskBtn() {
+function generateAddTaskBtn(project) {
   const button = Helper.createElement({
     element: `button`,
     classes: `button button-outline button-sm w-full justify-center`,
@@ -62,5 +62,11 @@ function generateAddTaskBtn() {
     textContent: `Add a task`,
   });
   button.append(iconSpan, textSpan);
+  if (
+    project.id === `starred-tasks-project` ||
+    project.id === `completed-tasks-project`
+  ) {
+    button.inert = true;
+  }
   return button;
 }

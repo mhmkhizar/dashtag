@@ -31,9 +31,10 @@ function handleItemClick(e) {
     `project-item-icon`,
     `project-item-text`,
   ].some((cls) => e.target.classList.contains(cls));
+  if (!hasAnyItemClass) return;
   const isDeleteBtn = e.target.id === `delete-project-btn`;
   const isActiveItem = e.target.closest(`li`).classList.contains(`active-item`);
-  if (!hasAnyItemClass || isDeleteBtn || isActiveItem) return;
+  if (isDeleteBtn || isActiveItem) return;
   const item = e.target.closest(`li`);
   switchActiveItem(item);
 }
