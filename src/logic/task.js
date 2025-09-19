@@ -4,6 +4,7 @@ export function create({
   description,
   dueDate,
   starred = false,
+  completed = false,
 }) {
   if (!title || title.trim() === ``) return;
   return {
@@ -12,7 +13,7 @@ export function create({
     description,
     dueDate,
     starred,
-    completed: false,
+    completed,
     markComplete() {
       this.completed = true;
     },

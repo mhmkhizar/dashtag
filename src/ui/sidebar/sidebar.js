@@ -43,5 +43,6 @@ export function switchActiveItem(nextItem) {
   activeItem.classList.remove(`active-item`);
   activeItem = nextItem;
   activeItem.classList.add(`active-item`);
-  ProjectSection.init(activeItem.dataset.projectid);
+  const activeItemID = activeItem.dataset.projectid;
+  ProjectSection.init(activeItemID);
 }

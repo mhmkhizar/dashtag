@@ -20,6 +20,7 @@ export function retrieve() {
           description: t.description,
           dueDate: t.dueDate,
           starred: t.starred,
+          completed: t.completed,
         });
         project.addTask(task);
       });

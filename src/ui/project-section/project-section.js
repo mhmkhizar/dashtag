@@ -7,9 +7,9 @@ const section = document.querySelector(`#project-section`);
 
 export function init(projectid) {
   render(projectid);
-  TaskList.init();
   const openTaskDialog = document.querySelector(`#open-task-dialog`);
   openTaskDialog.addEventListener(`click`, TaskDialog.openDialog);
+  TaskList.init();
 }
 
 function render(projectid) {
@@ -62,7 +62,6 @@ function generateAddTaskBtn(project) {
   });
   button.append(iconSpan, textSpan);
   if (isFilterProject(project.id)) button.inert = true;
-
   return button;
 }
 

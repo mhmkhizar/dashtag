@@ -27,12 +27,14 @@ export function markComplete(taskID) {
     const task = project.tasks.find((task) => task.id === taskID);
     if (!task) return;
     task.markComplete();
-    project.removeTask(task.id);
-    completedTasksProject.addTask(task);
+    if (!hasTask(completedTasksProject, task.id))
+      completedTasksProject.addTask(task);
+    if (project.id !== completedTasksProject.id) project.removeTask(task.id);
   });
+  TaskList.removeItem(taskID);
+  ProjectService.updateLocalStorage();
 }
 
-function hasTask({ projectID, taskID }) {
-  const project = ProjectService.get(projectID);
+function hasTask(project, taskID) {
   return project.tasks.some((task) => task.id === taskID);
 }

@@ -13,6 +13,7 @@ export function init() {
 
 function loadFromStorage() {
   const storedProjects = Storage.retrieve();
+
   if (storedProjects) {
     // load all projects
     _projects.splice(0, _projects.length, ...storedProjects);
@@ -21,6 +22,7 @@ function loadFromStorage() {
       _defaultProject,
       storedProjects.find((p) => p.id === `default-project`),
     );
+    console.log(_projects);
   } else {
     // set dafault-project
     Object.assign(_defaultProject, setDefaultProject());

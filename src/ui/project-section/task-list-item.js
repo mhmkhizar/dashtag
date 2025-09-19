@@ -1,10 +1,11 @@
 import { format } from "date-fns";
 import * as Helper from "../helper";
 import * as TaskService from "../../logic/task-service";
-import * as Sidebar from "../sidebar/sidebar";
 
 export function generate(item) {
   const itemLi = generateItemLi(item);
+  if (item.completed) console.log(`hee`);
+
   const checkIconSpan = generateCheckIconSpan(item);
   const containerDiv = generateContainerDiv();
   const titleSpan = generateTitleSpan(item);
