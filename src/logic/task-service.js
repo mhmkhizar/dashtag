@@ -24,6 +24,7 @@ export function removeAll(projectID) {
   const project = ProjectService.get(projectID);
   project.tasks = [];
   TaskList.removeAllItem();
+  ProjectService.updateLocalStorage();
 }
 
 export function markComplete(taskID) {

@@ -4,7 +4,10 @@ import * as TaskService from "../../logic/task-service";
 
 export function generate(item) {
   const itemLi = generateItemLi(item);
-  if (item.completed) itemLi.inert = true;
+  if (item.completed) {
+    itemLi.inert = true;
+    itemLi.classList.add(`opacity-75`);
+  }
   const checkIconSpan = generateCheckIconSpan(item);
   const infoContainerDiv = generateInfoContainerDiv();
   const titleSpan = generateTitleSpan(item);
