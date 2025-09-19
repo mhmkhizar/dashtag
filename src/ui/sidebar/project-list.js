@@ -4,8 +4,9 @@ import * as ProjectListItem from "./project-list-item";
 import * as TaskList from "../project-section/task-list";
 
 const list = document.querySelector(`#sidebar-project-list`);
-let defaultItem;
+
 let activeItem;
+let defaultItem;
 
 export function get() {
   return list;
@@ -20,7 +21,7 @@ export function getActiveItem() {
 }
 
 export function init() {
-  defaultItem = ProjectService.getDefault();
+  defaultItem = ProjectService.getDefaultProject();
   render();
   setActiveItem();
   ProjectListItem.init();
@@ -28,7 +29,11 @@ export function init() {
 
 function render() {
   list.innerHTML = ``;
-  ProjectService.getAll().forEach(addItem);
+  ProjectService.getAll().forEach((p) => {
+    if (p.id === `starred-tasks-project` || p.id === `completed-tasks-project`)
+      return;
+    addItem(p);
+  });
 }
 
 function setActiveItem() {
@@ -54,6 +59,6 @@ export function removeItem(id) {
 }
 
 export function addItem(project) {
-  const listItem = ProjectListItem.generate(project);
-  list.appendChild(listItem);
+  const item = ProjectListItem.generate(project);
+  list.appendChild(item);
 }

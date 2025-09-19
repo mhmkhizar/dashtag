@@ -17,11 +17,7 @@ export function init() {
 function handleHover(e, isVisible) {
   if (!e.target.classList.contains(`project-list-item`)) return;
   const item = e.target;
-  if (
-    !ProjectList.getDefaultItem() ||
-    item.dataset.projectid === ProjectList.getDefaultItem().id
-  )
-    return;
+  if (item.dataset.projectid === `default-project`) return;
   const closeIcon = item.querySelector(`span:last-of-type`);
   if (isVisible) {
     closeIcon.removeAttribute(`inert`);

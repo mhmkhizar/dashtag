@@ -39,6 +39,6 @@ function handleDialogClose() {
 
 function submitForm() {
   const title = titleInput.value.trim();
-  const project = ProjectService.add(title);
+  const project = ProjectService.add({ title: title });
   ProjectList.addItem(project);
 }
