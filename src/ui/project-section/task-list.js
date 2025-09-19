@@ -28,12 +28,3 @@ export function removeItem(id) {
   const item = list.querySelector(`[data-taskid="${id}"]`);
   item.remove();
 }
-
-export function generate() {
-  const listUl = Helper.createElement({
-    element: `ul`,
-    classes: `mx-auto max-w-[96ch] rounded-lg bg-[var(--card)] text-[var(--card-foreground)]`,
-    id: `task-list`,
-  });
-  return listUl;
-}

@@ -19,7 +19,7 @@ function render(projectid) {
   const container = generateContainer({ classes: `px-6 mb-6` });
   const title = generateTitle(project);
   const addTaskBtn = generateAddTaskBtn(project);
-  const taskList = TaskList.generate();
+  const taskList = generateTaskList();
 
   container.append(title, addTaskBtn);
   section.append(container, taskList);
@@ -69,4 +69,13 @@ function generateAddTaskBtn(project) {
     button.inert = true;
   }
   return button;
+}
+
+function generateTaskList() {
+  const listUl = Helper.createElement({
+    element: `ul`,
+    classes: `mx-auto max-w-[96ch] rounded-lg bg-[var(--card)] text-[var(--card-foreground)]`,
+    id: `task-list`,
+  });
+  return listUl;
 }
