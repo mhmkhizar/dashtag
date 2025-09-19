@@ -37,10 +37,9 @@ function generateTitle(project) {
   const h2 = Helper.createElement({
     element: `h2`,
     classes: `truncate mb-2 text-lg`,
-    textContent:
-      project.title !== `Starred` && project.title !== `Completed`
-        ? `${project.title}`
-        : `${project.title} Tasks`,
+    textContent: isFilterProject(project.id)
+      ? `${project.title} Tasks`
+      : `${project.title}`,
   });
   return h2;
 }
@@ -62,12 +61,8 @@ function generateAddTaskBtn(project) {
     textContent: `Add a task`,
   });
   button.append(iconSpan, textSpan);
-  if (
-    project.id === `starred-tasks-project` ||
-    project.id === `completed-tasks-project`
-  ) {
-    button.inert = true;
-  }
+  if (isFilterProject(project.id)) button.inert = true;
+
   return button;
 }
 
@@ -78,4 +73,9 @@ function generateTaskList() {
     id: `task-list`,
   });
   return listUl;
+}
+
+function isFilterProject(id) {
+  const filterProjectIds = [`starred-tasks-project`, `completed-tasks-project`];
+  return filterProjectIds.includes(id);
 }
