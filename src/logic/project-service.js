@@ -22,7 +22,6 @@ function loadFromStorage() {
       _defaultProject,
       storedProjects.find((p) => p.id === `default-project`),
     );
-    console.log(_projects);
   } else {
     // set dafault-project
     Object.assign(_defaultProject, setDefaultProject());

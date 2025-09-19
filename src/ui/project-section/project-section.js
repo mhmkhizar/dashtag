@@ -2,13 +2,14 @@ import * as Helper from "../helper";
 import * as ProjectServie from "../../logic/project-service";
 import * as TaskDialog from "../dialogs/task-dialog";
 import * as TaskList from "./task-list";
+import * as TaskService from "../../logic/task-service";
 
 const section = document.querySelector(`#project-section`);
 
 export function init(projectid) {
   render(projectid);
-  const openTaskDialog = document.querySelector(`#open-task-dialog`);
-  openTaskDialog.addEventListener(`click`, TaskDialog.openDialog);
+  const mainBtn = document.querySelector(`#project-section-main-btn`);
+  mainBtn.addEventListener(`click`, (e) => handleMainBtnClick(e));
   TaskList.init();
 }
 
@@ -23,6 +24,17 @@ function render(projectid) {
 
   container.append(title, addTaskBtn);
   section.append(container, taskList);
+}
+
+function handleMainBtnClick(e) {
+  if (e.target.id !== `project-section-main-btn`) return;
+  const btnProjectID = e.target.dataset.projectid;
+  const filterProjectIds = [`starred-tasks-project`, `completed-tasks-project`];
+  if (filterProjectIds.includes(btnProjectID)) {
+    TaskService.removeAll(btnProjectID);
+    return;
+  }
+  TaskDialog.openDialog();
 }
 
 function generateContainer({ classes }) {
@@ -48,20 +60,19 @@ function generateAddTaskBtn(project) {
   const button = Helper.createElement({
     element: `button`,
     classes: `button button-outline button-sm w-full justify-center`,
-    attributes: { type: `button` },
-    id: `open-task-dialog`,
+    attributes: { type: `button`, "data-projectid": `${project.id}` },
+    id: `project-section-main-btn`,
   });
   const iconSpan = Helper.createElement({
     element: `span`,
     classes: `material-symbols-rounded icon-wght-300`,
-    textContent: `add_task`,
+    textContent: isFilterProject(project.id) ? `delete` : `add_task`,
   });
   const textSpan = Helper.createElement({
     element: `span`,
-    textContent: `Add a task`,
+    textContent: isFilterProject(project.id) ? `Delete All` : `Add a task`,
   });
   button.append(iconSpan, textSpan);
-  if (isFilterProject(project.id)) button.inert = true;
   return button;
 }
 

@@ -28,6 +28,10 @@ export function removeItem(id) {
   item.remove();
 }
 
+export function removeAllItem() {
+  list.innerHTML = ``;
+}
+
 function addEventListeners(list) {
   list.addEventListener(
     `mouseenter`,

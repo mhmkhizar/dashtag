@@ -20,6 +20,12 @@ export function remove(taskID) {
   return true;
 }
 
+export function removeAll(projectID) {
+  const project = ProjectService.get(projectID);
+  project.tasks = [];
+  TaskList.removeAllItem();
+}
+
 export function markComplete(taskID) {
   const projects = ProjectService.getAll();
   const completedTasksProject = ProjectService.get(`completed-tasks-project`);

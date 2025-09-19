@@ -22,8 +22,8 @@ export function handleCloseIconClick(e) {
   const closeIcon = e.target;
   const item = closeIcon.closest(`li`);
   const itemProjectID = item.dataset.projectid;
-  const isRemove = ProjectService.remove(itemProjectID);
-  if (!isRemove) return;
+  const isRemoved = ProjectService.remove(itemProjectID);
+  if (!isRemoved) return;
   if (item === Sidebar.getActiveItem()) {
     const beforeItem = item.previousElementSibling;
     const afterItem = item.nextElementSibling;

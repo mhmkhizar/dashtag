@@ -4,23 +4,22 @@ import * as TaskService from "../../logic/task-service";
 
 export function generate(item) {
   const itemLi = generateItemLi(item);
-  if (item.completed) console.log(`hee`);
-
+  if (item.completed) itemLi.inert = true;
   const checkIconSpan = generateCheckIconSpan(item);
-  const containerDiv = generateContainerDiv();
+  const infoContainerDiv = generateInfoContainerDiv();
   const titleSpan = generateTitleSpan(item);
-  containerDiv.appendChild(titleSpan);
+  infoContainerDiv.appendChild(titleSpan);
   if (item.description) {
     const descriptionSpan = generatedDescriptionSpan(item);
-    containerDiv.appendChild(descriptionSpan);
+    infoContainerDiv.appendChild(descriptionSpan);
   }
-  if (item.dueDate !== null) {
+  if (item.dueDate) {
     const dateSpan = generateDateSpan(item);
-    containerDiv.appendChild(dateSpan);
+    infoContainerDiv.appendChild(dateSpan);
   }
   const deleteIconSpan = generateDeleteIconSpan();
   const starIconSpan = generateStarIconSpan(item);
-  itemLi.append(checkIconSpan, containerDiv, deleteIconSpan, starIconSpan);
+  itemLi.append(checkIconSpan, infoContainerDiv, deleteIconSpan, starIconSpan);
   return itemLi;
 }
 
@@ -70,14 +69,14 @@ function generateCheckIconSpan(item) {
   return Helper.createElement({
     element: `span`,
     classes: item.completed
-      ? `icon material-symbols-rounded icon-fill text-[var(--primary)] w-[1.5rem] h-[1.5rem] cursor-pointer`
+      ? `icon material-symbols-rounded icon-fill text-[var(--primary)] w-[1.5rem] h-[1.5rem] cursor-pointer -scale-80 -rotate-180`
       : `icon material-symbols-rounded icon-wght-200 w-[1.5rem] h-[1.5rem] -scale-80 cursor-pointer`,
     textContent: item.completed ? `check_box` : `check_box_outline_blank`,
     id: `check-task-btn`,
   });
 }
 
-function generateContainerDiv() {
+function generateInfoContainerDiv() {
   return Helper.createElement({
     element: `div`,
     classes: `flex w-[calc(100%-7.5rem)] flex-col items-start`,
@@ -87,7 +86,7 @@ function generateContainerDiv() {
 function generateTitleSpan(item) {
   return Helper.createElement({
     element: `span`,
-    classes: `w-full truncate`,
+    classes: `w-full truncate mb-0.5`,
     textContent: `${item.title}`,
   });
 }
@@ -95,7 +94,7 @@ function generateTitleSpan(item) {
 function generatedDescriptionSpan(item) {
   return Helper.createElement({
     element: `span`,
-    classes: `text-sm text-[var(--muted-foreground)] mb-1 w-full truncate`,
+    classes: `text-sm text-[var(--muted-foreground)] w-full truncate mb-1.5`,
     textContent: `${item.description}`,
   });
 }

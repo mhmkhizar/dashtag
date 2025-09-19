@@ -236,5 +236,34 @@
         </div>
       </form>
     </dialog>
+
+    <!-- *Confirmation-Dialog* -->
+    <dialog class="dialog w-[clamp(35ch,50%,45ch)]" id="confirmation-dialog">
+      <!-- Form -->
+      <form method="dialog" id="confirmation-form">
+        <p id="confirmation-message"></p>
+        <!-- *Actions_Group* -->
+        <div class="flex items-center justify-end gap-2 pt-6">
+          <!-- Cancel_button -->
+          <button
+            class="button button-ghost button-sm"
+            id="close-confirmation-dialog"
+            type="button"
+            value="cancel"
+          >
+            Cancel
+          </button>
+          <!-- Done_button -->
+          <button
+            class="button button-primary button-sm"
+            id="confirm-confirmation-form"
+            type="submit"
+            value="delete"
+          >
+            Delete
+          </button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>
