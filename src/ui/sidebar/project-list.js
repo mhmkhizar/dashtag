@@ -1,7 +1,6 @@
 import * as ProjectService from "../../logic/project-service";
 import * as ProjectSection from "../project-section/project-section";
 import * as ProjectListItem from "./project-list-item";
-import * as TaskList from "../project-section/task-list";
 import * as Sidebar from "./sidebar";
 
 let list;
