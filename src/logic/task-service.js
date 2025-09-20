@@ -12,13 +12,18 @@ export function get(taskID) {
 
 export function update(taskID, newTask) {
   const projects = ProjectService.getAll();
+  const starredProject = ProjectService.get(`starred-tasks-project`);
   for (const project of projects) {
     const task = project.tasks.find((task) => task.id === taskID);
     if (task) {
       Object.assign(task, newTask);
+      if (task.starred) {
+        starredProject.addTask(task);
+      }
       break;
     }
   }
+  ProjectService.updateLocalStorage();
 }
 
 export function add({ task, projectID }) {

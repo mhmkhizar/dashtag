@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import * as Task from "../../logic/task";
 import * as TaskService from "../../logic/task-service";
+import * as TaskListItem from "../project-section/task-list-item";
 
 const dialog = document.querySelector(`#edit-task-dialog`);
 const form = dialog.querySelector(`#edit-task-form`);
@@ -22,7 +23,9 @@ export function init(item) {
   currentTask = TaskService.get(item.dataset.taskid);
   currentItem = item;
 
-  titleInput.value = currentTask.title;
+  if (currentTask.title) {
+    titleInput.value = currentTask.title;
+  }
   if (currentTask.description) {
     descInput.value = currentTask.description;
   }
@@ -30,8 +33,8 @@ export function init(item) {
     const dateObj = new Date(currentTask.dueDate);
     const formattedDate = dateObj.toISOString().split("T")[0];
     dateInput.value = formattedDate;
+    updateDateLabel();
   }
-  updateDateLabel();
   if (currentTask.starred) {
     starInput.checked = true;
   }
@@ -72,6 +75,8 @@ function submitForm() {
   const description = descInput.value.trim();
   let dueDate = dateInput.value;
   dueDate ? (dueDate = new Date(dateInput.value)) : (dueDate = null);
+  console.log(starred);
+
   const editedTask = Task.create({
     id: currentTask.id,
     title: title,
@@ -80,17 +85,29 @@ function submitForm() {
     dueDate: dueDate,
     completed: currentTask.completed,
   });
-  //   updateTaskItem(editedTask);
-  //   TaskService.update(currentTask.id, editedTask);
+  updateTaskItem(editedTask);
+  TaskService.update(currentTask.id, editedTask);
 }
 
 function updateTaskItem(updatedTask) {
-  console.log(currentItem);
-
-  const titleSpan = currentItem.querySelector(`#task-title`);
-  const descSpan = currentItem.querySelector(`#task-desc`);
-  const dateSpan = currentItem.querySelector(`#task-duedate`);
+  const infoContainerDiv = currentItem.querySelector(`#task-info-container`);
   const starIconSpan = currentItem.querySelector(`#task-star-icon`);
+
+  infoContainerDiv.innerHTML = ``;
+  if (updatedTask.title) {
+    const titleSpan = TaskListItem.generateTitleSpan(updatedTask);
+    infoContainerDiv.appendChild(titleSpan);
+  }
+  if (updatedTask.description) {
+    const descSpan = TaskListItem.generateDescriptionSpan(updatedTask);
+    infoContainerDiv.appendChild(descSpan);
+  }
+  if (updatedTask.dueDate) {
+    const dateSpan = TaskListItem.generateDateSpan(updateTaskItem);
+    infoContainerDiv.appendChild(dateSpan);
+  }
+  const updatedStarIconSpan = TaskListItem.generateStarIconSpan(updatedTask);
+  starIconSpan.replaceWith(updatedStarIconSpan);
 }
 
 function updateDateLabel() {

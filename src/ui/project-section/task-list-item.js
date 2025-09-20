@@ -14,7 +14,7 @@ export function generate(item) {
   const titleSpan = generateTitleSpan(item);
   infoContainerDiv.appendChild(titleSpan);
   if (item.description) {
-    const descriptionSpan = generatedDescriptionSpan(item);
+    const descriptionSpan = generateDescriptionSpan(item);
     infoContainerDiv.appendChild(descriptionSpan);
   }
   if (item.dueDate) {
@@ -102,7 +102,7 @@ function generateInfoContainerDiv() {
   });
 }
 
-function generateTitleSpan(item) {
+export function generateTitleSpan(item) {
   return Helper.createElement({
     element: `span`,
     classes: `w-full truncate mb-0.5`,
@@ -111,7 +111,7 @@ function generateTitleSpan(item) {
   });
 }
 
-function generatedDescriptionSpan(item) {
+export function generateDescriptionSpan(item) {
   return Helper.createElement({
     element: `span`,
     classes: `text-sm text-[var(--muted-foreground)] w-full truncate mb-1.5`,
@@ -120,7 +120,7 @@ function generatedDescriptionSpan(item) {
   });
 }
 
-function generateDateSpan(item) {
+export function generateDateSpan(item) {
   return Helper.createElement({
     element: `span`,
     classes: `w-fit rounded-[var(--radius)] border border-current/35 px-2 py-0.5 text-sm text-current/85`,
@@ -138,7 +138,7 @@ function generateDeleteIconSpan() {
   });
 }
 
-function generateStarIconSpan(item) {
+export function generateStarIconSpan(item) {
   return Helper.createElement({
     element: `span`,
     classes: item.starred
