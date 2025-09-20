@@ -12,15 +12,15 @@
   </head>
   <!-- *Body* -->
   <body
-    class="h-full bg-[var(--background)] font-[family-name:var(--font-roboto)] text-base text-[var(--foreground)]"
+    class="h-full overflow-auto bg-[var(--background)] font-[family-name:var(--font-roboto)] text-base text-[var(--foreground)]"
   >
     <!-- *Wrapper* -->
     <div
-      class="grid h-dvh grid-cols-[280px_1fr] grid-rows-1 [grid-template-areas:'sidebar_main'_'sidebar_main']"
+      class="grid h-dvh grid-cols-[280px_1fr] grid-rows-1 overflow-auto [grid-template-areas:'sidebar_main'_'sidebar_main']"
     >
       <!-- *Sidebar* -->
       <aside
-        class="flex flex-col bg-[var(--sidebar)] text-sm text-[var(--sidebare-foreground)] [grid-area:sidebar]"
+        class="flex flex-col overflow-auto bg-[var(--sidebar)] text-sm text-[var(--sidebare-foreground)] [grid-area:sidebar]"
       >
         <!-- *Sidebar_Header* -->
         <header
@@ -37,7 +37,7 @@
         </header>
 
         <!-- *Sidbar_Body* -->
-        <section class="flex flex-col overflow-y-auto" id="sidebar-lists">
+        <section class="flex flex-col overflow-auto" id="sidebar-lists">
           <!-- *Sidebar_Filters_Section* -->
           <section class="mb-2 p-2">
             <!-- Filters_List -->
@@ -50,7 +50,7 @@
           </section>
 
           <!-- *Sidebar_Project_List_Section* -->
-          <section class="overflow-y-auto p-2">
+          <section class="overflow-auto p-2">
             <!-- Project_List -->
             <ul
               class="flex flex-col gap-0.5 overflow-y-auto"
@@ -101,10 +101,10 @@
       </aside>
 
       <!-- *Main_Content* -->
-      <main class="h-full overflow-x-auto p-6 text-base [grid-area:main]">
+      <main class="h-full p-6 text-base [grid-area:main]">
         <!-- *Main_Project_Section* -->
         <section
-          class="mx-auto mb-8 max-w-[96ch] rounded-lg bg-[var(--card)] py-6 text-[var(--card-foreground)]"
+          class="mx-auto mb-8 flex h-full max-w-[96ch] flex-col rounded-lg bg-[var(--card)] py-6 text-[var(--card-foreground)]"
           id="project-section"
         ></section>
       </main>

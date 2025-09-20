@@ -78,7 +78,7 @@ function generateAddTaskBtn(project) {
 function generateTaskList() {
   const listUl = Helper.createElement({
     element: `ul`,
-    classes: `mx-auto max-w-[96ch] rounded-lg bg-[var(--card)] text-[var(--card-foreground)]`,
+    classes: `mx-auto w-full bg-[var(--card)] text-[var(--card-foreground)] overflow-auto`,
     id: `task-list`,
   });
   return listUl;
