@@ -73,9 +73,8 @@ function submitForm() {
   const title = titleInput.value.trim();
   const starred = starInput.checked;
   const description = descInput.value.trim();
-  let dueDate = dateInput.value;
-  dueDate ? (dueDate = new Date(dateInput.value)) : (dueDate = null);
-  console.log(starred);
+  let dueDate;
+  dateInput.value ? (dueDate = new Date(dateInput.value)) : (dueDate = null);
 
   const editedTask = Task.create({
     id: currentTask.id,
@@ -103,7 +102,7 @@ function updateTaskItem(updatedTask) {
     infoContainerDiv.appendChild(descSpan);
   }
   if (updatedTask.dueDate) {
-    const dateSpan = TaskListItem.generateDateSpan(updateTaskItem);
+    const dateSpan = TaskListItem.generateDateSpan(updatedTask);
     infoContainerDiv.appendChild(dateSpan);
   }
   const updatedStarIconSpan = TaskListItem.generateStarIconSpan(updatedTask);

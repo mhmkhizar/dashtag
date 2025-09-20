@@ -50,8 +50,8 @@ function submitForm() {
   const title = titleInput.value.trim();
   const starred = starInput.checked;
   const description = descInput.value.trim();
-  let dueDate = dateInput.value;
-  dueDate ? (dueDate = new Date(dateInput.value)) : (dueDate = null);
+  let dueDate;
+  dateInput.value ? (dueDate = new Date(dateInput.value)) : (dueDate = null);
 
   const task = Task.create({
     title: title,
@@ -68,7 +68,7 @@ function submitForm() {
 
 function updateDateLabel() {
   if (!dateInput.value) return renderDateLabel(`—— / ———— / ————`, true);
-  const formattedDate = format(new Date(dateInput.value), `dd/MMMM/yyyy`);
+  const formattedDate = format(dateInput.value, `dd/MMMM/yyyy`);
   renderDateLabel(formattedDate, false);
 }
 
