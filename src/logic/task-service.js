@@ -1,6 +1,26 @@
 import * as ProjectService from "./project-service";
 import * as TaskList from "../ui/project-section/task-list";
 
+export function get(taskID) {
+  const projects = ProjectService.getAll();
+  for (const project of projects) {
+    const task = project.tasks.find((task) => task.id === taskID);
+    if (task) return task;
+  }
+  return null;
+}
+
+export function update(taskID, newTask) {
+  const projects = ProjectService.getAll();
+  for (const project of projects) {
+    const task = project.tasks.find((task) => task.id === taskID);
+    if (task) {
+      Object.assign(task, newTask);
+      break;
+    }
+  }
+}
+
 export function add({ task, projectID }) {
   const project = ProjectService.get(projectID);
   project.addTask(task);

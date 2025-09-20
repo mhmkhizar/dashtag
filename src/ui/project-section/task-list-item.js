@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import * as Helper from "../helper";
 import * as TaskService from "../../logic/task-service";
+import * as EditTaskDialog from "../dialogs/edit-task-dialog";
 
 export function generate(item) {
   const itemLi = generateItemLi(item);
@@ -24,6 +25,20 @@ export function generate(item) {
   const starIconSpan = generateStarIconSpan(item);
   itemLi.append(checkIconSpan, infoContainerDiv, deleteIconSpan, starIconSpan);
   return itemLi;
+}
+
+export function handleClick(e) {
+  const targetedElemsIDs = [
+    `task-item`,
+    `task-info-container`,
+    `task-title`,
+    `task-desc`,
+    `task-duedate`,
+    `task-star-icon`,
+  ];
+  if (!targetedElemsIDs.includes(e.target.id)) return;
+  const item = e.target.closest(`li`);
+  EditTaskDialog.init(item);
 }
 
 export function handleHover(e, show) {
@@ -83,6 +98,7 @@ function generateInfoContainerDiv() {
   return Helper.createElement({
     element: `div`,
     classes: `flex w-[calc(100%-7.5rem)] flex-col items-start`,
+    id: `task-info-container`,
   });
 }
 
@@ -91,6 +107,7 @@ function generateTitleSpan(item) {
     element: `span`,
     classes: `w-full truncate mb-0.5`,
     textContent: `${item.title}`,
+    id: `task-title`,
   });
 }
 
@@ -99,6 +116,7 @@ function generatedDescriptionSpan(item) {
     element: `span`,
     classes: `text-sm text-[var(--muted-foreground)] w-full truncate mb-1.5`,
     textContent: `${item.description}`,
+    id: `task-desc`,
   });
 }
 
@@ -107,6 +125,7 @@ function generateDateSpan(item) {
     element: `span`,
     classes: `w-fit rounded-[var(--radius)] border border-current/35 px-2 py-0.5 text-sm text-current/85`,
     textContent: `${format(item.dueDate, `dd-MMMM-yyy`)}`,
+    id: `task-duedate`,
   });
 }
 

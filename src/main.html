@@ -237,17 +237,74 @@
       </form>
     </dialog>
 
-    <!-- *Confirmation-Dialog* -->
-    <dialog class="dialog w-[clamp(35ch,50%,45ch)]" id="confirmation-dialog">
+    <!-- *Edit_Task_Dialog* -->
+    <dialog class="dialog w-[clamp(45ch,50%,75ch)]" id="edit-task-dialog">
       <!-- Form -->
-      <form method="dialog" id="confirmation-form">
-        <p id="confirmation-message"></p>
+      <form method="dialog" class="space-y-2" id="edit-task-form">
+        <!-- *Input_Group* -->
+        <div class="flex items-center gap-4">
+          <!-- Title_Input -->
+          <input
+            class="input"
+            type="text"
+            id="edit-task-title-input"
+            placeholder="Title"
+            autocomplete="off"
+            required
+          />
+          <!-- Star_Input -->
+          <div>
+            <input
+              type="checkbox"
+              id="edit-task-star-input"
+              class="peer hidden"
+            />
+            <label
+              for="task-star-input"
+              class="cursor-pointer text-3xl text-[var(--muted-foreground)] peer-checked:text-blue-400"
+              >★</label
+            >
+          </div>
+        </div>
+        <!-- *Input_Group* -->
+        <div>
+          <!-- Textarea -->
+          <textarea
+            class="textarea"
+            id="edit-task-desc-input"
+            rows="2"
+            placeholder="Description"
+          ></textarea>
+        </div>
+        <!-- *Input_Group* -->
+        <div
+          class="-my-1.5 flex items-center gap-2 border-b border-[var(--border)] pb-6"
+        >
+          <!-- Date_Input -->
+          <div class="relative hover:cursor-pointer">
+            <input
+              type="date"
+              id="edit-task-date-input"
+              class="peer custom-hidden absolute inset-0 right-2 cursor-pointer text-4xl hover:cursor-pointer"
+            />
+            <label
+              for="task-date-input"
+              class="flex h-[2.2rem] items-center justify-center rounded-[var(--radius)] bg-[var(--input)] px-4 text-[var(--muted-foreground)] peer-hover:cursor-pointer peer-hover:text-[var(--primary)] hover:cursor-pointer"
+              ><span
+                class="icon material-symbols-rounded icon-wght-300 hover:cursor-pointer"
+                >edit_calendar</span
+              ></label
+            >
+          </div>
+          <!-- Date_Label -->
+          <p id="edit-task-date-label"></p>
+        </div>
         <!-- *Actions_Group* -->
         <div class="flex items-center justify-end gap-2 pt-6">
           <!-- Cancel_button -->
           <button
             class="button button-ghost button-sm"
-            id="close-confirmation-dialog"
+            id="close-edit-task-dialog"
             type="button"
             value="cancel"
           >
@@ -256,11 +313,11 @@
           <!-- Done_button -->
           <button
             class="button button-primary button-sm"
-            id="confirm-confirmation-form"
+            id="submit-edit-task-form"
             type="submit"
-            value="delete"
+            value="save"
           >
-            Delete
+            Save
           </button>
         </div>
       </form>

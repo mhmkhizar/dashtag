@@ -45,4 +45,5 @@ function addEventListeners(list) {
   );
   list.addEventListener(`click`, (e) => TaskListItem.handleDeleteIconClick(e));
   list.addEventListener(`click`, (e) => TaskListItem.handleCheckIconClick(e));
+  list.addEventListener(`click`, (e) => TaskListItem.handleClick(e));
 }
