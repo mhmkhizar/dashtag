@@ -1,5 +1,6 @@
 import * as ProjectService from "./project-service";
 import * as TaskList from "../ui/project-section/task-list";
+import * as ProjectSection from "../ui/project-section/project-section";
 
 export function get(taskID) {
   const projects = ProjectService.getAll();
@@ -17,8 +18,12 @@ export function update(taskID, newTask) {
     const task = project.tasks.find((task) => task.id === taskID);
     if (task) {
       Object.assign(task, newTask);
-      if (task.starred && !hasTask(starredProject, task.id))
+      if (task.starred && !hasTask(starredProject, task.id)) {
         starredProject.addTask(task);
+      } else if (!task.starred && hasTask(starredProject, task.id)) {
+        starredProject.removeTask(task.id);
+        ProjectSection.init(starredProject.id);
+      }
       break;
     }
   }
